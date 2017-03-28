@@ -1,2 +1,2 @@
-# research.cloud
+# Research.Cloud
 What are your favorite researchers researching?
