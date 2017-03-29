@@ -16,48 +16,43 @@ $(document).ready(function() {
 
     // initial states
     $("#searchButton").prop("disabled", true);
-    $("#addButton").prop("disabled", true);
-    $("#addButton").hide();
-    $("#shareButton").hide();
-    $("#artistLabel").html("Artist(s): ");
+    $("#downloadButton").hide();
+    $("#keywordLabel").html("Keyword(s): ");
   }
   else if(localStorage.getItem('searchState') == YES_SEARCH) {
     $("#searchButton").prop("disabled", false);
-    $("#addButton").prop("disabled", false);
 
-    $("#addButton").show();
-    $("#shareButton").show();
+    $("#downloadButton").show();
 
     $("#vis").show();
-    $("#artistLabel").show();
-    $("#artistLabel").html("Artist(s): " + localStorage.getItem('artistLabelFull'));
+    $("#keywordLabel").show();
+    $("#keywordLabel").html("Keyword(s): " + localStorage.getItem('keywordLabelFull'));
 
     tags = JSON.parse(localStorage.getItem('tags'));
     update();
   }
 
-//$("#artistLabel").hide();
+$("#keywordLabel").hide();
 
 $("#searchButton").click(function() {
   $('#vis').hide();
   document.getElementById("loader").style.display = "inline-block";
 
   searchState = YES_SEARCH;
-  $("#artistLabel").show();
-  $("#addButton").show();
-  $("#shareButton").show();
+  $("#keywordLabel").show();
+  $("#downloadButton").show();
 
-  var $artistName = $("#automplete-1").val();
-  $("#artistLabel").html("Artist(s): " + $artistName);
+  var $keywordText = $("#automplete-1").val();
+  $("#keywordLabel").html("Keyword(s): " + $keywordText);
 
   $.ajax({
     type : 'GET',
-    url: 'http://localhost:8080/api/wordcloud/new/' + $artistName,
+    url: 'http://localhost:8080/api/wordcloud/new/' + $keywordText,
     dataType: 'jsonp',
     success: function(data) {
       localStorage.setItem('tags', JSON.stringify(data));
-      localStorage.setItem('artistName', $artistName);
-      localStorage.setItem('artistLabelFull', $artistName);
+      localStorage.setItem('keywordText', $keywordText);
+      localStorage.setItem('keywordLabelFull', $keywordText);
       tags = data;
       update();
     },
@@ -68,34 +63,8 @@ $("#searchButton").click(function() {
 
 });
 
-$("#addButton").click(function() {
-  $('#vis').hide();
-  document.getElementById("loader").style.display = "inline-block";
+$("#downloadButton").click(function() {
 
-  var $currentArtists = $("#artistLabel").text();
-  var $artistName = $("#automplete-1").val();
-  $artistName = $artistName[0].toUpperCase() + $artistName.slice(1);
-  $artists = localStorage.getItem('artistLabelFull');
-  $artists += ", " + $artistName;
-  localStorage.setItem('artistLabelFull', $artists);
-  $("#artistLabel").html("Artist(s): " + $artists);
-
-  $.ajax({
-    type : 'GET',
-    url: 'http://localhost:8080/api/wordcloud/merge/' + $artistName,
-    dataType: 'jsonp',
-    success: function(data) {
-      tags = data;
-      update();
-    },
-    error: function(err) {
-      console.log(err);
-    }
-  });
-});
-
-$("#shareButton").click(function() {
-  
   html2canvas(document.getElementById('vis')).then(function(canvas) {
       // convert the div that contains the word cloud into a png
       var img = canvas.toDataURL("image/png");
@@ -110,14 +79,7 @@ $("#shareButton").click(function() {
           withCredentials: false
         },
         success: function(data) {
-          // FB share dialog
-          FB.ui({
-            method: 'share',
-            display: 'popup',
-            href: data.url,
-            title: 'lyrical.cloud',
-            description: 'Want to know what your favorite artists are saying?',
-          }, function(response){});
+          // download image
         },
         error: function(err) {
           console.log(err);
@@ -130,28 +92,24 @@ $("#shareButton").click(function() {
 $("#automplete-1").keyup(function() {
 
 $("#searchButton").prop("disabled", true);
-$("#addButton").prop("disabled", true);
 
 $("#searchButton").removeClass("btn-class");
 $("#searchButton").addClass("btn-class-disabled");
-
-$("#addButton").removeClass("btn-class");
-$("#addButton").addClass("btn-class-disabled");
 
 });
 
 // call AJAX function
 $("#automplete-1").autocomplete({
   source: function(request, response) {
-    var artistName = $("#automplete-1").val();
+    var keywordName = $("#automplete-1").val();
     $.ajax({
       type : 'GET',
-      url: 'http://localhost:8080/api/dropdown/suggestions/' + artistName,
+      url: 'http://localhost:8080/api/dropdown/suggestions/' + keywordText,
       dataType: 'jsonp',
       success: function(data) {
         var stringArray = $.map(data, function(item) {
           return {
-            artist: item.artist,
+            keyword: item.keyword,
             id: item.id,
             img: item.img
           }
@@ -168,26 +126,23 @@ $("#automplete-1").autocomplete({
   },
   select: function(event, ui) {
     event.preventDefault();
-    $("#automplete-1").val(ui.item.artist);
+    $("#automplete-1").val(ui.item.keyword);
 
     $("#searchButton").prop("disabled", false);
     $("#searchButton").removeClass("btn-class-disabled");
     $("#searchButton").addClass("btn-class");
 
-    $("#addButton").prop("disabled", false);
-    $("#addButton").removeClass("btn-class-disabled");
-    $("#addButton").addClass("btn-class");
   },
   minLength: 3
 }).data("ui-autocomplete")._renderItem=function(ul, item) {
 
     var $li = $('<li>'),
     $img = $('<img>');
-    $header = $("<h3>" + item.artist + "</h3>");
+    $header = $("<h3>" + item.keyword + "</h3>");
 
     $img.attr({
      src: item.img,
-     alt: item.artist
+     alt: item.keyword
    });
 
     $li.append('<a href="#">');

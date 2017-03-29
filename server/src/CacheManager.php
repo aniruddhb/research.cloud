@@ -1,10 +1,10 @@
 <?php
 final class CacheManager {
 
-	# holds overall freq cache (per currently searched artists)
+	# holds overall freq cache (per currently searched keywords)
 	private $overall_freq_cache = array();
 
-	# holds search freq cache (per-search [aka per-artist] per-song)
+	# holds search freq cache (per-search [aka per-keyword] per-song)
 	private $search_freq_cache = array();
 
 	# holds lifetime freq cache (per total lifetime of server)
@@ -28,20 +28,20 @@ final class CacheManager {
 		return $this->lifetime_freq_cache;
 	}
 
-	# does the search cache contain the artist?
-	public function contains($artist) {
-		return array_key_exists($artist, $this->lifetime_freq_cache);
+	# does the search cache contain the keyword?
+	public function contains($keyword) {
+		return array_key_exists($keyword, $this->lifetime_freq_cache);
 	}
 
-	# inserts a new search entry into the per-artist
+	# inserts a new search entry into the per-keyword
 	# per-song frequency cache
-	public function insert_into_search_cache($artist_name, $entry) {
-		$this->search_freq_cache[$artist_name] = $entry;
+	public function insert_into_search_cache($keyword_text, $entry) {
+		$this->search_freq_cache[$keyword_text] = $entry;
 	}
 
 	# inserts a new search entry into the lifetime server cache
-	public function insert_into_lifetime_cache($artist_name, $entry) {
-		$this->lifetime_freq_cache[$artist_name] = $entry;
+	public function insert_into_lifetime_cache($keyword_text, $entry) {
+		$this->lifetime_freq_cache[$keyword_text] = $entry;
 	}
 
 	# merge two different overall freq maps into one, 
@@ -52,17 +52,17 @@ final class CacheManager {
 		arsort($this->overall_freq_cache);
 	}
 
-	# takes an artist's name and outputs an overall frequency 
-	# map for the artist, based on cached information over server lifetime
-	public function get_overall_frequencies($artist) {
-		# get specific artist-song freq list from param
-		$artist_song_frequencies_list = $this->lifetime_freq_cache[$artist];
+	# takes an keyword's name and outputs an overall frequency 
+	# map for the keyword, based on cached information over server lifetime
+	public function get_overall_frequencies($keyword) {
+		# get specific keyword-song freq list from param
+		$keyword_song_frequencies_list = $this->lifetime_freq_cache[$keyword];
 
 		# declare overall frequency list
 		$overall_freq = array();
 
 		# iterate through param list
-		foreach($artist_song_frequencies_list as $song_frequency_map) {
+		foreach($keyword_song_frequencies_list as $song_frequency_map) {
 			$keys = array_keys($song_frequency_map);
 			foreach($song_frequency_map[$keys[1]] as $word => $freq) {
 				if (array_key_exists($word, $overall_freq)) {
@@ -74,7 +74,7 @@ final class CacheManager {
 			}
 		}
 
-		# sort overall freqs for this artist in desc. freq. order
+		# sort overall freqs for this keyword in desc. freq. order
 		arsort($overall_freq);
 
 		# new array to format data for front-end

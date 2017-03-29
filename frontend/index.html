@@ -5,7 +5,7 @@
 
 <head>
     <meta charset = "utf-8">
-    <title>lyrical.cloud</title>
+    <title>research.cloud</title>
     <meta charset="UTF-8">
     <meta content="utf-8" http-equiv="encoding">
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -27,33 +27,11 @@
 
 <!-- Body -->
 
-<body>  
- <div id="fb-root"></div>
-    <script>
-        window.fbAsyncInit = function() {
-            FB.init({
-              appId      : '399203557098299',
-              xfbml      : true,
-              version    : 'v2.8'
-            });
-            FB.AppEvents.logPageView();
-        };
-
-        (function(d, s, id){
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) {
-                return;
-            }
-            js = d.createElement(s); 
-            js.id = id;    
-            js.src = "//connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-       }(document, 'script', 'facebook-jssdk'));
-    </script>
+<body>
 
     <!-- Logo -->
-    <h1>lyrical.cloud</h1>
-    <h2 id="artistLabel"></h2>
+    <h1>research.cloud</h1>
+    <h2 id="keywordLabel"></h2>
 
     <div id="loader"></div>
 
@@ -64,7 +42,7 @@
         <div class="row center-xs">
             <div class="col-xs-4">
               <div class = "ui-widget">
-                <input id="automplete-1" type="text" name="focus" required class="search-box" placeholder="Search Artist" autocomplete="off" />
+                <input id="automplete-1" type="text" name="focus" required class="search-box" placeholder="Search a last name or keyword" autocomplete="off" />
               </div>
             </div>
         </div>
@@ -78,10 +56,7 @@
                         <button class="btn-class-disabled" id="searchButton">Search</button>
                     </div>
                     <div class="col-xs-4">
-                        <button class="btn-class-disabled" id="addButton" style="margin-left: 10%">Add</button>
-                    </div>
-                    <div class="col-xs-4">
-                        <button class="btn-class" id="shareButton">Share</button>
+                        <button class="btn-class" id="dowwnloadButton">Download</button>
                     </div>
                 </div>
             </div>

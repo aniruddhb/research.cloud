@@ -1,6 +1,6 @@
 <?php
 
-// Helper functions for dropdownArtists
+// Helper functions for dropdownkeywords
 
 function checkImageURL($array, $x) {
 	if(isset($array[$x]["images"][$x]["url"]))
@@ -9,22 +9,22 @@ function checkImageURL($array, $x) {
     		return "";
 }
 
-function checkArtistName($array, $x) {
+function checkkeywordName($array, $x) {
 	if(isset($array[$x]["name"]))
     		return $array[$x]["name"];
     	else
     		return "";
 }
 
-function checkArtistID($array, $x) {
+function checkkeywordID($array, $x) {
 	if(isset($array[$x]["id"]))
     		return $array[$x]["id"];
     	else
     		return "";
 }
 
-// Pass in artist name you'd like dropdown for
-// Function will return JSON with the following format (max 5 artists):
+// Pass in keyword name you'd like dropdown for
+// Function will return JSON with the following format (max 5 keywords):
 
 /*
 	{  
@@ -35,7 +35,7 @@ function checkArtistID($array, $x) {
 	      "Nick Drake",
 	      "Drake Bell"
 	   ],
-	   "artistid":[  
+	   "keywordid":[  
 	      "3TVXtAsR1Inumwj472S9r4",
 	      "4W9G3Vnt9eXWTo4VeOQkSa",
 	      "29ijED2bnnprp2TciAK1aO",
@@ -52,27 +52,27 @@ function checkArtistID($array, $x) {
 	}
 */
 
-function dropdownArtists($aname) {
+function dropdownkeywords($aname) {
 
-	$content = file_get_contents("https://api.spotify.com/v1/search?q=" . $aname . "&type=artist&limit=5");
+	$content = file_get_contents("https://api.spotify.com/v1/search?q=" . $aname . "&type=keyword&limit=5");
 	$array=json_decode($content, true);
 
 	$rtrnJSON = new stdClass();
-	$rtrnJSON->name= array(checkArtistName($array["artists"]["items"], 0),
-						   checkArtistName($array["artists"]["items"], 1),
-						   checkArtistName($array["artists"]["items"], 2),
-						   checkArtistName($array["artists"]["items"], 3),
-						   checkArtistName($array["artists"]["items"], 4));
-	$rtrnJSON->artistid= array(checkArtistID($array["artists"]["items"], 0),
-						   	   checkArtistID($array["artists"]["items"], 1),
-						   	   checkArtistID($array["artists"]["items"], 2),
-						       checkArtistID($array["artists"]["items"], 3),
-						       checkArtistID($array["artists"]["items"], 4));
-	$rtrnJSON->image= array(checkImageURL($array["artists"]["items"], 0),
-						    checkImageURL($array["artists"]["items"], 1),
-						    checkImageURL($array["artists"]["items"], 2),
-						    checkImageURL($array["artists"]["items"], 3),
-						    checkImageURL($array["artists"]["items"], 4));
+	$rtrnJSON->name= array(checkkeywordName($array["keywords"]["items"], 0),
+						   checkkeywordName($array["keywords"]["items"], 1),
+						   checkkeywordName($array["keywords"]["items"], 2),
+						   checkkeywordName($array["keywords"]["items"], 3),
+						   checkkeywordName($array["keywords"]["items"], 4));
+	$rtrnJSON->keywordid= array(checkkeywordID($array["keywords"]["items"], 0),
+						   	   checkkeywordID($array["keywords"]["items"], 1),
+						   	   checkkeywordID($array["keywords"]["items"], 2),
+						       checkkeywordID($array["keywords"]["items"], 3),
+						       checkkeywordID($array["keywords"]["items"], 4));
+	$rtrnJSON->image= array(checkImageURL($array["keywords"]["items"], 0),
+						    checkImageURL($array["keywords"]["items"], 1),
+						    checkImageURL($array["keywords"]["items"], 2),
+						    checkImageURL($array["keywords"]["items"], 3),
+						    checkImageURL($array["keywords"]["items"], 4));
 	
 	return json_encode($rtrnJSON);
 

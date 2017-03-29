@@ -1,8 +1,8 @@
-Feature: Searches a new artist after a word cloud is generated
-  Scenario: Search an artist after already having a word cloud
+Feature: Searches a new keyword after a word cloud is generated
+  Scenario: Search an keyword after already having a word cloud
     Given I am on localhost/index.html
     And there is a word cloud
-    When I input an artist
+    When I input an keyword
     And I press the searchButton
     Then I see a word cloud
-    And artistLabel is filled
+    And keywordLabel is filled

@@ -31,13 +31,13 @@ final class CacheManagerTest extends TestCase {
 	}
 
 	// Test contains() function
-	public function testCacheContainsArtist() {
+	public function testCacheContainskeyword() {
 		$cache = new CacheManager();
 		$cache->insert_into_lifetime_cache('test_input', 'test_entry');
 		$this->assertSame(isset($cache->lifetime_freq_cache()['test_input']), $cache->contains('test_input'));
-		echo "Cache Contains Artist Validity Test : Asserts that Field 'test_input' is Set in Lifetime Cache\n";
+		echo "Cache Contains keyword Validity Test : Asserts that Field 'test_input' is Set in Lifetime Cache\n";
 		$this->assertSame(isset($cache->lifetime_freq_cache()['not_test_input']), $cache->contains('not_test_input'));
-		echo "Cache Contains Artist Validity Test: Asserts that Field 'not_test_input' is not Set in Lifetime Cache\n";
+		echo "Cache Contains keyword Validity Test: Asserts that Field 'not_test_input' is not Set in Lifetime Cache\n";
 	}
 
 	// Test insert_into_search_cache() function
@@ -117,11 +117,11 @@ final class CacheManagerTest extends TestCase {
 							)
 			)
 		);
-		$cache->insert_into_lifetime_cache("artist_1", $test_input_small);
+		$cache->insert_into_lifetime_cache("keyword_1", $test_input_small);
 		$expected_output_small = array(array("key" => "word_2", "value" => 10), array("key" => "word_1", "value" => 5), array("key" => "word_3", "value" => 5));
-		$overall_freq_map_artist_1 = $cache->get_overall_frequencies("artist_1");
-		$this->assertSame($expected_output_small, $overall_freq_map_artist_1);
-		echo "Get Overall Frequencies Validity Test : Asserts that Overall Frequencies Array for Artist deep-equals Expected, Correctly-Ordered Output Array for Small-sized Input\n";
+		$overall_freq_map_keyword_1 = $cache->get_overall_frequencies("keyword_1");
+		$this->assertSame($expected_output_small, $overall_freq_map_keyword_1);
+		echo "Get Overall Frequencies Validity Test : Asserts that Overall Frequencies Array for keyword deep-equals Expected, Correctly-Ordered Output Array for Small-sized Input\n";
 	}
 
 	// Test get_overall_frequencies() function with medium input size
@@ -187,13 +187,13 @@ final class CacheManagerTest extends TestCase {
 							)
 			)
 		);
-		$cache->insert_into_lifetime_cache("artist_1", $test_input_medium);
+		$cache->insert_into_lifetime_cache("keyword_1", $test_input_medium);
 		$expected_output_medium = array(array("key" => "word_18", "value" => 442), array("key" => "word_19",
 			"value" => 358), array("key" => "word_20", "value" => 292), array("key" => "word_9", "value" => 257), array("key" => "word_10", "value" => 224), array("key" => "word_16", "value" => 156), array("key" => "word_11", "value" => 148), array("key" => "word_12", "value" => 126), array("key" => "word_4", "value" => 96), array("key" => "word_15", "value" => 66), array("key" => "word_13", "value" => 65,), array("key" => "word_3", "value" => 59), array("key" => "word_28", "value" => 56), array("key" => "word_23", "value" => 43), array("key" => "word_14",
 	        	"value" => 37), array("key" => "word_54", "value" => 37), array("key" => "word_35", "value" => 36), array("key" => "word_7", "value" => 33), array("key" => "word_34", "value" => 32), array("key" => "word_33", "value" => 31), array("key" => "word_8", "value" => 30), array("key" => "word_2", "value" => 26), array("key" => "word_6", "value" => 22), array("key" => "word_36", "value" => 22), array("key" => "word_42", "value" => 12), array("key" => "word_32", "value" => 12), array("key" => "word_17", "value" => 12), array("key" => "word_1", "value" => 7), array("key" => "word_5", "value" => 3));
-		$overall_freq_map_artist_1 = $cache->get_overall_frequencies("artist_1");
-		$this->assertSame($expected_output_medium, $overall_freq_map_artist_1);
-		echo "Get Overall Frequencies Validity Test : Asserts that Overall Frequencies Array for Artist deep-equals Expected, Correctly-Ordered Output Array for Medium-sized Input\n";
+		$overall_freq_map_keyword_1 = $cache->get_overall_frequencies("keyword_1");
+		$this->assertSame($expected_output_medium, $overall_freq_map_keyword_1);
+		echo "Get Overall Frequencies Validity Test : Asserts that Overall Frequencies Array for keyword deep-equals Expected, Correctly-Ordered Output Array for Medium-sized Input\n";
 	}
 
 	// Test get_overall_frequencies() function with large input size
@@ -285,12 +285,12 @@ final class CacheManagerTest extends TestCase {
 							)
 			)
 		);
-		$cache->insert_into_lifetime_cache("artist_1", $test_input_large);
+		$cache->insert_into_lifetime_cache("keyword_1", $test_input_large);
 		$expected_output_large = array(array("key" => "word_46", "value" => 588), array("key" => "word_18", "value" => 442), array("key" => "word_19", "value" => 358), array("key" => "word_20", "value" => 292), array("key" => "word_9", "value" => 257), array("key" => "word_10", "value" => 224), array("key" => "word_16", "value" => 156), array("key" => "word_11", "value" => 148), array("key" => "word_12", "value" => 126), array("key" => "word_4", "value" => 96), array("key" => "word_69", "value" => 80), array("key" => "word_76", "value" => 79), array("key" => "word_15", "value" => 66), array("key" => "word_13", "value" => 65), array("key" => "word_3", "value" => 59), array("key" => "word_92", "value" => 58), array("key" => "word_28", "value" => 56), array("key" => "word_94", "value" => 51), array("key" => "word_22", "value" => 48), array("key" => "word_82", "value" => 47), array("key" => "word_23", "value" => 43), array("key" => "word_54", "value" => 37), array("key" => "word_14", "value" => 37), array("key" => "word_35", "value" => 36), array("key" => "word_72", "value" => 35), array("key" => "word_7", "value" => 33), array("key" => "word_34", "value" => 32), array("key" => "word_56", "value" => 32), array("key" => "word_33", "value" => 31), array("key" => "word_90", "value" => 30), array("key" => "word_8", "value" => 30), array("key" => "word_2", "value" => 26), array("key" => "word_89", "value" => 24), array("key" => "word_36", "value" => 22), array("key" => "word_6", "value" => 22), array("key" => "word_62", "value" => 12), array("key" => "word_84", "value" => 12), array("key" => "word_32", "value" => 12), array("key" => "word_17", "value" => 12), array("key" => "word_42", "value" => 12), array("key" => "word_1", "value" => 7), array("key" => "word_88", "value" => 4), array("key" => "word_5", "value" => 3)
 		);
-		$overall_freq_map_artist_1 = $cache->get_overall_frequencies("artist_1");
-		$this->assertSame($expected_output_large, $overall_freq_map_artist_1);
-		echo "Get Overall Frequencies Validity Test : Asserts that Overall Frequencies Array for Artist deep-equals Expected, Correctly-Ordered Output Array for Large-sized Input\n";
+		$overall_freq_map_keyword_1 = $cache->get_overall_frequencies("keyword_1");
+		$this->assertSame($expected_output_large, $overall_freq_map_keyword_1);
+		echo "Get Overall Frequencies Validity Test : Asserts that Overall Frequencies Array for keyword deep-equals Expected, Correctly-Ordered Output Array for Large-sized Input\n";
 	}
 }
 ?>

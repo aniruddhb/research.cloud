@@ -73,17 +73,17 @@ function draw(data, bounds) {
             .transition()
             .duration(1000)
             .style("opacity", 1);
-    text.on("click", datum => { 
+    text.on("click", datum => {
         localStorage.setItem('word', datum["text"]);
         localStorage.setItem('searchState', YES_SEARCH);
 
         $.ajax({
             type: 'GET',
-            url: 'http://localhost:8080/api/songlist/' + datum["text"],
+            url: 'http://localhost:8080/api/paperList/' + datum["text"],
             dataType: 'jsonp',
             success: function(data) {
-                localStorage.setItem('songlist', JSON.stringify(data));
-                window.location.href = "songList.html";
+                localStorage.setItem('paperlist', JSON.stringify(data));
+                window.location.href = "paperList.html";
             },
             error: function(err) {
                 console.log(err);

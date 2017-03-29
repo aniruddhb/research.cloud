@@ -1,7 +1,7 @@
 <?php
 
-function findTrackID($artist, $track) {
-  $result = file_get_contents("http://api.musixmatch.com/ws/1.1/track.search?q_track={$track}&q_arist={$artist}&page_size=10&page=1&s_track_rating=desc&apikey=a820a7147e13aa7c816324dc7c2c57b9");
+function findTrackID($keyword, $track) {
+  $result = file_get_contents("http://api.musixmatch.com/ws/1.1/track.search?q_track={$track}&q_arist={$keyword}&page_size=10&page=1&s_track_rating=desc&apikey=a820a7147e13aa7c816324dc7c2c57b9");
 
   $all_track_names = json_decode($result, true);
   $track_id = $all_track_names[message][body][track_list][0][track][track_id];
@@ -9,32 +9,32 @@ function findTrackID($artist, $track) {
   return $track_id;
 }
 
-function findSongLyrics($artist, $track) {
+function findSongabstract($keyword, $track) {
 
-  $track_id = findTrackID($artist, $track);
+  $track_id = findTrackID($keyword, $track);
 
-  $result = file_get_contents("http://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id={$track_id}&apikey=a820a7147e13aa7c816324dc7c2c57b9");
+  $result = file_get_contents("http://api.musixmatch.com/ws/1.1/track.abstract.get?track_id={$track_id}&apikey=a820a7147e13aa7c816324dc7c2c57b9");
 
-  $lyrics_json = json_decode($result, true);
-  $lyrics = $lyrics_json[message][body][lyrics][lyrics_body];
+  $abstract_json = json_decode($result, true);
+  $abstract = $abstract_json[message][body][abstract][abstract_body];
 
-  return $lyrics;
+  return $abstract;
 }
 
-function parseSongLyrics($lyrics, &$overall_freq) {
+function parseSongabstract($abstract, &$overall_freq) {
   // Convert string to lowercase
-  $lyrics = strtolower($lyrics);
+  $abstract = strtolower($abstract);
 
-  // Remove symbols from lyrics string
+  // Remove symbols from abstract string
   $symbols_to_remove = array(",", ".", ";", "!", ")", "(", "/", "?", "\"", "'", "-", "*", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0");
 
-  $lyrics = str_replace($symbols_to_remove, "", $lyrics);
-  $lyrics = str_replace("\n", " ", $lyrics);
-  $lyrics = substr($lyrics, 0, -50);
+  $abstract = str_replace($symbols_to_remove, "", $abstract);
+  $abstract = str_replace("\n", " ", $abstract);
+  $abstract = substr($abstract, 0, -50);
 
-  echo $lyrics;
+  echo $abstract;
 
-  $array_of_words = explode(" ", $lyrics);
+  $array_of_words = explode(" ", $abstract);
   // print_r($array_of_words);
 
   // Remove conjunctions
@@ -61,16 +61,16 @@ function parseSongLyrics($lyrics, &$overall_freq) {
   return $frequency_counts;
 }
 
-function parseAllLyrics(&$artist_and_song_list, &$overall_freq) {
-  $artist_name = $artist_and_song_list["artist"];
-  $song_list = $artist_and_song_list["songs"];
+function parseAllabstract(&$keyword_and_song_list, &$overall_freq) {
+  $keyword_text = $keyword_and_song_list["keyword"];
+  $song_list = $keyword_and_song_list["songs"];
 
   // Individual song frequency list
   $song_frequency_list = array();
 
   foreach($song_list as $song) {
-    $lyrics = findSongLyrics($artist_name, $song);
-    $individual_song_freq = parseSongLyrics($lyrics, $overall_freq);
+    $abstract = findSongabstract($keyword_text, $song);
+    $individual_song_freq = parseSongabstract($abstract, $overall_freq);
     array_push($song_frequency_list, $individual_song_freq);
   }
 
@@ -80,10 +80,10 @@ function parseAllLyrics(&$artist_and_song_list, &$overall_freq) {
 }
 
 $arr = array();
-$arr["artist"] = "justin+beiber";
+$arr["keyword"] = "justin+beiber";
 $arr["songs"] = array("what+do+you+mean", "baby", "boyfriend", "never+say+never");
 
 $overall_freq = array();
-parseAllLyrics($arr, $overall_freq);
+parseAllabstract($arr, $overall_freq);
 
 ?>
