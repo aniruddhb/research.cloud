@@ -11,7 +11,8 @@ class scrapyACMSpider(BaseSpider):
 
     name = "scrapyACM"
 
-    def __init__(self, search=''):
+    def __init__(self, search='', number=''):
+        print number
         self.start_urls = ["http://dl.acm.org/results.cfm?query=" + search + "&start=0&filtered=&within=owners%2Eowner%3DHOSTED&dte=&bfr=&srt=_score"]
 
     allowed_domains = ["http://dl.acm.org/"]
@@ -22,9 +23,16 @@ class scrapyACMSpider(BaseSpider):
 
         hxs = HtmlXPathSelector(response)
 
-        titles = hxs.xpath("//div[contains(@class, 'details')]").extract()
+        details = hxs.xpath("//div[contains(@class, 'details')]")
 
-        print titles
+        for content in details:
+
+            title = content.xpath("div[contains(@class, 'title')]/a/text()").extract()
+            print title
+
+
+
+        # print details
 
         #
         # title = []
