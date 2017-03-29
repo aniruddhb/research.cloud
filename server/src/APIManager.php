@@ -232,7 +232,7 @@ class APIManager {
 		$overall_freq = array();
 
   		// Individual song frequency list
-		$song_frequency_list = array();
+		$paper_frequency_list = array();
 
 		// Loop through each song, collect abstract, and calculate map of freqs
 		// for each song. push this map into a list of song frequency maps
@@ -240,14 +240,14 @@ class APIManager {
 			$track_id = $this->get_track_id($keyword_text, $song);
 			$abstract = $this->get_abstract($track_id);
 			$individual_song_freq = $this->parse_song_abstract($abstract, $overall_freq);
-			$song_frequency_list[] = array("id" => $track_id, $song => $individual_song_freq);
+			$paper_frequency_list[] = array("id" => $track_id, $song => $individual_song_freq);
 		}
 
 		// Filter per-keyword-per-song frequency information into server search cache
-		$cache->insert_into_search_cache($keyword_text, $song_frequency_list);
+		$cache->insert_into_search_cache($keyword_text, $paper_frequency_list);
 
 		// Filter per-keyword-per-song frequency information into the lifetime cache
-		$cache->insert_into_lifetime_cache($keyword_text, $song_frequency_list);
+		$cache->insert_into_lifetime_cache($keyword_text, $paper_frequency_list);
 
 		// Sort overall freqs for this keyword in desc. freq. order
 		arsort($overall_freq);

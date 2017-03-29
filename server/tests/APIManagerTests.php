@@ -79,7 +79,7 @@ final class APIManagerTests extends TestCase {
 	}
 
 	// Test parse_song_abstract($abstract, $overall_freq) function
-	public function testParseSongabstract() {
+	public function testparsePaperAbstract() {
 		$apiManager = new APIManager();
 		
 		// Example track ID for Drake - Hype using https://market.mashape.com/musixmatch-com/musixmatch
