@@ -1,33 +1,33 @@
 $(document).ready(function() {
 
   // Set the title of the Song List page
-  var songlist = localStorage.getItem('songlist');
+  var paperList = localStorage.getItem('paperlist');
   var word = localStorage.getItem('word');
-  $("#songListTitle").html(word);
+  $("#paperListTitle").html(word);
 
   function makeOL() {
       // Create the list element
       var list = document.createElement('ol');
 
-      $.each(JSON.parse(songlist), function(key, value) {
+      $.each(JSON.parse(paperList), function(key, value) {
         // Create the list item
         var item = document.createElement('li');
 
-        // get frequency and artist name
+        // get frequency and keyword name
         var freq = value["frequency"];
-        var artist_name = value["artist_name"];
+        var keyword_text = value["keyword_text"];
 
         // Set its contents
         item.appendChild(document.createTextNode(key + " " + "(" + freq + ")"));
 
-        (function (key, artist_name, word) {
+        (function (key, keyword_text, word) {
           item.addEventListener('click', function (event) {
-            localStorage.setItem('songName', key);
-            localStorage.setItem('artist', artist_name);
-            window.location.href = "lyrics.html";
+            localStorage.setItem('paperName', key);
+            localStorage.setItem('keyword', keyword_text);
+            window.location.href = "abstract.html";
           },
           false);
-        }(key, artist_name, word));
+        }(key, keyword_text, word));
 
         // Add it to the list
         list.appendChild(item);
@@ -37,8 +37,8 @@ $(document).ready(function() {
       return list;
   }
 
-  // Add the contents of songs[0] to #songList:
-  document.getElementById('songList').appendChild(makeOL());
+  // Add the contents of songs[0] to #paperList:
+  document.getElementById('paperList').appendChild(makeOL());
 
 });
 

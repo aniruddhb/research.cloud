@@ -7,9 +7,9 @@ function getSongsFromAlbum($albumID) {
 	print_r($data);
 }
 
-function getSongs($artistID) {
+function getSongs($keywordID) {
 
-	$content = file_get_contents("https://api.spotify.com/v1/artists/" . $artistID . "/albums");
+	$content = file_get_contents("https://api.spotify.com/v1/keywords/" . $keywordID . "/albums");
 	$data=json_decode($content, true);
 
 	$albums = array();

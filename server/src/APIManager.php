@@ -30,18 +30,18 @@ class APIManager {
 	# parameter: Search Input 
 	# return: Search Suggestions
 	public function get_search_suggestions($search) {
-		$response = file_get_contents($this->spAPI . "search?q={$search}&type=artist&limit=5");
+		$response = file_get_contents($this->spAPI . "search?q={$search}&type=keyword&limit=5");
 		$data = json_decode($response, true);
 		$suggestions = array();
 
 
-		foreach(@$data[artists][items] as $suggestion) {
+		foreach(@$data[keywords][items] as $suggestion) {
 			$name = $this->validate_name($suggestion);
 			$id = $this->validate_id($suggestion);
 			$img = $this->validate_image($suggestion);
 
 			$suggestion = array();
-			$suggestion['artist'] = $name;
+			$suggestion['keyword'] = $name;
 			$suggestion['id'] = $id;
 			$suggestion['img'] = $img;
 
@@ -72,14 +72,14 @@ class APIManager {
 		return "";
 	}
 
-	# get all songs from an artist's discography
-	# parameter: Artist Name
-	# return: List of all songs by this artist
-	public function get_songs($artist) {
-		$id = $this->get_artist_id($artist);
+	# get all songs from an keyword's discography
+	# parameter: keyword Name
+	# return: List of all songs by this keyword
+	public function get_songs($keyword) {
+		$id = $this->get_keyword_id($keyword);
 		$albumIDs = $this->get_albums($id);
 		$songs = array();
-		$songs['artist'] = $artist;
+		$songs['keyword'] = $keyword;
 		$songs['songs'] = array();
 
 		foreach($albumIDs as $albumID) {
@@ -89,21 +89,21 @@ class APIManager {
 		return $songs;
 	}
 
-	# utility function to get encoded artist id
-	# parameter: Artist Name
-	# return: Spotify Artist ID
-	private function get_artist_id($artist) {
-		$response = file_get_contents($this->spAPI . "search?q={$artist}&type=artist&limit=1");
+	# utility function to get encoded keyword id
+	# parameter: keyword Name
+	# return: Spotify keyword ID
+	private function get_keyword_id($keyword) {
+		$response = file_get_contents($this->spAPI . "search?q={$keyword}&type=keyword&limit=1");
 		$data = json_decode($response, true);
 
-		return @$data[artists][items][0][id];
+		return @$data[keywords][items][0][id];
 	}
 
-	# get albums from an artist's discography
-	# parameter: Spotify Artist ID
+	# get albums from an keyword's discography
+	# parameter: Spotify keyword ID
 	# return: List of albums
-	private function get_albums($artistID) {
-		$response = file_get_contents($this->spAPI . "artists/{$artistID}/albums?limit=30");
+	private function get_albums($keywordID) {
+		$response = file_get_contents($this->spAPI . "keywords/{$keywordID}/albums?limit=30");
 		$data = json_decode($response, true);
 		$duplicates = array();
 		$albumIDs = array();
@@ -126,7 +126,7 @@ class APIManager {
 		return $albumIDs;
 	}
 
-	# get songs from an artist's album
+	# get songs from an keyword's album
 	# parameter: Spotify Album ID
 	# return: List of songs in this album
 	private function get_songs_from_album($albumID, &$arr) {
@@ -146,10 +146,10 @@ class APIManager {
 
 	/* MUSIXMATCH API METHODS */
 
-	# get track id, given name of artist and track
-	public function get_track_id($artist, $track) {
-		// print_r($this->mmAPI . "track.search?q_track={$track}&q_artist={$artist}&page_size=10&page=1&s_track_rating=desc" . $this->mmKey);
-		$result = file_get_contents($this->mmAPI . "track.search?q_track={$track}&q_artist={$artist}&page_size=10&page=1&s_track_rating=desc" . $this->mmKey);
+	# get track id, given name of keyword and track
+	public function get_track_id($keyword, $track) {
+		// print_r($this->mmAPI . "track.search?q_track={$track}&q_keyword={$keyword}&page_size=10&page=1&s_track_rating=desc" . $this->mmKey);
+		$result = file_get_contents($this->mmAPI . "track.search?q_track={$track}&q_keyword={$keyword}&page_size=10&page=1&s_track_rating=desc" . $this->mmKey);
 		$all_track_names = json_decode($result, true);
 		$track_id = @$all_track_names[message][body][track_list][0][track][track_id];
 
@@ -164,39 +164,39 @@ class APIManager {
 		return @$data[message][body][track][track_name];
 	}
 
-	# get lyrics for track, given a spotify track id
-	public function get_lyrics($track_id) {
-		$result = file_get_contents($this->mmAPI . "track.lyrics.get?track_id={$track_id}" . $this->mmKey);
-		$lyrics_json = json_decode($result, true);
-		$lyrics = @$lyrics_json[message][body][lyrics][lyrics_body];
+	# get abstract for track, given a spotify track id
+	public function get_abstract($track_id) {
+		$result = file_get_contents($this->mmAPI . "track.abstract.get?track_id={$track_id}" . $this->mmKey);
+		$abstract_json = json_decode($result, true);
+		$abstract = @$abstract_json[message][body][abstract][abstract_body];
 
 		// Convert string to lowercase
-		$lyrics = strtolower($lyrics);
+		$abstract = strtolower($abstract);
 
-  		// Remove symbols from lyrics string
+  		// Remove symbols from abstract string
 		$symbols_to_remove = array(",", ".", ";", "!", ")", "(", "/", "?", "\"", "'", "-", "*", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0");
 
-		$lyrics = str_replace($symbols_to_remove, "", $lyrics);
-		$lyrics = substr($lyrics, 0, -50);
+		$abstract = str_replace($symbols_to_remove, "", $abstract);
+		$abstract = substr($abstract, 0, -50);
 
-		$array_of_words = explode(" ", $lyrics);
-		$lyrics = implode(" ", $array_of_words);
+		$array_of_words = explode(" ", $abstract);
+		$abstract = implode(" ", $array_of_words);
 
-		return $lyrics;
+		return $abstract;
 	}
 
-	public function parse_song_lyrics($lyrics, &$overall_freq) {
+	public function parse_song_abstract($abstract, &$overall_freq) {
   		// Convert string to lowercase
-		$lyrics = strtolower($lyrics);
+		$abstract = strtolower($abstract);
 
-  		// Remove symbols from lyrics string
+  		// Remove symbols from abstract string
 		$symbols_to_remove = array(",", ".", ";", "!", ")", "(", "/", "?", "\"", "'", "-", "*", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0");
 
-		$lyrics = str_replace($symbols_to_remove, "", $lyrics);
-		$lyrics = str_replace("\n", " ", $lyrics);
-		$lyrics = substr($lyrics, 0, -50);
+		$abstract = str_replace($symbols_to_remove, "", $abstract);
+		$abstract = str_replace("\n", " ", $abstract);
+		$abstract = substr($abstract, 0, -50);
 
-		$array_of_words = explode(" ", $lyrics);
+		$array_of_words = explode(" ", $abstract);
 
   		// Remove conjunctions
 		$array_of_words = array_diff($array_of_words, ["i", "you", "he", "she", "we", "you", "they", "and", "but", "or", "yet", "for", "nor", "so", "it", "", "the", "its", "if", "at", "to", "too", "then", "them", "when", "ill", "ive", "got", "be", "been", "was", "of", "aint", "me", "is", "what", "from", "here", "there", "where", "will", "would", "uh", "my", "on", "that", "im", "in", "with", "dont", "your", "this", "some", "how", "oh", "about", "these", "are", "can", "still", "cant", "youre", "cant", "have", "why", "went", "yours", "as", "had", "went", "should", "maybe", "every", "tryna", "going", "whose", "myself", "yourself", "herself", "hisself", "a"]);
@@ -223,10 +223,10 @@ class APIManager {
 		return $frequency_counts;
 	}
 
-	public function add_artist_to_wordcloud($artist_info, &$cache) {
-		// Get info from param artist info
-		$artist_name = $artist_info["artist"];
-		$song_list = $artist_info["songs"];
+	public function add_keyword_to_wordcloud($keyword_info, &$cache) {
+		// Get info from param keyword info
+		$keyword_text = $keyword_info["keyword"];
+		$song_list = $keyword_info["songs"];
 
 		// Overall frequency list
 		$overall_freq = array();
@@ -234,22 +234,22 @@ class APIManager {
   		// Individual song frequency list
 		$song_frequency_list = array();
 
-		// Loop through each song, collect lyrics, and calculate map of freqs
+		// Loop through each song, collect abstract, and calculate map of freqs
 		// for each song. push this map into a list of song frequency maps
 		foreach($song_list as $song) {
-			$track_id = $this->get_track_id($artist_name, $song);
-			$lyrics = $this->get_lyrics($track_id);
-			$individual_song_freq = $this->parse_song_lyrics($lyrics, $overall_freq);
+			$track_id = $this->get_track_id($keyword_text, $song);
+			$abstract = $this->get_abstract($track_id);
+			$individual_song_freq = $this->parse_song_abstract($abstract, $overall_freq);
 			$song_frequency_list[] = array("id" => $track_id, $song => $individual_song_freq);
 		}
 
-		// Filter per-artist-per-song frequency information into server search cache
-		$cache->insert_into_search_cache($artist_name, $song_frequency_list);
+		// Filter per-keyword-per-song frequency information into server search cache
+		$cache->insert_into_search_cache($keyword_text, $song_frequency_list);
 
-		// Filter per-artist-per-song frequency information into the lifetime cache
-		$cache->insert_into_lifetime_cache($artist_name, $song_frequency_list);
+		// Filter per-keyword-per-song frequency information into the lifetime cache
+		$cache->insert_into_lifetime_cache($keyword_text, $song_frequency_list);
 
-		// Sort overall freqs for this artist in desc. freq. order
+		// Sort overall freqs for this keyword in desc. freq. order
 		arsort($overall_freq);
 
 		// Filter overall frequency information into server overall cache
@@ -272,7 +272,7 @@ class APIManager {
 		$overall_list = array();
 
 		// Loop through the search freq cache
-		foreach($search_freq_cache as $artist => $total_map) {
+		foreach($search_freq_cache as $keyword => $total_map) {
 			foreach($total_map as $song) {
 				$keys = array_keys($song);
 				$song_map = $song[$keys[1]];
@@ -282,7 +282,7 @@ class APIManager {
 					$song_name = $this->get_song_name($song_mm_id);
 					$wrapped_info = array();
 					$wrapped_info["frequency"] = $song_map[$word];
-					$wrapped_info["artist_name"] = $artist;
+					$wrapped_info["keyword_text"] = $keyword;
 					$overall_list[$song_name] = $wrapped_info;
 				}
 			}
