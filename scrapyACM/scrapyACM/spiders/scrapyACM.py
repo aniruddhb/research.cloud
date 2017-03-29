@@ -1,5 +1,5 @@
 from scrapy.spiders import BaseSpider
-from scrapy.selector import Selector
+from scrapy.selector import HtmlXPathSelector
 from scrapy.contrib.loader import XPathItemLoader
 import os
 
@@ -20,9 +20,9 @@ class scrapyACMSpider(BaseSpider):
 
     def parse(self, response):
 
-        sel = Selector(response)
+        hxs = HtmlXPathSelector(response)
 
-        titles = sel.xpath("div[contains(@class, 'details')]").extract()
+        titles = hxs.xpath("//div[contains(@class, 'details')]").extract()
 
         print titles
 
