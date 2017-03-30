@@ -12,12 +12,12 @@ if (PHP_SAPI == 'cli-server') {
 # Set up Slim routing autoloader
 require __DIR__ . '/../vendor/autoload.php';
 
-# Pull API and Cache managers into file to be 
+# Pull Scraper and Parser into file to be 
 # instantiated within /../src/routes.php
-require __DIR__ . '/../src/APIManager.php';
-require __DIR__ . '/../src/CacheManager.php';
+require __DIR__ . '/../src/Scraper.php';
+require __DIR__ . '/../src/Parser.php';
 
-# Now that we've pulled in our managers, start a session
+# Now that we've pulled in our helpers, start a session
 session_start();
 
 # Instantiate the app with settings
