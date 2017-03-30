@@ -5,158 +5,73 @@
 # In this file, we specify our application's HTTP routes 
 # and provide Closure callbacks to deal with user requests
 
-# Helper variable so that we don't reinstantiate the cache
-
-# On landing route, store session-wide variables for future use
-# This includes instances of the API and Cache managers
+# On landing route, store session-wide Scraper variable for future use
 $app->get('/', function ($request, $response, $args) {
-	# if managers do not exist, create them and place in session!
-	if (!isset($_SESSION['api']) && !isset($_SESSION['cache'])) {
-		# define new api manager
-		$api = new APIManager();
-
-		# define new cache manager
-		$cache = new CacheManager();
-
-		# store managers in session
-		$_SESSION['api'] = serialize($api);
-		$_SESSION['cache'] = serialize($cache);
-
-		# new response to return headers
-		$res = $response->withHeader('Access-Control-Allow-Origin', 'http://localhost:8081');
-		return $res;
+	# if scraper and parser don't already exist
+	if (!isset($_SESSION['scraper']) && !isset($_SESSION['parser'])) {
+		# create and serialize scraper / parser objs into SESSION var
+		$scraper = new Scraper();
+		$parser = new Parser();
+		$_SESSION['scraper'] = serialize($scraper);
+		$_SESSION['parser'] = serialize($parser);
 	}
 
-	# new response to return headers
-	$res = $response->withHeader('Access-Control-Allow-Origin', 'http://localhost:8081');
-	return $res;
+	$new_res = $response->withHeader('Access-Control-Allow-Origin', 'http://localhost:8081');
+	return $new_res;
 });
 
-# On this route, perform all operations requied to get the
-# dropdown suggestions for the Word Cloud search bar, and
-# return these suggestions to the frontend
-$app->get('/api/dropdown/suggestions/{search}', function ($request, $response, $args) {
-	# get api manager from session
-	$api = unserialize($_SESSION['api']);
+# On this route, perform all operations required to get
+# word cloud information for the given search input and X cap
+$app->get('/api/wordcloud/{search_input}/{search_cap}', function ($request, $response, $args) {
+	# get scraper and parser from session
+	$scraper = unserialize($_SESSION['scraper']);
+	$parser = unserialize($_SESSION['parser']);
 
-	# get query params for jsonp callback
+	# get callback from req
 	$callback = $request->getQueryParam('callback');
 
-	# get and sanitize params
-	$search = $args['search'];
-	$search = str_replace(' ', '%20', trim($search));
+	# get query params
+	$search_input = $args['search_input'];
+	$search_cap = $args['search_cap'];
 
-	# query api through manager
-	$suggestions = $api->get_search_suggestions($search);
-	$suggestions = json_encode($suggestions);
+	# sanitize params
+	# TODO: Figure out what param modifications Charlie and Sam need for the py script
+	$search_input = str_replace(' ', '%20', trim($search_input));
+
+	# query scraper for papers with input and cap
+	$scraper->scrapeForPapers($search_input, $search_cap);
+
+	# PDF's are now saved in /pdf/ dir, query parsehelper
+	$results = $parser->parseResearchPapers();
 
 	# convert current response to jsonp callback with new response
-	$new_response = $response->withHeader('Content-Type', 'application/javascript');
+	$new_res = $response->withHeader('Content-Type', 'application/javascript');
 
-	# create string with callback and suggestions data
-	# write it to the body of the new response and return
-	$callback = "{$callback}({$suggestions})";
-	$new_response->getBody()->write($callback);
-	return $new_response;
+	# create string with callback and results 
+	# write it to the body of the new response
+	$callback = "{$callback}({$results})";
+	$new_res->getBody()->write($callback);
+	return $new_res;
 });
 
-# On this route, perform all computations to get word cloud information
-# for a newly-searched keyword, and return this information to the frontend
-$app->get('/api/wordcloud/new/{keyword}', function ($request, $response, $args) {
-	# get managers from session
-	$api = unserialize($_SESSION['api']);
-	$cache = unserialize($_SESSION['cache']);
+# On this route, perform all operations required to get
+# the abstract of a given paper
+$app->get('/api/abstract/{paper_id}', function ($request, $response, $args) {
+	# get scraper and parser from session
+	$scraper = unserialize($_SESSION['scraper']);
+	$parser = unserialize($_SESSION['parser']);
 
-	# change api key vlaue
-	$api->switchKeys();
-
-	# get query params for jsonp callback
+	# get callback from req
 	$callback = $request->getQueryParam('callback');
 
-	# get and sanitize params
-	$keyword = $args['keyword'];
-	$keyword = str_replace(' ', '%20', trim($keyword));
+	# get query param
+	$paper_id = $args['paper_id'];
 
-	# declare formatted result variable
-	$overall_freq_formatted;
-
-	# does this keyword exist in the search cache?
-	if ($cache->contains($keyword)) {
-		$overall_freq_formatted = $cache->get_overall_frequencies($keyword);
-	}
-	else {
-		# clear all cache
-		$cache->clear();
-
-		# query api through manager
-	    $songs = $api->get_songs($keyword);
-
-	    # compute frequency through helper
-	    $overall_freq_formatted = $api->add_keyword_to_wordcloud($songs, $cache);
-	}
-
-	# reserialize cache and api into session
-	$_SESSION['cache'] = serialize($cache);
-	$_SESSION['api'] = serialize($api);
-
-	# encode into json
-	$overall_freq_formatted = json_encode($overall_freq_formatted);
+	# query scraper for abstract with paper_id
+	$abstract = $scraper->scrapeForAbstract($paper_id);
 
 	# convert current response to jsonp callback with new response
-	$new_response = $response->withHeader('Content-Type', 'application/javascript');
-
-	# create string with callback and frequency data
-	# write it to the body of the new response and return
-	$callback = "{$callback}({$overall_freq_formatted})";
-	$new_response->getBody()->write($callback);
-	return $new_response;
-});
-
-# On this route, perform all computations to merge a newly-searched
-# keyword into the current word cloud, and return this updated cloud
-# to the frontend
-$app->get('/api/wordcloud/merge/{keyword}', function ($request, $response, $args) {
-	# get managers from session
-	$api = unserialize($_SESSION['api']);
-	$cache = unserialize($_SESSION['cache']);
-
-	# get query params for jsonp callback
-	$callback = $request->getQueryParam('callback');
-
-	# get and sanitize params
-	$keyword = $args['keyword'];
-	$keyword = str_replace(' ', '%20', trim($keyword));
-
-	# declare formatted result variable
-	$overall_freq_formatted;
-
-	# does this keyword exist in the search cache?
-	if ($cache->contains($keyword)) {
-		# tell the user that we can't merge in an already merged keyword!
-		# throw some sort of HTTP response error in the header status code
-	} 
-	else {
-		# query api through manager
-	    $songs = $api->get_songs($keyword);
-
-	    # compute frequency through helper
-	    $overall_freq_formatted = $api->add_keyword_to_wordcloud($songs, $cache);
-	}
-
-	# reserialize cache into session
-	$_SESSION['cache'] = serialize($cache);
-
-	# encode into json
-	$overall_freq_formatted = json_encode($overall_freq_formatted);
-
-	# convert current response to jsonp callback with new response
-	$new_response = $response->withHeader('Content-Type', 'application/javascript');
-
-	# create string with callback and frequency data
-	# write it to the body of the new response and return
-	$callback = "{$callback}({$overall_freq_formatted})";
-	$new_response->getBody()->write($callback);
-	return $new_response;
+	$new_res = $response->withHeader('Content-Type', 'application/javascript');
 });
 
 # On this route, perform all operations to get the abstract of 
