@@ -43,6 +43,7 @@ $("#searchButton").click(function() {
   $("#downloadButton").show();
 
   var $keywordText = $("#automplete-1").val();
+  $keywordText = "Adleman";
   $("#keywordLabel").html("Keyword(s): " + $keywordText);
 
   $.ajax({
