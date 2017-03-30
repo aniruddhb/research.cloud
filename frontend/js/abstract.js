@@ -23,6 +23,6 @@ $(document).ready(function() {
     });
 });
 
-function downloadWordCloud() {
+function downloadAbstract() {
   
 }
