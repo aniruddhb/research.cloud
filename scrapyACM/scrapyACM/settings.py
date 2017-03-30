@@ -13,5 +13,8 @@ BOT_NAME = 'scrapyACM'
 SPIDER_MODULES = ['scrapyACM.spiders']
 NEWSPIDER_MODULE = 'scrapyACM.spiders'
 
+# Needed to avoid 403 error
+DOWNLOADER_MIDDLEWARES = {'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,}
+
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'USCMaps (+http://www.yourdomain.com)'
