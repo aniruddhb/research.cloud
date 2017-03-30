@@ -14,11 +14,10 @@ $(document).ready(function() {
         var item = document.createElement('li');
 
         // get frequency and keyword name
-        var freq = value["frequency"];
         var keyword_text = value["keyword_text"];
 
         // Set its contents
-        item.appendChild(document.createTextNode(key + " " + "(" + freq + ")"));
+        item.appendChild(document.createTextNode(key));
 
         (function (key, keyword_text, word) {
           item.addEventListener('click', function (event) {

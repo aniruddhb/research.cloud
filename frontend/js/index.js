@@ -67,8 +67,19 @@ $("#downloadButton").click(function() {
 
   html2canvas(document.getElementById('vis')).then(function(canvas) {
       // convert the div that contains the word cloud into a png
-      var img = canvas.toDataURL("image/png");
-      img = img.replace(/^data:image\/\w+;base64,/,"");
+      var a = document.createElement('a');
+      var img = canvas.toDataURL("image/jpeg");
+      a.href = img.replace("image/jpeg", "image/octet-stream");
+      a.download = 'image.jpg';
+      a.click();
+
+
+
+
+
+
+
+      /*img = img.replace(/^data:image\/\w+;base64,/,"");
 
       // AJAX function to turn image into a url
       $.ajax({
@@ -84,7 +95,7 @@ $("#downloadButton").click(function() {
         error: function(err) {
           console.log(err);
         }
-      });
+      });*/
   });
 });
 
@@ -101,7 +112,7 @@ $("#searchButton").addClass("btn-class-disabled");
 // call AJAX function
 $("#automplete-1").autocomplete({
   source: function(request, response) {
-    var keywordName = $("#automplete-1").val();
+    var keywordText = $("#automplete-1").val();
     $.ajax({
       type : 'GET',
       url: 'http://localhost:8080/api/dropdown/suggestions/' + keywordText,

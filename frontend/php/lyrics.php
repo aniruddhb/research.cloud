@@ -9,7 +9,7 @@ function findTrackID($keyword, $track) {
   return $track_id;
 }
 
-function findSongabstract($keyword, $track) {
+function findPaperAbstract($keyword, $track) {
 
   $track_id = findTrackID($keyword, $track);
 
@@ -21,7 +21,7 @@ function findSongabstract($keyword, $track) {
   return $abstract;
 }
 
-function parseSongabstract($abstract, &$overall_freq) {
+function parsePaperAbstract($abstract, &$overall_freq) {
   // Convert string to lowercase
   $abstract = strtolower($abstract);
 
@@ -61,22 +61,22 @@ function parseSongabstract($abstract, &$overall_freq) {
   return $frequency_counts;
 }
 
-function parseAllabstract(&$keyword_and_song_list, &$overall_freq) {
+function parseAllAbstract(&$keyword_and_song_list, &$overall_freq) {
   $keyword_text = $keyword_and_song_list["keyword"];
   $song_list = $keyword_and_song_list["songs"];
 
   // Individual song frequency list
-  $song_frequency_list = array();
+  $paper_frequency_list = array();
 
   foreach($song_list as $song) {
-    $abstract = findSongabstract($keyword_text, $song);
-    $individual_song_freq = parseSongabstract($abstract, $overall_freq);
-    array_push($song_frequency_list, $individual_song_freq);
+    $abstract = findPaperAbstract($keyword_text, $song);
+    $individual_song_freq = parsePaperAbstract($abstract, $overall_freq);
+    array_push($paper_frequency_list, $individual_song_freq);
   }
 
   arsort($overall_freq);
   print_r($overall_freq);
-  print_r($song_frequency_list);
+  print_r($paper_frequency_list);
 }
 
 $arr = array();
@@ -84,6 +84,6 @@ $arr["keyword"] = "justin+beiber";
 $arr["songs"] = array("what+do+you+mean", "baby", "boyfriend", "never+say+never");
 
 $overall_freq = array();
-parseAllabstract($arr, $overall_freq);
+parseAllAbstract($arr, $overall_freq);
 
 ?>
