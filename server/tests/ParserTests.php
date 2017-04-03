@@ -37,6 +37,10 @@ final class ParserTest extends TestCase {
 		$this->assertInternalType("array", $paper_freq_counts);
 		echo "PASS - Parse All Research Papers Test : Overall Frequency and Per-Paper Frequency Counts are all of Internal Type Array\n";
 		echo "Code Coverage : 25/58 statements = 43.1% | 2/4 branches = 50.0% \n \n";
+
+		// Overall results
+		echo "PARSER TEST - OVERALL RESULTS\n";
+		echo "Overall Code Coverage : 48/58 statements = 82.7% | 4/4 branches = 100.0% \n \n";
 	}
 }
 ?>

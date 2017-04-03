@@ -1,46 +1,43 @@
 $(document).ready(function() {
 
   // Set the title of the Song List page
-  //var paperList = localStorage.getItem('paperlist');
-  //var word = localStorage.getItem('word');
-  //$("#paperListTitle").html(word);
-
-  var data = [["RachelPaper", "CatherinePaper", "ChickenPaper"], ["Rachel", "Catherine", "Chicken"], ["ACM", "IEEE", "ACM"], [1, 2, 3], ["MyDownload", "OtherDownload", "ChickenDownload"]];
+  var data = JSON.parse(localStorage.getItem('paperlist'));
+  var word = localStorage.getItem('word');
+  $("#paperListTitle").html(word);
 
   function sortTable(f,n){
     var rows = $('table > tbody > tr');
-  //var rows = document.getElementById("table").rows;
+    //var rows = document.getElementById("table").rows;
 
-  rows = Array.prototype.slice.call(rows)
-  console.log(rows);
-  rows.sort(function(a, b) {
+    rows = Array.prototype.slice.call(rows)
+    rows.sort(function(a, b) {
 
-    var A = getVal(a);
-    var B = getVal(b);
+      var A = getVal(a);
+      var B = getVal(b);
 
-    if(A < B) {
-      return -1*f;
+      if(A < B) {
+        return -1*f;
+      }
+      if(A > B) {
+        return 1*f;
+      }
+      return 0;
+    });
+
+    function getVal(elm){
+      var v = $(elm).children('td').eq(n).text().toUpperCase();
+      if($.isNumeric(v)){
+        v = parseInt(v,10);
+      }
+      return v;
     }
-    if(A > B) {
-      return 1*f;
-    }
-    return 0;
-  });
 
-  function getVal(elm){
-    var v = $(elm).children('td').eq(n).text().toUpperCase();
-    if($.isNumeric(v)){
-      v = parseInt(v,10);
-    }
-    return v;
+    $.each(rows, function(index, row) {
+      $('#table').append(row);
+    });
   }
 
-  $.each(rows, function(index, row) {
-    $('#table').append(row);
-  });
-}
-
-function makeOL() {
+  function makeOL() {
       // Create the list element
 
       var table = document.createElement("TABLE");
@@ -69,28 +66,29 @@ function makeOL() {
 
         var tbody = document.createElement('tbody');
 
-        for(var i = 0; i < data[0].length; i++){
+        console.log(data);
+        for(var i = 0; i < data.length; i++){
           var row = tbody.insertRow(-1);
 
           var title = row.insertCell(0);
-          $paperID = 100;
-          $keywordText = "Keyword"
-          $(title).click(function(){
-            $.ajax({
-              type : 'GET',
-              url: 'http://localhost:8081/api/abstract/' + $paperID,
-              dataType: 'jsonp',
-              success: function(data) {
-                localStorage.setItem('tags', JSON.stringify(data));
-                localStorage.setItem('keywordText', $keywordText);
-                tags = data;
-                update();
-              },
-              error: function(err) {
-                console.log(err);
-              }
-            });
-          });
+          // $paperID = 100;
+          // $keywordText = "Keyword"
+          // $(title).click(function(){
+          //   $.ajax({
+          //     type : 'GET',
+          //     url: 'http://localhost:8081/api/abstract/' + $paperID,
+          //     dataType: 'jsonp',
+          //     success: function(data) {
+          //       localStorage.setItem('tags', JSON.stringify(data));
+          //       localStorage.setItem('keywordText', $keywordText);
+          //       tags = data;
+          //       update();
+          //     },
+          //     error: function(err) {
+          //       console.log(err);
+          //     }
+          //   });
+          // });
 
 
           var author = row.insertCell(1);
@@ -101,16 +99,24 @@ function makeOL() {
           var conf = row.insertCell(2);
           var freq = row.insertCell(3);
           var download = row.insertCell(4);
-          $(download).click(function(){
-            window.location.href="http://google.com";
-          });
+          var link = "file:////home/student/Documents/Proj2/research.cloud/server/pdf" + data[i]["path"];
+          download.onclick = function(link) {
+            return function() {
+              var file = new File(link);
+              var reader = new FileReader();
+              reader.onload = function(event) {
+                console.log(event);
+                window.location.href = event.target.result;
+              };
+              reader.readAsBinaryString(file);
+            }
+          }(link);
 
-
-          title.innerHTML = data[0][i];        
-          author.innerHTML = data[1][i];
-          conf.innerHTML = data[2][i];
-          freq.innerHTML = data[3][i];
-          download.innerHTML = data[4][i];
+          title.innerHTML = data[i]["title"];       
+          author.innerHTML = data[i]["author"];
+          conf.innerHTML = (i % 2 === 0) ? "ACM" : "IEEE";
+          freq.innerHTML = data[i]["frequency"];
+          download.innerHTML = "Download";
         }
 
         table.appendChild(tbody);
