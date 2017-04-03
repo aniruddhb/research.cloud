@@ -1,9 +1,11 @@
 from scrapy.spiders import BaseSpider
-from scrapy.selector import Selector
+from scrapy.selector import HtmlXPathSelector
 from scrapy.contrib.loader import XPathItemLoader
+from scrapy_splash import SplashRequest
 import os
 
 import json
+import time
 import datetime
 from dateutil import relativedelta
 
@@ -14,16 +16,28 @@ class scrapyIEEESpider(BaseSpider):
     def __init__(self, search=''):
         self.start_urls = ["http://ieeexplore.ieee.org/search/searchresult.jsp?newsearch=true&queryText=" + search]
 
-    allowed_domains = ["http://ieeexplore.ieee.org/Xplore/home.jsp"]
+    allowed_domains = ["http://ieeexplore.ieee.org/"]
+
+    def start_requests(self):
+        for url in self.start_urls:
+            yield SplashRequest(url, self.parse,
+                endpoint='render.html',
+                args={'wait': 2},
+            )
 
     def parse(self, response):
 
+        time.sleep(3)
         hxs = HtmlXPathSelector(response)
+        time.sleep(3)
+        details = hxs.xpath("//div[@id='LayoutWrapper']/div[@class='stats-search-page']")
+        print details
 
-        titles = hxs.xpath("//a[contains(@class, 'ng-binding ng-scope')]/text()").extract()
+        for content in details:
 
-        print titles
-
+            title = content.xpath(".//div[@class='stats-SearchResults_DocResult_ViewMore']/a/@href").extract()
+            print title
+            
         #
         # title = []
         # link = []
