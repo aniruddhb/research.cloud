@@ -79,7 +79,7 @@ function draw(data, bounds) {
 
         $.ajax({
             type: 'GET',
-            url: 'http://localhost:8080/api/paperList/' + datum["text"],
+            url: 'http://localhost:8080/api/papers/' + datum["text"],
             dataType: 'jsonp',
             success: function(data) {
                 localStorage.setItem('paperlist', JSON.stringify(data));
