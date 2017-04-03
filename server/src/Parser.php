@@ -2,7 +2,7 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-class Parser {
+final class Parser {
 	# private path to all PDF's from the current context
 	private $pdf_dir = __DIR__ . '/../pdf/';
 
