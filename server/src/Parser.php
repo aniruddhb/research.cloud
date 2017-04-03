@@ -78,7 +78,7 @@ final class Parser {
 		$paper_freq_count = array();
 		foreach ($array_of_words as $word) {
 			# only include words that are fully alphabetic
-			if (ctype_alpha($word)) {
+			if (ctype_alpha($word) && strlen($word) > 1) {
 				# fill paper freq count with word or init for that word
 				if (array_key_exists($word, $paper_freq_count)) {
 					$paper_freq_count[$word]++;
