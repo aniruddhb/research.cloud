@@ -63,7 +63,9 @@ final class Parser {
 		$pdf = $this->pdf_parser->parseFile($this->pdf_dir . $file);
 
 		# get lowercase version of pure text from pdf
-		$title = $pdf->getDetails()["Title"];
+		$details = $pdf->getDetails();
+		$title = $details["Title"];
+		$author = $details["Author"];
 		$text = strtolower($pdf->getText());
 
 		# sanitize text with removals / replacements
@@ -96,8 +98,11 @@ final class Parser {
 		}
 
 		# add paper-specific count to total array with structured entry
-		$entry = array("path" => $file, "title" => $title, "data" => $paper_freq_count);
+		$entry = array("path" => $file, "title" => $title, "author" => $author, "data" => $paper_freq_count);
 		$paper_freq_counts[] = $entry;
 	}
 }
+
+$parser = new Parser();
+$parser->parseAllResearchPapers();
 ?>

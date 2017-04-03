@@ -59,6 +59,7 @@ final class CacheManager {
 			if (array_key_exists($word, $cache_entry["data"])) {
 				$paper_word_occurrence_info = array("path" => $cache_entry["path"], 
 													"title" => $cache_entry["title"],
+													"author" => $cache_entry["author"],
 													"frequency" => $cache_entry["data"][$word]
 													);
 				$overall_papers_list[] = $paper_word_occurrence_info;
