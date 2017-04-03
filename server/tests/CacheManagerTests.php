@@ -98,13 +98,13 @@ final class CacheManagerTest extends TestCase {
 	public function testGetPaperListSmall() {
 		echo "TEST NAME: testGetPaperListSmall \n \n";
 		$cache = new CacheManager();
-		$input_one = array("path" => "1.pdf", "title" => "Title One", "data" => array("word" => 1));
-		$input_two = array("path" => "2.pdf", "title" => "Title Two", "data" => array("word" => 2));
+		$input_one = array("path" => "1.pdf", "title" => "Title One", "author" => "Author One", "data" => array("word" => 1));
+		$input_two = array("path" => "2.pdf", "title" => "Title Two", "author" => "Author Two", "data" => array("word" => 2));
 		$inputs = array($input_one, $input_two);
 		$cache->set_search_freq_cache($inputs);
 		$paper_list = $cache->get_paper_list("word");
-		$this->assertSame($paper_list[0], array("path" => "2.pdf", "title" => "Title Two", "frequency" => 2));
-		$this->assertSame($paper_list[1], array("path" => "1.pdf", "title" => "Title One", "frequency" => 1));
+		$this->assertSame($paper_list[0], array("path" => "2.pdf", "title" => "Title Two", "author" => "Author Two", "frequency" => 2));
+		$this->assertSame($paper_list[1], array("path" => "1.pdf", "title" => "Title One", "author" => "Author One", "frequency" => 1));
 		echo "PASS - Cache Get Paper List Small Test : Asserts that the Paper List contains the same content, in the same order, as the wrapped inputs\n";
 		echo "Code Coverage : 16/71 statements = 22.5% | 2/4 branches = 50.0% \n \n";
 	}
@@ -113,21 +113,21 @@ final class CacheManagerTest extends TestCase {
 	public function testGetPaperListLarge() {
 		echo "TEST NAME: testGetPaperListLarge \n \n";
 		$cache = new CacheManager();
-		$input_one = array("path" => "1.pdf", "title" => "Title One", "data" => array("word" => 1));
-		$input_two = array("path" => "2.pdf", "title" => "Title Two", "data" => array("word" => 2));
-		$input_three = array("path" => "3.pdf", "title" => "Title Three", "data" => array("word" => 3));
-		$input_four = array("path" => "4.pdf", "title" => "Title Four", "data" => array("word" => 22));
-		$input_five = array("path" => "5.pdf", "title" => "Title Five", "data" => array("word" => 58));
-		$input_six = array("path" => "6.pdf", "title" => "Title Six", "data" => array("word" => 57));
+		$input_one = array("path" => "1.pdf", "title" => "Title One", "author" => "Author One", "data" => array("word" => 1));
+		$input_two = array("path" => "2.pdf", "title" => "Title Two", "author" => "Author Two", "data" => array("word" => 2));
+		$input_three = array("path" => "3.pdf", "title" => "Title Three", "author" => "Author Three", "data" => array("word" => 3));
+		$input_four = array("path" => "4.pdf", "title" => "Title Four", "author" => "Author Four", "data" => array("word" => 22));
+		$input_five = array("path" => "5.pdf", "title" => "Title Five", "author" => "Author Five", "data" => array("word" => 58));
+		$input_six = array("path" => "6.pdf", "title" => "Title Six", "author" => "Author Six", "data" => array("word" => 57));
 		$inputs = array($input_one, $input_two, $input_three, $input_four, $input_five, $input_six);
 		$cache->set_search_freq_cache($inputs);
 		$paper_list = $cache->get_paper_list("word");
-		$this->assertSame($paper_list[0], array("path" => "5.pdf", "title" => "Title Five", "frequency" => 58));
-		$this->assertSame($paper_list[1], array("path" => "6.pdf", "title" => "Title Six", "frequency" => 57));
-		$this->assertSame($paper_list[2], array("path" => "4.pdf", "title" => "Title Four", "frequency" => 22));
-		$this->assertSame($paper_list[3], array("path" => "3.pdf", "title" => "Title Three", "frequency" => 3));
-		$this->assertSame($paper_list[4], array("path" => "2.pdf", "title" => "Title Two", "frequency" => 2));
-		$this->assertSame($paper_list[5], array("path" => "1.pdf", "title" => "Title One", "frequency" => 1));
+		$this->assertSame($paper_list[0], array("path" => "5.pdf", "title" => "Title Five", "author" => "Author Five", "frequency" => 58));
+		$this->assertSame($paper_list[1], array("path" => "6.pdf", "title" => "Title Six", "author" => "Author Six", "frequency" => 57));
+		$this->assertSame($paper_list[2], array("path" => "4.pdf", "title" => "Title Four", "author" => "Author Four", "frequency" => 22));
+		$this->assertSame($paper_list[3], array("path" => "3.pdf", "title" => "Title Three", "author" => "Author Three", "frequency" => 3));
+		$this->assertSame($paper_list[4], array("path" => "2.pdf", "title" => "Title Two", "author" => "Author Two", "frequency" => 2));
+		$this->assertSame($paper_list[5], array("path" => "1.pdf", "title" => "Title One", "author" => "Author One", "frequency" => 1));
 		echo "PASS - Cache Get Paper List Large Test : Asserts that the Paper List contains the same content, in the same order, as the wrapped inputs\n";
 		echo "Code Coverage : 16/71 statements = 22.5% | 2/4 branches = 50.0% \n \n";
 	}
@@ -137,8 +137,8 @@ final class CacheManagerTest extends TestCase {
 		echo "TEST NAME: testGetOverallFrequenciesSmall \n \n";
 		$cache = new CacheManager();
 		$mock_arr = array();
-		$input_one = array("path" => "1.pdf", "title" => "Title One", "data" => array("word1" => 1, "word2" => 2));
-		$input_two = array("path" => "2.pdf", "title" => "Title Two", "data" => array("word3" => 3, "word2" => 2));
+		$input_one = array("path" => "1.pdf", "title" => "Title One", "author" => "Author One", "data" => array("word1" => 1, "word2" => 2));
+		$input_two = array("path" => "2.pdf", "title" => "Title Two", "author" => "Author Two", "data" => array("word3" => 3, "word2" => 2));
 		$inputs = array($mock_arr, array($input_one, $input_two));
 		$cache->add_to_lifetime_cache("input_one", "cap_one", $inputs);
 		$overall_freq_count = $cache->get_overall_frequencies("input_one cap_one");
@@ -157,11 +157,11 @@ final class CacheManagerTest extends TestCase {
 		echo "TEST NAME: testGetOverallFrequenciesLarge \n \n";
 		$cache = new CacheManager();
 		$mock_arr = array();
-		$input_one = array("path" => "1.pdf", "title" => "Title One", "data" => array("word1" => 1, "word2" => 2));
-		$input_two = array("path" => "2.pdf", "title" => "Title Two", "data" => array("word3" => 3, "word2" => 2));
-		$input_three = array("path" => "3.pdf", "title" => "Title Three", "data" => array("word5" => 8, "word1" => 6));
-		$input_four = array("path" => "4.pdf", "title" => "Title Four", "data" => array("word2" => 6, "word5" => 1));
-		$input_five = array("path" => "5.pdf", "title" => "Title Five", "data" => array("word3" => 4, "word1" => 3));
+		$input_one = array("path" => "1.pdf", "title" => "Title One", "author" => "Author One", "data" => array("word1" => 1, "word2" => 2));
+		$input_two = array("path" => "2.pdf", "title" => "Title Two", "author" => "Author Two", "data" => array("word3" => 3, "word2" => 2));
+		$input_three = array("path" => "3.pdf", "title" => "Title Three", "author" => "Author Three", "data" => array("word5" => 8, "word1" => 6));
+		$input_four = array("path" => "4.pdf", "title" => "Title Four", "author" => "Author Four", "data" => array("word2" => 6, "word5" => 1));
+		$input_five = array("path" => "5.pdf", "title" => "Title Five", "author" => "Author Five", "data" => array("word3" => 4, "word1" => 3));
 		$inputs = array($mock_arr, array($input_one, $input_two, $input_three, $input_four, $input_five));
 		$cache->add_to_lifetime_cache("input_one", "cap_one", $inputs);
 		$overall_freq_count = $cache->get_overall_frequencies("input_one cap_one");
@@ -175,6 +175,10 @@ final class CacheManagerTest extends TestCase {
 		$this->assertSame($overall_freq_count[3]["value"], 7);
 		echo "PASS - Cache Get Overall Frequencies Large Test : Asserts that Overall Frequencies contains all words from both input data, ordered by descending frequency\n";
 		echo "Code Coverage : 22/71 statements = 31.0% | 2/4 branches = 50.0% \n \n";
+
+		// Overall results
+		echo "CACHE MANAGER TEST - OVERALL RESULTS\n";
+		echo "Overall Code Coverage : 66/71 statements = 93.0% | 4/4 branches = 100.0% \n \n";
 	}
 }
 ?>
