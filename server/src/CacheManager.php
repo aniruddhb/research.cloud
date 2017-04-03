@@ -64,9 +64,9 @@ final class CacheManager {
 				$overall_papers_list[] = $paper_word_occurrence_info;
 			}
 		}
-
+		
 		# sort by descending order of word frequency
-		uasort($overall_papers_list, function($entry_one, $entry_two) {
+		usort($overall_papers_list, function($entry_one, $entry_two) {
 			return $entry_one["frequency"] < $entry_two["frequency"];
 		});
 
