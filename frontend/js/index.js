@@ -5,7 +5,7 @@ const MIN_LENGTH = 3;
 $(document).ready(function() {
   $.ajax({
     type : 'GET',
-    url: 'http://localhost:8081/',
+    url: 'http://localhost:8080/',
     dataType: 'jsonp',
   });
 
@@ -15,12 +15,14 @@ $(document).ready(function() {
     localStorage.setItem('searchState', NO_SEARCH);
 
     // initial states
-    $("#searchButton").prop("disabled", true);
+    $("#searchButton").prop("disabled", false);
     $("#downloadButton").hide();
     $("#keywordLabel").html("Keyword(s): ");
   }
   else if(localStorage.getItem('searchState') == YES_SEARCH) {
     $("#searchButton").prop("disabled", false);
+    $("#searchButton").removeClass("btn-class");
+    $("#searchButton").addClass("btn-class-disabled");
 
     $("#downloadButton").show();
 
@@ -48,7 +50,7 @@ $("#searchButton").click(function() {
 
   $.ajax({
     type : 'GET',
-    url: 'http://localhost:8081/api/wordcloud/' + $keywordText + '/' + search_cap,
+    url: 'http://localhost:8080/api/wordcloud/' + $keywordText + '/' + $search_cap,
     dataType: 'jsonp',
     success: function(data) {
       localStorage.setItem('tags', JSON.stringify(data));
@@ -103,10 +105,10 @@ $("#downloadButton").click(function() {
 // adding any extra characters
 //$("#automplete-1").keyup(function() {
 
-$("#searchButton").prop("disabled", true);
+$("#searchButton").prop("disabled", false);
 
-$("#searchButton").removeClass("btn-class");
-$("#searchButton").addClass("btn-class-disabled");
+$("#searchButton").removeClass("btn-class-disabled");
+$("#searchButton").addClass("btn-class");
 
 });
 
@@ -116,7 +118,7 @@ $("#searchButton").addClass("btn-class-disabled");
     var keywordText = $("#automplete-1").val();
     $.ajax({
       type : 'GET',
-      url: 'http://localhost:8081/api/dropdown/suggestions/' + keywordText,
+      url: 'http://localhost:8080/api/dropdown/suggestions/' + keywordText,
       dataType: 'jsonp',
       success: function(data) {
         var stringArray = $.map(data, function(item) {
