@@ -118,7 +118,7 @@ $("#searchButton").addClass("btn-class");
     var keywordText = $("#automplete-1").val();
     $.ajax({
       type : 'GET',
-      url: 'http://localhost:8081/api/dropdown/suggestions/' + keywordText,
+      url: 'http://localhost:8080/api/dropdown/suggestions/' + keywordText,
       dataType: 'jsonp',
       success: function(data) {
         var stringArray = $.map(data, function(item) {
