@@ -1,13 +1,13 @@
 <?php
 final class CacheManager {
 
-	# holds overall freq cache (per currently searched keywords)
+	# holds overall freq cache (per currently searched phrase(s))
 	private $overall_freq_cache = array();
 
-	# holds search freq cache (per-search [aka per-keyword] per-song)
+	# holds search freq cache (per-search per-paper)
 	private $search_freq_cache = array();
 
-	# holds lifetime freq cache (per total lifetime of server)
+	# holds lifetime freq cache (total lifetime of server)
 	private $lifetime_freq_cache = array();
 
 	# constructor
@@ -18,75 +18,97 @@ final class CacheManager {
 		return $this->overall_freq_cache;
 	}
 
-	# accessor helper function to access search freq cache
+	# accessor helper function to set overall cache
+	public function set_overall_freq_cache($overall_freq_cache) {
+		$this->overall_freq_cache = $overall_freq_cache;
+	}
+
+	# accessor helper function to access search cache
 	public function search_freq_cache() {
 		return $this->search_freq_cache;
 	}
 
-	# accessor helper function to access lifetime freq cache
+	# accessor helper function to set search cache
+	public function set_search_freq_cache($search_freq_cache) {
+		$this->search_freq_cache = $search_freq_cache;
+	}
+
+	# accessor helper function to access lifetime cache
 	public function lifetime_freq_cache() {
 		return $this->lifetime_freq_cache;
 	}
 
-	# does the search cache contain the keyword?
-	public function contains($keyword) {
-		return array_key_exists($keyword, $this->lifetime_freq_cache);
+	# accessor helper function to add to lifetime cache
+	public function add_to_lifetime_cache($search_input, $search_cap, $lifetime_freq_cache) {
+		$this->lifetime_freq_cache[$search_input . " " . $search_cap] = $lifetime_freq_cache;
 	}
 
-	# inserts a new search entry into the per-keyword
-	# per-song frequency cache
-	public function insert_into_search_cache($keyword_text, $entry) {
-		$this->search_freq_cache[$keyword_text] = $entry;
+	# does the lifetime cache contain the searched phase(s)?
+	public function contains($search_phrase) {
+		return array_key_exists($search_phrase, $this->lifetime_freq_cache);
 	}
 
-	# inserts a new search entry into the lifetime server cache
-	public function insert_into_lifetime_cache($keyword_text, $entry) {
-		$this->lifetime_freq_cache[$keyword_text] = $entry;
+	# for a given word, get a formatted list of papers containing the word, 
+	# and the frequency of the word in that paper
+	public function get_paper_list($word) {
+		# overall paper to word frequency map
+		$overall_papers_list = array();
+
+		# loop through current search cache to find this word in each paper
+		foreach ($this->search_freq_cache as $cache_entry) {
+			if (array_key_exists($word, $cache_entry["data"])) {
+				$paper_word_occurrence_info = array("path" => $cache_entry["path"], 
+													"title" => $cache_entry["title"],
+													"frequency" => $cache_entry["data"][$word]
+													);
+				$overall_papers_list[] = $paper_word_occurrence_info;
+			}
+		}
+
+		# sort by descending order of word frequency
+		uasort($overall_papers_list, function($entry_one, $entry_two) {
+			return $entry_one["frequency"] < $entry_two["frequency"];
+		});
+
+		# return papers list
+		return $overall_papers_list;
 	}
 
-	# merge two different overall freq maps into one, 
-	# arsort, and deposit result into overall freq cache
-	public function merge_into_overall_cache($to_merge) {
-		# merge params with overall_req_cache, and use arsort to sort by desc. freq
-		$this->overall_freq_cache = array_merge($to_merge, $this->overall_freq_cache);
-		arsort($this->overall_freq_cache);
-	}
+	# takes a searched phrase and outputs an overall frequency map
+	# for the phrase, based on cached information over server lifetime
+	public function get_overall_frequencies($search_phrase) {
+		# get per-search per-paper list using param phrase
+		$search_paper_list = $this->lifetime_freq_cache[$search_phrase][1];
 
-	# takes an keyword's name and outputs an overall frequency 
-	# map for the keyword, based on cached information over server lifetime
-	public function get_overall_frequencies($keyword) {
-		# get specific keyword-song freq list from param
-		$keyword_song_frequencies_list = $this->lifetime_freq_cache[$keyword];
+		# overall word to frequency list
+		$overall_freq_count = array();
 
-		# declare overall frequency list
-		$overall_freq = array();
-
-		# iterate through param list
-		foreach($keyword_song_frequencies_list as $song_frequency_map) {
-			$keys = array_keys($song_frequency_map);
-			foreach($song_frequency_map[$keys[1]] as $word => $freq) {
-				if (array_key_exists($word, $overall_freq)) {
-					$overall_freq[$word] += $freq;
-				}
-				else {
-					$overall_freq[$word] = $freq;
+		# iterate through search_paper_list
+		foreach ($search_paper_list as $paper_freq_count) {
+			foreach ($paper_freq_count["data"] as $word => $count) {
+				if (array_key_exists($word, $overall_freq_count)) {
+					$overall_freq_count[$word] += $count;
+				} else {
+					$overall_freq_count[$word] = $count;
 				}
 			}
 		}
 
-		# sort overall freqs for this keyword in desc. freq. order
-		arsort($overall_freq);
+		# sort overall frequency count
+		arsort($overall_freq_count);
 
-		# new array to format data for front-end
-		$overall_freq_formatted = array();
-		foreach($overall_freq as $word => $freq) {
+		# format overall_freq_count into front-end usable format
+		# (key => word, value => count) format
+		$formatted = array();
+		foreach ($overall_freq_count as $word => $count) {
 			$entry = array();
 			$entry["key"] = $word;
-			$entry["value"] = $freq;
-			array_push($overall_freq_formatted, $entry);
+			$entry["value"] = $count;
+			$formatted[] = $entry;
 		}
 
-		return (sizeof($overall_freq_formatted) >= 250) ? array_slice($overall_freq_formatted, 0, 250) : $overall_freq_formatted;
+		# return formatted, size <= 250 list
+		return (sizeof($formatted) >= 250) ? array_slice($formatted, 0, 250) : $formatted;
 	}
 
 	# clear out the cache

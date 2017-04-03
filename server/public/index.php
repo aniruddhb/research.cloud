@@ -9,13 +9,14 @@ if (PHP_SAPI == 'cli-server') {
     }
 }
 
-# Set up Slim routing autoloader
+# Set up composer autoloader
 require __DIR__ . '/../vendor/autoload.php';
 
-# Pull Scraper and Parser into file to be 
-# instantiated within /../src/routes.php
+# Pull Scraper, Parser, and CacheManager into file 
+# to be instantiated within /../src/routes.php
 require __DIR__ . '/../src/Scraper.php';
 require __DIR__ . '/../src/Parser.php';
+require __DIR__ . '/../src/CacheManager.php';
 
 # Now that we've pulled in our helpers, start a session
 session_start();
