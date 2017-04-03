@@ -102,7 +102,4 @@ final class Parser {
 		$paper_freq_counts[] = $entry;
 	}
 }
-
-$parser = new Parser();
-$parser->parseAllResearchPapers();
 ?>
