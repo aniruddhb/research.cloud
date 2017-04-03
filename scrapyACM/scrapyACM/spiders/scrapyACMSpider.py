@@ -29,14 +29,21 @@ class scrapyACMSpider(BaseSpider):
     def parse(self, response):
 
         for content in response.xpath('//div[contains(@class, "details")]/div[contains(@class, "ft")]/a/@href').extract():
-            #  if content.endswith('.pdf'):
             yield Request(
                 url=response.urljoin(content),
                 callback=self.save_pdf
             )
 
     def save_pdf(self, response):
+
         path = response.url.split('/')[-1]
         self.logger.info('Saving PDF %s', path)
-        with open(path, 'wb') as f:
-            f.write(response.body)
+
+        downloadLink = str(path)
+        start = downloadLink.find('id=')
+        end = downloadLink.find('&', start)
+        pdfTitle = downloadLink[start:end]
+
+        if "pdf" in str(path):
+            with open(pdfTitle + ".pdf", 'wb') as f:
+                f.write(response.body)
