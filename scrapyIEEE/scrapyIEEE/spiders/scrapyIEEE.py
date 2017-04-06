@@ -8,6 +8,8 @@ import time
 import datetime
 from dateutil import relativedelta
 
+from scrapy.http import Request
+
 class scrapyIEEESpider(BaseSpider):
 
     name = "scrapyIEEE"
@@ -24,4 +26,25 @@ class scrapyIEEESpider(BaseSpider):
         details = xs.xpath('document/pdf/text()')
 
         for content in details.extract():
-            print content
+
+            print "ll"
+
+            yield Request(
+                url=response.urljoin(content),
+                callback=self.save_pdf
+            )
+
+    def save_pdf(self, response):
+
+        print "ll"
+
+        path = response.url.split('/')[-1]
+        self.logger.info('Saving PDF %s', path)
+
+        downloadLink = str(path)
+        start = downloadLink.find('=')
+        pdfTitle = downloadLink[start:downloadLink.len()-1]
+
+        if "pdf" in str(path):
+            with open(pdfTitle + ".pdf", 'wb') as f:
+                f.write(response.body)
