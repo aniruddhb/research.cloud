@@ -45,7 +45,8 @@ $("#searchButton").click(function() {
   $("#downloadButton").show();
 
   var $keywordText = $("#automplete-1").val();
-  var $search_cap = 5;
+  // need error checking for # of papers
+  var $search_cap = $("#numPapers").val();
   $("#keywordLabel").html("Keyword(s): " + $keywordText);
 
   $.ajax({

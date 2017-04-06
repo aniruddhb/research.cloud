@@ -50,22 +50,38 @@ h2 {
   100% { transform: rotate(360deg); }
 }
 
-.search-box, .close-icon, .search-wrapper {
+.search-box, .close-icon, .search-wrapper, .number-box {
     position: relative;
     padding: 10px;
 }
 
 .search-box {
-    width: 100%;
+    width: 80%;
+    font-size: 16px;
+    text-align: center;
+    font-family: Avenir;
+    border: 1px solid #deb5d5;
+    outline: 0;
+    display: inline-block;
+    border-radius: 5px;
+}
+
+.search-box:focus {
+    box-shadow: 0 0 5px 2.5px #deb5d5;
+}
+
+.number-box {
+    width: 20%;
     font-size: 16px;
     text-align: center;
     font-family: Avenir;
     border: 1px solid #deb5d5;
     outline: 0;
     border-radius: 5px;
+    display: inline-block;
 }
 
-.search-box:focus {
+.number-box:focus {
     box-shadow: 0 0 5px 2.5px #deb5d5;
 }
 
@@ -163,12 +179,12 @@ h2 {
 .ui-menu .ui-menu-item a.ui-state-focus {
     background: #ff0000s;
 
-}    
+}
 /*remove JQuerey UI*/
 .ui-state-active,
 .ui-widget-content .ui-state-active,
-.ui-widget-header .ui-state-active, 
-.ui-autocomplete, .ui-autocomplete:hover, 
+.ui-widget-header .ui-state-active,
+.ui-autocomplete, .ui-autocomplete:hover,
 .ui-menu-item, .ui-menu-item:hover,
 .ui-menu-item a, .ui-menu-item a:hover,
 .ui-widget-content .ui-state-focus,
@@ -178,7 +194,7 @@ h2 {
 .ui-menu .ui-menu-item a.ui-state-focus,
 .ui-menu .ui-menu-item a.ui-state-active,
 .ui-menu .ui-menu-item a
-{ background: #ffffff none no-repeat; 
+{ background: #ffffff none no-repeat;
 padding:0;
 margin:0;
 display:block;
