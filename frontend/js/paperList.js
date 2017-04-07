@@ -221,7 +221,22 @@ function exportToPDF() {
 
 }
 
+
 // Export to TXT button
 function exportToTXT() {
-  window.location.href="data:application/octet-stream;charset=utf-16le;base64,//5mAG8AbwAgAGIAYQByAAoA">text file</a>
+  var column = $("table").find("td:first-child");
+  console.log(column);
+  var mytext = "";
+  for(var i = 0; i < column.length; i++){
+    mytext += (column[i].innerText) + '\n';
+  }
+  var element = document.createElement('a');
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(mytext));
+  element.setAttribute('download', "paperlist");
+  element.style.display = 'none';
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
 }
