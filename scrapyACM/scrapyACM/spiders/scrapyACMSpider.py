@@ -19,20 +19,42 @@ class scrapyACMSpider(BaseSpider):
     name = "scrapyACM"
 
     def __init__(self, search='', number=''):
-        print number
-        self.start_urls = ["http://dl.acm.org/results.cfm?query=" + search + "&start=0&filtered=&within=owners%2Eowner%3DHOSTED&dte=&bfr=&srt=_score"]
+
+        self.number = number
+        self.counter = 0
+
+        if 20 > int(number):
+            self.start_urls = ["http://dl.acm.org/results.cfm?query=" + search + "&start=0&filtered=&within=owners%2Eowner%3DHOSTED&dte=&bfr=&srt=_score"]
+        elif 20 < int(number) < 40:
+            self.start_urls = ["http://dl.acm.org/results.cfm?query=" + search + "&start=0&filtered=&within=owners%2Eowner%3DHOSTED&dte=&bfr=&srt=_score",
+                               "http://dl.acm.org/results.cfm?query=" + search + "&start=20&filtered=&within=owners%2Eowner%3DHOSTED&dte=&bfr=&srt=_score"]
+        elif 40 < int(number) < 60:
+            self.start_urls = ["http://dl.acm.org/results.cfm?query=" + search + "&start=0&filtered=&within=owners%2Eowner%3DHOSTED&dte=&bfr=&srt=_score",
+                               "http://dl.acm.org/results.cfm?query=" + search + "&start=20&filtered=&within=owners%2Eowner%3DHOSTED&dte=&bfr=&srt=_score",
+                               "http://dl.acm.org/results.cfm?query=" + search + "&start=40&filtered=&within=owners%2Eowner%3DHOSTED&dte=&bfr=&srt=_score"]
 
     allowed_domains = ["dl.acm.org"]
 
-    # start_urls = ["http://dl.acm.org/results.cfm?query=" + researcher + "&start=0&filtered=&within=owners%2Eowner%3DHOSTED&dte=&bfr=&srt=_score"]
-
     def parse(self, response):
 
-        for content in response.xpath('//div[contains(@class, "details")]/div[contains(@class, "ft")]/a/@href').extract():
-            yield Request(
-                url=response.urljoin(content),
-                callback=self.save_pdf
-            )
+        print self.number
+
+        for content in response.xpath('//div[contains(@class, "details")]/div[contains(@class, "ft")]/a'):
+
+            url_content = str(content.xpath('@href').extract()).strip("[]").strip("u").strip("''")
+            title = str(content.xpath('@name').extract()).strip("[]").strip("u").strip("''")
+
+            print url_content
+
+            if 'FullTextMp4' not in title:
+                if self.counter < int(self.number):
+                    yield Request(
+                        url=response.urljoin(url_content),
+                        callback=self.save_pdf
+                    )
+                    self.counter += 1
+
+        print self.counter
 
     def save_pdf(self, response):
 
@@ -44,6 +66,5 @@ class scrapyACMSpider(BaseSpider):
         end = downloadLink.find('&', start)
         pdfTitle = downloadLink[start:end]
 
-        if "pdf" in str(path):
-            with open("./pdf/" + pdfTitle + ".pdf", 'wb') as f:
-                f.write(response.body)
+        with open("../pdfs/" + pdfTitle + ".pdf", 'wb') as f:
+            f.write(response.body)
