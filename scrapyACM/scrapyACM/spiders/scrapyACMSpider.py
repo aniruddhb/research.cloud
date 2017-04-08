@@ -45,5 +45,5 @@ class scrapyACMSpider(BaseSpider):
         pdfTitle = downloadLink[start:end]
 
         if "pdf" in str(path):
-            with open(pdfTitle + ".pdf", 'wb') as f:
+            with open("./pdf/" + pdfTitle + ".pdf", 'wb') as f:
                 f.write(response.body)

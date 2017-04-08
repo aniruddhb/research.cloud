@@ -1,4 +1,4 @@
-var word_to_search = '';
+var word_to_search = 'the';
 
 var InstantSearch = {
 

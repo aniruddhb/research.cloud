@@ -7,6 +7,6 @@
   $script->setAttribute ( 'type', 'text/javascript' );
 
   $head = $html->getElementsByTagName('head')->item(0)->appendChild($script);
-  $html->saveHTMLFile("test.html");
+  $html->saveHTMLFile("newtest.html");
 
 ?>

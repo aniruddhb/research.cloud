@@ -45,7 +45,8 @@ $("#searchButton").click(function() {
   $("#downloadButton").show();
 
   var $keywordText = $("#automplete-1").val();
-  var $search_cap = 5;
+  // need error checking for # of papers
+  var $search_cap = $("#numPapers").val();
   $("#keywordLabel").html("Keyword(s): " + $keywordText);
 
   $.ajax({
@@ -53,6 +54,8 @@ $("#searchButton").click(function() {
     url: 'http://localhost:8080/api/wordcloud/' + $keywordText + '/' + $search_cap,
     dataType: 'jsonp',
     success: function(data) {
+      console.log('datum');
+      console.log(data);
       localStorage.setItem('tags', JSON.stringify(data));
       localStorage.setItem('keywordText', $keywordText);
       localStorage.setItem('keywordLabelFull', $keywordText);

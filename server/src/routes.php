@@ -2,7 +2,7 @@
 
 # ROUTES
 
-# In this file, we specify our application's HTTP routes 
+# In this file, we specify our application's HTTP routes
 # and provide Closure callbacks to deal with user requests
 
 # On landing route, store session-wide scraper and parser variable for future use
@@ -51,14 +51,16 @@ $app->get('/api/wordcloud/{search_input}/{search_cap}', function ($request, $res
 		$cache->set_overall_freq_cache($results[0]);
 		$cache->set_search_freq_cache($results[1]);
 	} else {
+		# clear pdf dir of old search files
+		array_map('unlink', glob(__DIR__ . '/../../scrapyACM/pdf/*'));
+
 		# clear overall and search freq caches
 		$cache->clear();
 
 		# query scraper for papers with input and cap
-		# TODO: Until Charlie and Sam finish the scraper, keep this line commented out!
-		// $scraper->scrapeForPapers($search_input, $search_cap);
+		$scraper->scrapeForPapers($search_input, $search_cap);
 
-		# PDF's are now saved in /pdf/ dir, query parser
+		# PDF's are now saved in scrapyACM/pdf/ dir, query parser
 		$results = $parser->parseAllResearchPapers();
 
 		# add pieces of results array to respective caches
@@ -76,7 +78,7 @@ $app->get('/api/wordcloud/{search_input}/{search_cap}', function ($request, $res
 	# convert current response to jsonp callback with new response
 	$new_res = $response->withHeader('Content-Type', 'application/javascript');
 
-	# create string with callback and results 
+	# create string with callback and results
 	# write it to the body of the new response
 	$callback = "{$callback}({$overall_freq_formatted})";
 	$new_res->getBody()->write($callback);
@@ -103,7 +105,7 @@ $app->get('/api/papers/{word}', function ($request, $response, $args) {
 	# convert current response to jsonp callback with new response
 	$new_res = $response->withHeader('Content-Type', 'application/javascript');
 
-	# create string with callback and results 
+	# create string with callback and results
 	# write it to the body of the new response
 	$callback = "{$callback}({$papers_list})";
 	$new_res->getBody()->write($callback);
@@ -148,7 +150,7 @@ $app->get('/api/abstract/{paper_id}', function ($request, $response, $args) {
 	# convert current response to jsonp callback with new response
 	$new_res = $response->withHeader('Content-Type', 'application/javascript');
 
-	# create string with callback and results 
+	# create string with callback and results
 	# write it to the body of the new response
 	$callback = "{$callback}({$abstract})";
 	$new_res->getBody()->write($callback);

@@ -58,7 +58,7 @@ $(document).ready(function() {
         var download = row.insertCell(4);
         download.id = "download";
 
-        titleHeader.innerHTML = "Paper";        
+        titleHeader.innerHTML = "Paper";
         author.innerHTML = "Author";
         conf.innerHTML = "Conference";
         freq.innerHTML = "Frequency";
@@ -112,7 +112,7 @@ $(document).ready(function() {
             }
           }(link);
 
-          title.innerHTML = data[i]["title"];       
+          title.innerHTML = data[i]["title"];
           author.innerHTML = data[i]["author"];
           conf.innerHTML = (i % 2 === 0) ? "ACM" : "IEEE";
           freq.innerHTML = data[i]["frequency"];
@@ -214,4 +214,29 @@ $(document).ready(function() {
 // Back button, returns to Word Cloud Page
 function returnWordCloud() {
   window.location.href = "index.html";
+}
+
+// Export to PDF button
+function exportToPDF() {
+
+}
+
+
+// Export to TXT button
+function exportToTXT() {
+  var column = $("table").find("td:first-child");
+  console.log(column);
+  var mytext = "";
+  for(var i = 0; i < column.length; i++){
+    mytext += (column[i].innerText) + '\n';
+  }
+  var element = document.createElement('a');
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(mytext));
+  element.setAttribute('download', "paperlist");
+  element.style.display = 'none';
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
 }

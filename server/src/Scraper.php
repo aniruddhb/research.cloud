@@ -1,12 +1,10 @@
 <?php
 class Scraper {
-	# private path to scraping utility
-	private $scraper_path = '/../utils/scraper.py';
-
 	# responsible for scraping for papers with input and cap
 	public function scrapeForPapers($input, $cap) {
 		# build and execute python command
-		$command = "python " . $this->scraper_path . " papers {$input} {$cap}";
+		chdir("/Users/aniruddhbharadwaj/Documents/Projects/CS310/research.cloud/scrapyACM/");
+		$command = "gtimeout --signal=KILL 10 scrapy crawl scrapyACM -a search={$input} -a number={$cap}";
 		exec($command);
 	}
 
