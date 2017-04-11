@@ -17,16 +17,17 @@ class scrapyIEEESpider(BaseSpider):
     def __init__(self, search=''):
         self.start_urls = ["http://ieeexplore.ieee.org/gateway/ipsSearch.jsp?au=" + search]
 
-    allowed_domains = []
+    allowed_domains = ["http://ieeexplore.ieee.org/"]
 
     def parse(self, response):
 
         xs = Selector(response)
-        details = xs.xpath('//document/arnumber/text()')
+        #details = xs.xpath("//document/pdf")
+        details = xs.xpath('document/pdf/text()')
 
         for content in details.extract():
 
-            content = "http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=" + content
+            print "ll"
 
             yield Request(
                 url=response.urljoin(content),
@@ -35,13 +36,15 @@ class scrapyIEEESpider(BaseSpider):
 
     def save_pdf(self, response):
 
-        # path = response.url.split('/')[-1]
-        # self.logger.info('Saving PDF %s', path)
+        print "ll"
 
-        downloadLink = str(response.url)
+        path = response.url.split('/')[-1]
+        self.logger.info('Saving PDF %s', path)
+
+        downloadLink = str(path)
         start = downloadLink.find('=')
-        end = downloadLink.find('&', start)
-        pdfTitle = downloadLink[start+1:end]
+        pdfTitle = downloadLink[start:downloadLink.len()-1]
 
-        with open(pdfTitle + ".pdf", 'wb') as f:
-            f.write(response.body)
+        if "pdf" in str(path):
+            with open(pdfTitle + ".pdf", 'wb') as f:
+                f.write(response.body)
