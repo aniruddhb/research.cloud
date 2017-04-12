@@ -52,7 +52,7 @@ $app->get('/api/wordcloud/{search_input}/{search_cap}', function ($request, $res
 		$cache->set_search_freq_cache($results[1]);
 	} else {
 		# clear pdf dir of old search files
-		array_map('unlink', glob(__DIR__ . '/../../scrapyACM/pdf/*'));
+		array_map('unlink', glob(__DIR__ . '/../../pdfs/*'));
 
 		# clear overall and search freq caches
 		$cache->clear();
@@ -114,20 +114,17 @@ $app->get('/api/papers/{word}', function ($request, $response, $args) {
 
 # On this route, perform all operations required to get a blob
 # binary download of the file request by the user
-$app->get('/api/download/{file}', function ($request, $response, $args) {
-	# get callback from req
-	$callback = $request->getQueryParam('callback');
+$app->get('/api/download', function ($request, $response, $args) {
+	# get name of file from query param
+	$file_name = $request->getQueryParam('id');
 
-	# convert current response to jsonp callback with new response
-	$file = __DIR__ . '/../pdf/' . $args['file'];
-	$new_res = $res->withHeader('Content-Description', 'File Transfer')
-   				   ->withHeader('Content-Type', 'application/octet-stream')
-				   ->withHeader('Content-Disposition', 'attachment;filename="'.basename($file).'"')
-				   ->withHeader('Expires', '0')
-				   ->withHeader('Cache-Control', 'must-revalidate')
-				   ->withHeader('Pragma', 'public')
-				   ->withHeader('Content-Length', filesize($file));
-	readfile($file);
+	# get and encode file into base64 stream
+	$file = __DIR__ . '/../../pdfs/id=' . $file_name;
+	$encoded_contents = base64_encode(file_get_contents($file));
+
+	# return new, modified response
+	$response->getBody()->write($encoded_contents);
+	$new_res = $response->withHeader('Access-Control-Allow-Origin', 'http://localhost:8081');
 	return $new_res;
 });
 
