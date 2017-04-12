@@ -9,6 +9,9 @@ final class Parser {
 	# private parser helper from PdfParser composer library
 	private $pdf_parser;
 
+	# private path to acm digital library root
+	private $acm = 'http://dl.acm.org/citation.cfm?';
+
 	# private helper arrays from which to remove elements from text
 	private $symbols = array(",", ".", ";", "!", ")", "(", "/", "?", "\"", "'", "-", "*");
 	private $conjunctions = array("i", "you", "he", "she", "we", "you", "they", "and", "but", "or", "yet", "for", "nor", "so", "it", "", "the", "its", "if", "at", "to", "too", "then",
@@ -67,6 +70,10 @@ final class Parser {
 			# get pdf abstraction of file using pdf_parser
 			$pdf = $this->pdf_parser->parseFile($this->pdf_dir . $file);
 
+			// # get pdf metadata (commented out for now)
+			// $pdf_id = pathinfo($file, PATHINFO_FILENAME);
+			// $pdf_metadata = $this->getMetadata($pdf_id);
+
 			# get lowercase version of pure text from pdf
 			$details = $pdf->getDetails();
 			$title = (isset($details["Title"])) ? $details["Title"] : "No Title Found";
@@ -85,7 +92,7 @@ final class Parser {
 			$paper_freq_count = array();
 			foreach ($array_of_words as $word) {
 				# only include words that are fully alphabetic
-				if (ctype_alpha($word) && strlen($word) > 1) {
+				if (ctype_alpha($word) && strlen($word) > 3) {
 					# fill paper freq count with word or init for that word
 					if (array_key_exists($word, $paper_freq_count)) {
 						$paper_freq_count[$word]++;
@@ -106,6 +113,12 @@ final class Parser {
 			$entry = array("path" => $file, "title" => $title, "author" => $author, "data" => $paper_freq_count);
 			$paper_freq_counts[] = $entry;
 		} catch (Exception $e) {}
+	}
+
+	# function that simple gets metadata for a given pdf,
+	# from that pdf's pdf_id (currently ACM-biased)
+	public function getMetadata($pdf_id) {
+		// empty for now
 	}
 }
 ?>
