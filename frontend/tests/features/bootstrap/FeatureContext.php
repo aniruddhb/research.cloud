@@ -238,5 +238,37 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
       echo("test passed");
     }
 
+    /**
+      * @When I input a non numeric character in numPapers
+      */
+     public function iInputANonNumericCharacterInNumpapers()
+     {
+         throw new PendingException();
+     }
+
+     /**
+      * @Given I input a numeric character in numPapers
+      */
+     public function iInputANumericCharacterInNumpapers()
+     {
+         throw new PendingException();
+     }
+
+     /**
+      * @Then I see a .txt downloaded
+      */
+     public function iSeeATxtDownloaded()
+     {
+         throw new PendingException();
+     }
+
+     /**
+      * @Then I see a .pdf downloaded
+      */
+     public function iSeeAPdfDownloaded2()
+     {
+         throw new PendingException();
+     }
+
 
 }
