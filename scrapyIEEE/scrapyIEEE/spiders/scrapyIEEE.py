@@ -35,13 +35,14 @@ class scrapyIEEESpider(BaseSpider):
 
     def save_pdf(self, response):
 
-        # path = response.url.split('/')[-1]
-        # self.logger.info('Saving PDF %s', path)
-
         downloadLink = str(response.url)
         start = downloadLink.find('=')
-        end = downloadLink.find('&', start)
-        pdfTitle = downloadLink[start+1:end]
+        if (start != -1):
+            pdfTitle = downloadLink[start+1:len(downloadLink)]
+        else:
+            start = downloadLink.find('/', 34)
+            end = downloadLink.find('/', start)
+            pdfTitle = downloadLink[start+1:end]
 
-        with open(pdfTitle + ".pdf", 'wb') as f:
+        with open("../../pdf/" + pdfTitle + ".pdf", 'wb') as f:
             f.write(response.body)
