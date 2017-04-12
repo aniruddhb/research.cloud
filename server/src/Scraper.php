@@ -1,5 +1,5 @@
 <?php
-class Scraper {
+final class Scraper {
 	# private path to scrapy directories from the current context
 	private $acm_dir = __DIR__ . '/../../scrapyACM/';
 

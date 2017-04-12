@@ -6,11 +6,8 @@ final class Parser {
 	# private path to all PDF's from the current context
 	private $pdf_dir = __DIR__ . '/../../pdfs/';
 
-	# private parser helper from PdfParser composer library
+	# private pdf parser helper from PdfParser composer library
 	private $pdf_parser;
-
-	# private path to acm digital library root
-	private $acm = 'http://dl.acm.org/citation.cfm?';
 
 	# private helper arrays from which to remove elements from text
 	private $symbols = array(",", ".", ";", "!", ")", "(", "/", "?", "\"", "'", "-", "*");
@@ -21,7 +18,7 @@ final class Parser {
 
 	# constructor for class
 	public function __construct() {
-		# init the parser
+		# init the pdf parser
 		$this->pdf_parser = new \Smalot\PdfParser\Parser();
 	}
 
@@ -118,7 +115,7 @@ final class Parser {
 	# function that simple gets metadata for a given pdf,
 	# from that pdf's pdf_id (currently ACM-biased)
 	public function getMetadata($pdf_id) {
-		// empty for now
+		// TODO: get metadata given pdf's ACM id
 	}
 }
 ?>

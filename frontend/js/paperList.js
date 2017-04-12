@@ -89,6 +89,10 @@ $(document).ready(function() {
           //     }
           //   });
           // });
+          $(title).on('click', { path: data[i]["path"] }, function(event) {
+            localStorage.setItem('path', event.data.path);
+            window.location.href = "abstract.html";
+          });
 
 
           var author = row.insertCell(1);
