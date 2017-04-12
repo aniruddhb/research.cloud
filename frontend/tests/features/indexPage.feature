@@ -32,3 +32,16 @@ Once the user presses search, a word cloud will be generated.
     And I see a word cloud
     When I click on downloadWordCloudButton
     Then I see a jpg downloaded
+
+  Scenario: Invalid input for X number of papers
+    Given I am on localhost/index.html
+    And I input a keyword
+    When I input a non numeric character in numPapers
+    Then I see no difference
+
+  Scenario: Valid input for X number of papers
+    Given I am on localhost/index.html
+    And I input a keyword
+    And I input a numeric character in numPapers
+    When I click on searchButton
+    Then I see a word cloud

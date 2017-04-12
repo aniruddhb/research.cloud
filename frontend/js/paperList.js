@@ -218,12 +218,19 @@ function returnWordCloud() {
 
 // Export to PDF button
 function exportToPDF() {
-
+  // converting HTML table to text
+  var column = $("table").find("td:first-child");
+  console.log(column);
+  var mytext = "";
+  for(var i = 0; i < column.length; i++){
+    mytext += (column[i].innerText) + '\n';
+  }
 }
 
 
 // Export to TXT button
 function exportToTXT() {
+  // converting HTML table to text
   var column = $("table").find("td:first-child");
   console.log(column);
   var mytext = "";

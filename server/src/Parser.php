@@ -4,7 +4,7 @@ require __DIR__ . '/../vendor/autoload.php';
 
 final class Parser {
 	# private path to all PDF's from the current context
-	private $pdf_dir = __DIR__ . '/../../scrapyACM/pdf/';
+	private $pdf_dir = __DIR__ . '/../../pdfs/';
 
 	# private parser helper from PdfParser composer library
 	private $pdf_parser;
