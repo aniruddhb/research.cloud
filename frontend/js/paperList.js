@@ -99,18 +99,18 @@ $(document).ready(function() {
           var conf = row.insertCell(2);
           var freq = row.insertCell(3);
           var download = row.insertCell(4);
-          var link = "file:////home/student/Documents/Proj2/research.cloud/server/pdf" + data[i]["path"];
-          download.onclick = function(link) {
-            return function() {
-              var file = new File(link);
-              var reader = new FileReader();
-              reader.onload = function(event) {
-                console.log(event);
-                window.location.href = event.target.result;
-              };
-              reader.readAsBinaryString(file);
-            }
-          }(link);
+          $(download).on('click', { path: data[i]["path"] }, function(event) {
+            $.ajax({
+              type: 'GET',
+              url: 'http://localhost:8080/api/download?' + event.data.path,
+              success: function(data) {
+                var link = document.createElement('a');
+                link.href = "data:application/pdf;base64," + data;
+                link.download = event.data.path;
+                link.click();
+              }
+            });
+          });
 
           title.innerHTML = data[i]["title"];
           author.innerHTML = data[i]["author"];
@@ -218,12 +218,19 @@ function returnWordCloud() {
 
 // Export to PDF button
 function exportToPDF() {
-
+  // converting HTML table to text
+  var column = $("table").find("td:first-child");
+  console.log(column);
+  var mytext = "";
+  for(var i = 0; i < column.length; i++){
+    mytext += (column[i].innerText) + '\n';
+  }
 }
 
 
 // Export to TXT button
 function exportToTXT() {
+  // converting HTML table to text
   var column = $("table").find("td:first-child");
   console.log(column);
   var mytext = "";
