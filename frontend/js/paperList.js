@@ -71,6 +71,7 @@ $(document).ready(function() {
           var row = tbody.insertRow(-1);
 
           var title = row.insertCell(0);
+          title.innerHTML = data[i]["title"];
           // $paperID = 100;
           // $keywordText = "Keyword"
           // $(title).click(function(){
@@ -92,13 +93,35 @@ $(document).ready(function() {
 
 
           var author = row.insertCell(1);
+          author.innerHTML = data[i]["author"];
           $(author).click(function(){
-            window.location.href="http://google.com";
+            $.ajax({
+              type : 'GET',
+              url: 'http://localhost:8080/api/wordcloud/' + author.innerHTML + '/' + 10,
+              dataType: 'jsonp',
+              success: function(data) {
+                console.log('datum');
+                console.log(data);
+                localStorage.setItem('tags', JSON.stringify(data));
+                localStorage.setItem('keywordText', $keywordText);
+                localStorage.setItem('keywordLabelFull', $keywordText);
+                tags = data;
+                update();
+              },
+              error: function(err) {
+                console.log(err);
+              }
+            });
           });
 
           var conf = row.insertCell(2);
+          conf.innerHTML = (i % 2 === 0) ? "ACM" : "IEEE";
+
           var freq = row.insertCell(3);
+          freq.innerHTML = data[i]["frequency"];
+          
           var download = row.insertCell(4);
+          download.innerHTML = "Download";
           $(download).on('click', { path: data[i]["path"] }, function(event) {
             $.ajax({
               type: 'GET',
@@ -112,11 +135,6 @@ $(document).ready(function() {
             });
           });
 
-          title.innerHTML = data[i]["title"];
-          author.innerHTML = data[i]["author"];
-          conf.innerHTML = (i % 2 === 0) ? "ACM" : "IEEE";
-          freq.innerHTML = data[i]["frequency"];
-          download.innerHTML = "Download";
         }
 
         table.appendChild(tbody);
