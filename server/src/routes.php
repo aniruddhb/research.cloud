@@ -112,8 +112,8 @@ $app->get('/api/papers/{word}', function ($request, $response, $args) {
 	return $new_res;
 });
 
-# On this route, perform all operations required to get a blob
-# binary download of the file request by the user
+# On this route, perform all operations required to get a base64
+# encoded representative download of the file request by the user
 $app->get('/api/download', function ($request, $response, $args) {
 	# get name of file from query param
 	$file_name = $request->getQueryParam('id');
@@ -129,27 +129,29 @@ $app->get('/api/download', function ($request, $response, $args) {
 });
 
 # On this route, perform all operations required to get
-# the abstract of a given paper
-$app->get('/api/abstract/{paper_id}', function ($request, $response, $args) {
-	# get scraper and parser from session
+# abstract of a given paper
+$app->get('/api/abstract', function ($request, $response, $args) {
+	# get scraper from session
 	$scraper = unserialize($_SESSION['scraper']);
-	$parser = unserialize($_SESSION['parser']);
 
 	# get callback from req
 	$callback = $request->getQueryParam('callback');
 
-	# get query param
-	$paper_id = $args['paper_id'];
+	# get and sanitize query param
+	$paper_id = pathinfo($request->getQueryParam('id'), PATHINFO_FILENAME);
 
-	# query scraper for abstract with paper_id
-	$abstract = $scraper->scrapeForAbstract($paper_id);
+	# query scraper for abstract with paper_path
+	$scraper->scrapeForAbstract($paper_id);
+
+	# get abstract data from file in json format
+	$json_data = file_get_contents(__DIR__ . '/../../scrapyACMAbs/abstract.json');
 
 	# convert current response to jsonp callback with new response
 	$new_res = $response->withHeader('Content-Type', 'application/javascript');
 
 	# create string with callback and results
 	# write it to the body of the new response
-	$callback = "{$callback}({$abstract})";
+	$callback = "{$callback}({$json_data})";
 	$new_res->getBody()->write($callback);
 	return $new_res;
 });

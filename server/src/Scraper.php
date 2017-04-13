@@ -2,6 +2,9 @@
 final class Scraper {
 	# private path to scrapy directories from the current context
 	private $acm_dir = __DIR__ . '/../../scrapyACM/';
+	private $acm_abs_dir = __DIR__ . '/../../scrapyACMAbs/';
+	private $ieee_dir = __DIR__ . '/../../scrapyIEEE/';
+	private $ieee_abs_dir = __DIR__ . ''; // TODO: ieee abstract scraping
 
 	# responsible for scraping for papers with input and cap
 	public function scrapeForPapers($input, $cap) {
@@ -11,12 +14,12 @@ final class Scraper {
 		exec($command);
 	}
 
-	# responsible for scraping for abstract with paper id
+	# responsible for scraping for abstract given paper id
 	public function scrapeForAbstract($id) {
-		# return abstract
-		# TODO: run python command to get abstract
-		$abstract = "";
-		return $abstract;
+		# build and execute python command
+		chdir($this->acm_abs_dir);
+		$command = "scrapy crawl scrapyACMAbs -a search={$id}";
+		exec($command);
 	}
 }
 ?>

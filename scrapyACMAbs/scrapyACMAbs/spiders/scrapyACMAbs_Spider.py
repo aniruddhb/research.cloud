@@ -16,7 +16,7 @@ class scrapyACMAbsSpider(BaseSpider):
 
         self.id = search
 
-        self.start_urls = ["http://dl.acm.org/citation.cfm?id=" + search + " &CFID=917343893&CFTOKEN=14743174&preflayout=flat"]
+        self.start_urls = ["http://dl.acm.org/citation.cfm?id=" + search + "&preflayout=flat"]
 
     allowed_domains = ["dl.acm.org"]
 
@@ -35,5 +35,5 @@ class scrapyACMAbsSpider(BaseSpider):
 
         print abstract
 
-        with open('../abstracts/abstract.txt', 'w') as outfile:
+        with open('./abstract.json', 'w') as outfile:
             json.dump({'abstract': abstract}, outfile)
