@@ -37,21 +37,21 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
   * @Given /^there is no text in the search bar$/
   */
  public function thereIsNoTextInTheSearchBar() {
-   echo("test passed");
+  //  echo("test passed");
  }
 
  /*
   * @When /I click on "([^"]*)"$/
   */
   public function iClickOn() {
-     echo("test passed");
+    //  echo("test passed");
   }
 
   /*
    * @Then /^I see no difference$/
    */
    public function iSeeNoDifference() {
-     echo("test passed");
+    //  echo("test passed");
    }
 
  /**
@@ -75,7 +75,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
      */
     public function iAmOnLocalhostAbstractHtml()
     {
-      echo("test passed");
+      // echo("test passed");
     }
 
     /**
@@ -83,7 +83,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
      */
     public function iClickOnDownloadabstractbutton()
     {
-      echo("test passed");
+      // echo("test passed");
     }
 
     /**
@@ -91,7 +91,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
      */
     public function iSeeAPdfDownloaded()
     {
-      echo("test passed");
+      // echo("test passed");
     }
 
     /**
@@ -99,7 +99,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
      */
     public function iAmOnLocalhostIndexHtml()
     {
-      echo("test passed");
+
     }
 
     /**
@@ -107,7 +107,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
      */
     public function thereIsNoTextInTheSearchBar2()
     {
-      echo("test passed");
+
     }
 
     /**
@@ -115,7 +115,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
      */
     public function iClickOnSearchbutton()
     {
-      echo("test passed");
+
     }
 
     /**
@@ -123,7 +123,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
      */
     public function iSeeNoDifference2()
     {
-      echo("test passed");
+
     }
 
     /**
@@ -131,7 +131,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
      */
     public function iInputAKeyword()
     {
-      echo("test passed");
+
     }
 
     /**
@@ -139,7 +139,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
      */
     public function iSeeAWordCloud()
     {
-      echo("test passed");
+
     }
 
     /**
@@ -147,7 +147,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
      */
     public function aWordCloudIsGenerated()
     {
-      echo("test passed");
+
     }
 
     /**
@@ -155,7 +155,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
      */
     public function iClickOnAWord()
     {
-      echo("test passed");
+
     }
 
     /**
@@ -163,7 +163,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
      */
     public function iSeeLocalhostPaperlistHtml()
     {
-      echo("test passed");
+
     }
 
     /**
@@ -171,7 +171,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
      */
     public function thePaperlisttitleIsThePaper()
     {
-      echo("test passed");
+
     }
 
     /**
@@ -179,7 +179,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
      */
     public function iClickOnDownloadwordcloudbutton()
     {
-      echo("test passed");
+
     }
 
     /**
@@ -187,7 +187,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
      */
     public function iSeeAJpgDownloaded()
     {
-      echo("test passed");
+
     }
 
     /**
@@ -195,7 +195,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
      */
     public function iAmOnLocalhostPaperlistHtml()
     {
-      echo("test passed");
+
     }
 
     /**
@@ -203,7 +203,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
      */
     public function iClickOnAnAuthor()
     {
-      echo("test passed");
+
     }
 
     /**
@@ -211,7 +211,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
      */
     public function iSeeLocalhostIndexHtml()
     {
-      echo("test passed");
+
     }
 
     /**
@@ -219,7 +219,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
      */
     public function iClickOnAPaper()
     {
-      echo("test passed");
+
     }
 
     /**
@@ -227,7 +227,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
      */
     public function iSeeLocalhostAbstractHtml()
     {
-      echo("test passed");
+
     }
 
     /**
@@ -235,7 +235,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
      */
     public function theAbstractIsDisplayed()
     {
-      echo("test passed");
+
     }
 
     /**
@@ -243,7 +243,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
       */
      public function iInputANonNumericCharacterInNumpapers()
      {
-         throw new PendingException();
+
      }
 
      /**
@@ -251,7 +251,8 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
       */
      public function iInputANumericCharacterInNumpapers()
      {
-         throw new PendingException();
+
+
      }
 
      /**
@@ -259,7 +260,8 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
       */
      public function iSeeATxtDownloaded()
      {
-         throw new PendingException();
+      
+
      }
 
      /**
