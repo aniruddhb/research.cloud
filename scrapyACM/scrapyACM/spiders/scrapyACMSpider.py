@@ -14,6 +14,8 @@ import json
 import datetime
 from dateutil import relativedelta
 
+import json
+
 class scrapyACMSpider(BaseSpider):
 
     name = "scrapyACM"
@@ -35,10 +37,23 @@ class scrapyACMSpider(BaseSpider):
 
     allowed_domains = ["dl.acm.org"]
 
+    with open('./metadata.json', mode='w') as f:
+        json.dump([], f)
+
     def parse(self, response):
 
-        print self.number
+        with open('./metadata.json') as f:
+            data = json.load(f)
 
+        entry = {'title': 'Babujee', 'author': 'Samuel Breck'}
+
+        data.append(entry)
+
+        with open('./metadata.json', mode='w') as f:
+            json.dump(data, f)
+
+        print self.number
+    
         for content in response.xpath('//div[contains(@class, "details")]/div[contains(@class, "ft")]/a'):
 
             url_content = str(content.xpath('@href').extract()).strip("[]").strip("u").strip("''")
