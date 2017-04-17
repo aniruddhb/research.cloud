@@ -14,6 +14,8 @@ import json
 import datetime
 from dateutil import relativedelta
 
+import json
+
 class scrapyACMSpider(BaseSpider):
 
     name = "scrapyACM"
@@ -35,7 +37,44 @@ class scrapyACMSpider(BaseSpider):
 
     allowed_domains = ["dl.acm.org"]
 
+    with open('./metadata.json', mode='w') as f:
+        json.dump([], f)
+
     def parse(self, response):
+
+        def encodeString(text):
+
+            if(text != []):
+                text = text[0].encode('utf-8').strip("[]").strip("u").strip("''")
+            else:
+                text = "N/A"
+
+            return text
+
+        with open('./metadata.json') as f:
+            data = json.load(f)
+
+        for content in response.xpath('//div[contains(@class, "details")]'):
+            title = encodeString(content.xpath('./div[contains(@class, "title")]/a/text()').extract())
+
+            authors = []
+            for names in content.xpath('.//div[contains(@class, "authors")]/a'):
+                authors.append(encodeString(names.xpath('./text()').extract()))
+
+            conference = encodeString(content.xpath('./div[contains(@class, "source")]/span[@style="padding-left:10px"]/text()').extract())
+
+            paperID = encodeString(content.xpath('./div[contains(@class, "title")]/a/@href').extract())
+
+            start = paperID.find('id=')
+            end = paperID.find('&', start)
+            paperID = paperID[start:end]
+            paperID = paperID[3:]
+
+            entry = {'title': title, 'authors': authors, 'conference': conference, 'publisher': 'ACM', 'paperID': paperID}
+            data.append(entry)
+
+        with open('./metadata.json', mode='w') as f:
+            json.dump(data, f)
 
         print self.number
 

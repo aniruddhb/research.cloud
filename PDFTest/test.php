@@ -1,6 +1,6 @@
 <?php
   $html = new DOMDocument();
-  $html->loadHTMLFile('test.html');
+  $html->loadHTMLFile('id=28445.html');
 
   $script = $html->createElement ( 'script', '' );
   $script->setAttribute ('src', 'cheerio.js');
