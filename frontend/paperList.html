@@ -4,7 +4,7 @@
 <head>
   <title>Paper List Page</title>
   <script src="js/jquery.js"></script>
-  <script src="js/paperList.js"></script>
+  <script src="js/bundle.js"></script>
   <link rel="stylesheet" href="css/paperList.css">
   <link rel="logo icon" href="resources/logo.ico" type="image/x-icon">
 </head>
@@ -16,9 +16,11 @@
     <p>
       <h2 id = "papers"> </h2>
     </p>
-    <button class="btn-class" id="backToWordCloudButton" onclick="returnWordCloud()" type="button">Back to Word Cloud</button>
-    <button class="btn-class" id="exportToPDFButton" onclick="exportToPDF()" type="button">Export List to PDF</button>
-    <button class="btn-class" id="exportToTXTButton" onclick="exportToTXT()" type="button">Export List to TXT</button>
+    <button class="btn-class" id="backToWordCloudButton" type="button">Back to Word Cloud</button>
+    <button class="btn-class" id="exportToPDFButton" type="button">Export List to PDF</button>
+    <button class="btn-class" id="exportToTXTButton" type="button">Export List to TXT</button>
+    <script src="js/jsPDF.js"></script>
+    <script src="js/jsPDFTable.js"></script>
   </div>
 
 </body>
