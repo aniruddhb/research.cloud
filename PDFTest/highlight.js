@@ -1,5 +1,3 @@
-var word_to_search = 'the';
-
 var InstantSearch = {
 
     "highlight": function (container, highlightText)
@@ -137,6 +135,8 @@ window.onload = function() {
   htmlDiv.innerHTML = css;
   document.getElementsByTagName('head')[0].appendChild(htmlDiv);
 
+  var word = document.getElementById('word_to_search');
+  var word_to_search = word.innerText;
   var container = document.getElementById("page-container");
   InstantSearch.highlight(container, word_to_search);
 };
