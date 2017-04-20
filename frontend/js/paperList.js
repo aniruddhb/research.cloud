@@ -157,6 +157,26 @@ $(document).ready(function() {
 
           var conf = row.insertCell(2);
           conf.innerHTML = (i % 2 === 0) ? "ACM" : "IEEE";
+          $(conf).click(function(){
+            $.ajax({
+              type : 'GET',
+              url: 'http://localhost:8080/api/wordcloud/' + conf.innerHTML + '/' + 10,
+              dataType: 'jsonp',
+              success: function(data) {
+                console.log('datum');
+                console.log(data);
+                localStorage.setItem('tags', JSON.stringify(data));
+                localStorage.setItem('keywordText', $keywordText);
+                localStorage.setItem('keywordLabelFull', $keywordText);
+                tags = data;
+                update();
+              },
+              error: function(err) {
+                console.log(err);
+              }
+            });
+          });
+
 
           var freq = row.insertCell(3);
           freq.innerHTML = data[i]["frequency"];
