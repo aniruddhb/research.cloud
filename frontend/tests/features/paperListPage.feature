@@ -34,3 +34,8 @@ Feature: paper list page
     When I click on a conference title
     Then I see localhost/index.html
     And I see a word cloud
+
+  Scenario: Click on bibtex link to get bibtex
+    Given I am on localhost/paperList.html
+    When I click on a bibtex link
+    Then I see a new page
