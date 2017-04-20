@@ -19,6 +19,10 @@ $(document).ready(function() {
     });
 
     // to connect to actual functionality later!
+
+});
+
+function downloadAbstract() {
     $.ajax({
       type: 'GET',
       url: 'http://localhost:8080/api/download/highlighted?' + path,
@@ -31,8 +35,4 @@ $(document).ready(function() {
         console.log(err);
       }
     });
-});
-
-function downloadAbstract() {
-
 }
