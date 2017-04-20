@@ -247,6 +247,14 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
      }
 
      /**
+     * @When I click on a conference title
+     */
+    public function iClickOnAConferenceTitle()
+    {
+        throw new PendingException();
+    }
+
+     /**
       * @Given I input a numeric character in numPapers
       */
      public function iInputANumericCharacterInNumpapers()
@@ -260,7 +268,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
       */
      public function iSeeATxtDownloaded()
      {
-      
+
 
      }
 
