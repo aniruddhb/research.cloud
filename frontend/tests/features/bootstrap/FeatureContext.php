@@ -251,8 +251,23 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
      */
     public function iClickOnAConferenceTitle()
     {
-        throw new PendingException();
     }
+
+
+    /**
+     * @When I click on a bibtex link
+     */
+    public function iClickOnABibtexLink()
+    {
+    }
+
+    /**
+     * @Then I see a new page
+     */
+    public function iSeeANewPage()
+    {
+    }
+
 
      /**
       * @Given I input a numeric character in numPapers
