@@ -94,12 +94,15 @@ $(document).ready(function() {
         freq.id = "freq";
         var download = row.insertCell(4);
         download.id = "download";
+        var bibtex = row.insertCell(5);
+        bibtex.id = "bibtex";
 
         titleHeader.innerHTML = "Paper";
         author.innerHTML = "Author";
         conf.innerHTML = "Conference";
         freq.innerHTML = "Frequency";
         download.innerHTML = "Download";
+        bibtex.innerHTML = "Bibtex";
 
         var tbody = document.createElement('tbody');
 
@@ -194,6 +197,25 @@ $(document).ready(function() {
                 link.click();
               }
             });
+          });
+
+          var bibtex = row.insertCell(5);
+          bibtex.innerHTML = "BibTex";
+          $(bibtex).on('click', { path: data[i]["path"] }, function(event) {
+            window.location.href="http://www.google.com";
+            //TODO: add route to bibtex
+
+            // $.ajax({
+            //   type: 'GET',
+            //   url: 'http://localhost:8080/api/download?' + event.data.path,
+            //   success: function(data) {
+            //     var link = document.createElement('a');
+            //     link.href = "data:application/pdf;base64," + data;
+            //     link.download = event.data.path;
+            //     link.click();
+            //   }
+            // });
+
           });
 
         }

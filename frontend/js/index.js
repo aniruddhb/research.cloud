@@ -38,7 +38,8 @@ $("#keywordLabel").hide();
 
 $("#searchButton").click(function() {
   $('#vis').hide();
-  document.getElementById("loader").style.display = "inline-block";
+  document.getElementById("myBar").style.display = "inline-block";
+  move();
 
   searchState = YES_SEARCH;
   $("#keywordLabel").show();
@@ -114,6 +115,21 @@ $("#searchButton").removeClass("btn-class-disabled");
 $("#searchButton").addClass("btn-class");
 
 });
+
+function move() {
+    var elem = document.getElementById("myBar"); 
+    var width = 1;
+    var id = setInterval(frame, 10);
+    function frame() {
+        if (width >= 100) {
+            clearInterval(id);
+        } else {
+            width++; 
+            elem.style.width = width + '%'; 
+            elem.innerHTML = width * 1 + '%';
+        }
+    }
+}
 
 // call AJAX function
 /*$("#automplete-1").autocomplete({

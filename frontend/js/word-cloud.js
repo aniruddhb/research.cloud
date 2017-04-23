@@ -112,7 +112,7 @@ function draw(data, bounds) {
 }
 
 function showPage() {
-    document.getElementById("loader").style.display = "none";
+    document.getElementById("myBar").style.display = "none";
     $("#vis").show();
 }
 
@@ -123,4 +123,19 @@ function update() {
         fontSize.domain([+tags[tags.length - 1].value || 1, +tags[0].value]);
     }
     layout.stop().words(tags).start();
+}
+
+function move() {
+    var elem = document.getElementById("myBar"); 
+    var width = 1;
+    var id = setInterval(frame, 10);
+    function frame() {
+        if (width >= 100) {
+            clearInterval(id);
+        } else {
+            width++; 
+            elem.style.width = width + '%'; 
+            elem.innerHTML = width * 1 + '%';
+        }
+    }
 }
