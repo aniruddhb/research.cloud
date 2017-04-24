@@ -139,16 +139,17 @@ $(document).ready(function() {
           var author = row.insertCell(1);
           author.innerHTML = data[i]["author"];
           $(author).click(function(){
+            window.location.href = "index.html";
             $.ajax({
               type : 'GET',
-              url: 'http://localhost:8080/api/wordcloud/' + author.innerHTML + '/' + 10,
+              url: 'http://localhost:8080/api/wordcloud/' + author.innerText + '/' + 10,
               dataType: 'jsonp',
               success: function(data) {
                 console.log('datum');
                 console.log(data);
                 localStorage.setItem('tags', JSON.stringify(data));
-                localStorage.setItem('keywordText', $keywordText);
-                localStorage.setItem('keywordLabelFull', $keywordText);
+                localStorage.setItem('keywordText', author.innerText);
+                localStorage.setItem('keywordLabelFull', author.innerText);
                 tags = data;
                 update();
               },
@@ -159,7 +160,8 @@ $(document).ready(function() {
           });
 
           var conf = row.insertCell(2);
-          conf.innerHTML = (i % 2 === 0) ? "ACM" : "IEEE";
+          conf.innerHTML = data[i]["conference"];
+
           $(conf).click(function(){
             $.ajax({
               type : 'GET',
@@ -179,7 +181,6 @@ $(document).ready(function() {
               }
             });
           });
-
 
           var freq = row.insertCell(3);
           freq.innerHTML = data[i]["frequency"];

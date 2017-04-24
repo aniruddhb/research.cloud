@@ -11,7 +11,7 @@ final class ParserTest extends TestCase {
 	// Test parseAllResearchPapers() function
 	public function testParseAllResearchPapers() {
 		echo "TEST NAME: testParseAllResearchPapers \n \n";
-		$parser = new Parser();
+		$parser = new Parser(__DIR__ . "/../../parser_test_pdfs/");
 		$results = $parser->parseAllResearchPapers();
 		$frequencies = $results[0];
 		$paper_freq_counts = $results[1];
@@ -29,10 +29,10 @@ final class ParserTest extends TestCase {
 	// Test parseResearchPaper() function
 	public function testParseResearchPaper() {
 		echo "TEST NAME: testParseResearchPaper \n \n";
-		$parser = new Parser();
+		$parser = new Parser(__DIR__ . "/../../parser_test_pdfs/");
 		$overall_freq_count = array();
 		$paper_freq_counts = array();
-		$parser->parseResearchPaper("1.pdf", $overall_freq_count, $paper_freq_counts);
+		$parser->parseResearchPaper("id=1101935.pdf", $overall_freq_count, $paper_freq_counts);
 		$this->assertInternalType("array", $overall_freq_count);
 		$this->assertInternalType("array", $paper_freq_counts);
 		echo "PASS - Parse All Research Papers Test : Overall Frequency and Per-Paper Frequency Counts are all of Internal Type Array\n";

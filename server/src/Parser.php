@@ -4,7 +4,7 @@ require __DIR__ . '/../vendor/autoload.php';
 
 final class Parser {
 	# private path to all PDF's from the current context
-	private $pdf_dir = __DIR__ . '/../../pdfs/';
+	private $pdf_dir;
 
 	# private pdf parser helper from PdfParser composer library
 	private $pdf_parser;
@@ -17,9 +17,12 @@ final class Parser {
 	"tryna", "going", "whose", "myself", "yourself", "herself", "hisself", "a");
 
 	# constructor for class
-	public function __construct() {
+	public function __construct($dir) {
 		# init the pdf parser
 		$this->pdf_parser = new \Smalot\PdfParser\Parser();
+
+		# init pdf_dir
+		$this->pdf_dir = $dir;
 	}
 
 	# function that parses and generates wordcloud
@@ -67,10 +70,25 @@ final class Parser {
 			# get pdf abstraction of file using pdf_parser
 			$pdf = $this->pdf_parser->parseFile($this->pdf_dir . $file);
 
+			# get paper id and filter for metadata using it
+			$paper_id = str_replace(".pdf", "", str_replace("id=", "", $file));
+			$details = json_decode(file_get_contents(__DIR__ . '/../../scrapyACM/metadata.json'), true);
+			$details_entry = array_filter($details, function($elem) use ($paper_id){
+				return strcmp($elem["paperID"], $paper_id) == 0;
+			});
+			$details_entry = $details_entry[array_keys($details_entry)[0]];
+
+			# get metadata from $details_entry
+			$title = $details_entry["title"];
+			$authors = $details_entry["authors"];
+			$author_text = "";
+			foreach ($authors as $author) {
+				$author_text .= ($author . ", ");
+			}
+			$author_text = substr($author_text, 0, -2);
+			$conference = $details_entry["conference"];
+
 			# get lowercase version of pure text from pdf
-			$details = $pdf->getDetails();
-			$title = (isset($details["Title"])) ? $details["Title"] : "No Title Found";
-			$author = (isset($details["Author"])) ? $details["Author"] : "No Author Found";
 			$text = strtolower($pdf->getText());
 
 			# sanitize text with removals / replacements
@@ -103,8 +121,8 @@ final class Parser {
 			}
 
 			# add paper-specific count to total array with structured entry
-			$entry = array("path" => $file, "title" => $title, "author" => $author, "data" => $paper_freq_count);
-			$paper_freq_counts[] = $entry;
+			$entry = array("path" => $file, "title" => $title, "author" => $author_text, "conference" => $conference, "data" => $paper_freq_count);
+			$paper_freq_counts[$file] = $entry;
 		} catch (Exception $e) {}
 	}
 }
