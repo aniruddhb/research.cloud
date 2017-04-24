@@ -1,3 +1,5 @@
+var percentComplete;
+
 var fill = d3.scale.category20b();
 
 var w = window.innerWidth,
@@ -130,12 +132,12 @@ function move() {
     var width = 1;
     var id = setInterval(frame, 10);
     function frame() {
-        if (width >= 100) {
+        if (percentComplete >= 100) {
             clearInterval(id);
         } else {
-            width++; 
-            elem.style.width = width + '%'; 
-            elem.innerHTML = width * 1 + '%';
+            percentComplete++; 
+            elem.style.width = percentComplete + '%'; 
+            elem.innerHTML = percentComplete * 1 + '%';
         }
     }
 }
