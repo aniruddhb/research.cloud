@@ -4,7 +4,47 @@ $(document).ready(function() {
   // require stuff w/ browserify
   var formattedTableConverter = require('text-table');
 
+  // Set the title of the Song List page
+  var data = JSON.parse(localStorage.getItem('paperlist'));
+  var word = localStorage.getItem('word');
+  $("#paperListTitle").html(word);
+
   // click functions
+  $("#wordCloudSubsetOfPapersButton").click(function() {
+    var papersChosen = [];
+    var rows = $("table").find("tr");
+    for(var i = 1; i < rows.length; i++) {
+      var checkboxForRow = $(rows[i]).find("#checkbox");
+      if (checkboxForRow.prop("checked") == true) {
+        var pathToPaper = data[i-1].path;
+        papersChosen.push(pathToPaper);
+      }
+    }
+    var queryString = "?";
+    for (var i = 0; i < papersChosen.length; i++) {
+      queryString += ("data[]=" + papersChosen[i]);
+      if (i != papersChosen.length - 1) {
+        queryString += "&";
+      }
+    }
+    $.ajax({
+      type : 'GET',
+      url: 'http://localhost:8080/api/wordcloud/subset' + queryString,
+      dataType: 'jsonp',
+      success: function(data) {
+        window.location.href="index.html";
+        localStorage.setItem('tags', JSON.stringify(data));
+        localStorage.setItem('keywordText', author.innerText);
+        localStorage.setItem('keywordLabelFull', author.innerText);
+        tags = data;
+        update();
+      },
+      error: function(err) {
+        console.log(err);
+      }
+    });
+  });
+
   $("#backToWordCloudButton").click(function() {
     window.location.href = "index.html";
   });
@@ -37,11 +77,6 @@ $(document).ready(function() {
     });
     pdfDoc.save("paperList.pdf");
   });
-
-  // Set the title of the Song List page
-  var data = JSON.parse(localStorage.getItem('paperlist'));
-  var word = localStorage.getItem('word');
-  $("#paperListTitle").html(word);
 
   function sortTable(f,n){
     var rows = $('table > tbody > tr');
@@ -139,14 +174,13 @@ $(document).ready(function() {
           $(author).click(function(){
             $.ajax({
               type : 'GET',
-              url: 'http://localhost:8080/api/wordcloud/' + author.innerHTML + '/' + 10,
+              url: 'http://localhost:8080/api/wordcloud/' + author.innerText + '/' + 10,
               dataType: 'jsonp',
               success: function(data) {
-                console.log('datum');
-                console.log(data);
+                window.location.href = "index.html";
                 localStorage.setItem('tags', JSON.stringify(data));
-                localStorage.setItem('keywordText', $keywordText);
-                localStorage.setItem('keywordLabelFull', $keywordText);
+                localStorage.setItem('keywordText', author.innerText);
+                localStorage.setItem('keywordLabelFull', author.innerText);
                 tags = data;
                 update();
               },
@@ -157,7 +191,7 @@ $(document).ready(function() {
           });
 
           var conf = row.insertCell(2);
-          conf.innerHTML = (i % 2 === 0) ? "ACM" : "IEEE";
+          conf.innerHTML = data[i]["conference"];
 
           var freq = row.insertCell(3);
           freq.innerHTML = data[i]["frequency"];
@@ -177,6 +211,8 @@ $(document).ready(function() {
             });
           });
 
+          var subsetCheckbox = row.insertCell(5);
+          subsetCheckbox.innerHTML = "<input id=\"checkbox\" type=\"checkbox\">";
         }
 
         table.appendChild(tbody);
@@ -279,7 +315,7 @@ module.exports = function (rows_, opts) {
     var stringLength = opts.stringLength
         || function (s) { return String(s).length; }
     ;
-    
+
     var dotsizes = reduce(rows_, function (acc, row) {
         forEach(row, function (c, ix) {
             var n = dotindex(c);
@@ -287,7 +323,7 @@ module.exports = function (rows_, opts) {
         });
         return acc;
     }, []);
-    
+
     var rows = map(rows_, function (row) {
         return map(row, function (c_, ix) {
             var c = String(c_);
@@ -301,7 +337,7 @@ module.exports = function (rows_, opts) {
             else return c;
         });
     });
-    
+
     var sizes = reduce(rows, function (acc, row) {
         forEach(row, function (c, ix) {
             var n = stringLength(c);
@@ -309,7 +345,7 @@ module.exports = function (rows_, opts) {
         });
         return acc;
     }, []);
-    
+
     return map(rows, function (row) {
         return map(row, function (c, ix) {
             var n = (sizes[ix] - stringLength(c)) || 0;
@@ -322,7 +358,7 @@ module.exports = function (rows_, opts) {
                     + c + Array(Math.floor(n / 2 + 1)).join(' ')
                 ;
             }
-            
+
             return c + s;
         }).join(hsep).replace(/\s+$/, '');
     }).join('\n');

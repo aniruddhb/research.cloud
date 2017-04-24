@@ -8,10 +8,10 @@
 # On landing route, store session-wide scraper and parser variable for future use
 $app->get('/', function ($request, $response, $args) {
 	# if scraper and parser don't already exist
-	if (!isset($_SESSION['scraper']) && !isset($_SESSION['parser'])) {
+	if (!isset($_SESSION['scraper']) && !isset($_SESSION['parser']) && !isset($_SESSION['cache'])) {
 		# create and serialize scraper, parser, and cachemanager objs into SESSION var
 		$scraper = new Scraper();
-		$parser = new Parser();
+		$parser = new Parser(__DIR__ . '/../../pdfs/');
 		$cache = new CacheManager();
 		$_SESSION['scraper'] = serialize($scraper);
 		$_SESSION['parser'] = serialize($parser);
@@ -85,6 +85,57 @@ $app->get('/api/wordcloud/{search_input}/{search_cap}', function ($request, $res
 	return $new_res;
 });
 
+
+# On this route, perform all operations required to create
+# a word cloud from the id's of a subset of chosen research papers
+$app->get('/api/wordcloud/subset', function ($request, $response, $args) {
+	# get parser and cache
+	$parser = unserialize($_SESSION['parser']);
+	$cache = unserialize($_SESSION['cache']);
+
+	# clear overall and search freq caches
+	$cache->clear();
+
+	# get callback to wrap response in
+	$callback = $request->getQueryParam('callback');
+
+	# parse POST'ed data into php-style array
+	$query_param_array = $request->getQueryParam('data');
+
+	# scan the PDF's dir and remove all PDF's that haven't been selected!
+	$files_in_pdf_dir = scandir(__DIR__ . '/../../pdfs/');
+	foreach ($files_in_pdf_dir as $file) {
+		if ($file != "." && $file != ".." && $file != ".DS_Store") {
+			if (!in_array($file, $query_param_array)) {
+				unlink(__DIR__ . '/../../pdfs/' . $file);
+			}
+		}
+	}
+
+	# correct subset of PDF's are now saved
+	# in scrapyACM/pdf/ dir, query parser
+	$results = $parser->parseAllResearchPapers();
+
+	# add pieces of results array to respective caches
+	$cache->set_overall_freq_cache($results[0]);
+	$cache->set_search_freq_cache($results[1]);
+
+	# serialize cache back into session
+	$_SESSION['cache'] = serialize($cache);
+
+	# encode overall results as json to send restfully
+	$overall_freq_formatted = json_encode($results[0]);
+
+	# convert current response to jsonp callback with new response
+	$new_res = $response->withHeader('Content-Type', 'application/javascript');
+
+	# create string with callback and results
+	# write it to the body of the new response
+	$callback = "{$callback}({$overall_freq_formatted})";
+	$new_res->getBody()->write($callback);
+	return $new_res;
+});
+
 # On this route, perform all operations required to get a list of
 # papers for the selected word from the word cloud
 $app->get('/api/papers/{word}', function ($request, $response, $args) {
@@ -121,6 +172,33 @@ $app->get('/api/download', function ($request, $response, $args) {
 	# get and encode file into base64 stream
 	$file = __DIR__ . '/../../pdfs/id=' . $file_name;
 	$encoded_contents = base64_encode(file_get_contents($file));
+
+	# return new, modified response
+	$response->getBody()->write($encoded_contents);
+	$new_res = $response->withHeader('Access-Control-Allow-Origin', 'http://localhost:8081');
+	return $new_res;
+});
+
+# On this route, perform all operations
+# required to highlight an actual PDF
+$app->get('/api/download/highlighted', function ($request, $response, $args) {
+	# get name of file from query param
+	$file_name = $request->getQueryParam('id');
+
+	# get word to highlight from query param
+	$word_to_highlight = $request->getQueryParam('word');
+
+	# get path of file
+	$file_path = __DIR__ . '/../../pdfs/id=' . $file_name;
+
+	# run highlighting service
+	$highlighter_dir = __DIR__ . '/highlighter/';
+	chdir($highlighter_dir);
+	exec("php highlight.php" . " {$word_to_highlight} {$file_path}");
+
+	# encode highlighted file into base64 stream
+	$new_file_path = $highlighter_dir . "research_paper_highlighted.pdf";
+	$encoded_contents = base64_encode(file_get_contents($new_file_path));
 
 	# return new, modified response
 	$response->getBody()->write($encoded_contents);

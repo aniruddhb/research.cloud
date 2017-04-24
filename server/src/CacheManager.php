@@ -48,24 +48,25 @@ final class CacheManager {
 		return array_key_exists($search_phrase, $this->lifetime_freq_cache);
 	}
 
-	# for a given word, get a formatted list of papers containing the word, 
+	# for a given word, get a formatted list of papers containing the word,
 	# and the frequency of the word in that paper
 	public function get_paper_list($word) {
 		# overall paper to word frequency map
 		$overall_papers_list = array();
 
 		# loop through current search cache to find this word in each paper
-		foreach ($this->search_freq_cache as $cache_entry) {
+		foreach ($this->search_freq_cache as $file => $cache_entry) {
 			if (array_key_exists($word, $cache_entry["data"])) {
-				$paper_word_occurrence_info = array("path" => $cache_entry["path"], 
+				$paper_word_occurrence_info = array("path" => $cache_entry["path"],
 													"title" => $cache_entry["title"],
 													"author" => $cache_entry["author"],
+													"conference" => $cache_entry["conference"],
 													"frequency" => $cache_entry["data"][$word]
 													);
 				$overall_papers_list[] = $paper_word_occurrence_info;
 			}
 		}
-		
+
 		# sort by descending order of word frequency
 		usort($overall_papers_list, function($entry_one, $entry_two) {
 			return $entry_one["frequency"] < $entry_two["frequency"];
