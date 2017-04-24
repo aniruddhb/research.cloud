@@ -7,10 +7,10 @@ Feature: Abstract page
 
   Scenario: Return to word cloud
     Given I am on localhost/abstract.html
-    When I click returnWordCloud
+    When I click on returnWordCloud
     Then I see localhost/index.html
 
   Scenario: Return to paper list
     Given I am on localhost/abstract.html
-    When I click returnPaperList
+    When I click on returnPaperList
     Then I see localhost/paperList.html

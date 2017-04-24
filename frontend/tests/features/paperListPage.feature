@@ -15,17 +15,17 @@ Feature: paper list page
 
   Scenario: Download list of papers as .TXT
     Given I am on localhost/paperList.html
-    When I click exportToTXTButton
+    When I click on exportToTXTButton
     Then I see a .txt downloaded
 
   Scenario: Download list of papers as .PDF
     Given I am on localhost/paperList.html
-    When I click exportToPDFButton
+    When I click on exportToPDFButton
     Then I see a .pdf downloaded
 
   Scenario: Return to word cloud
     Given I am on localhost/paperList.html
-    When I click returnToWordCloudButton
+    When I click on returnToWordCloudButton
     Then I see localhost/index.html
     And I see a word cloud
 
@@ -39,3 +39,8 @@ Feature: paper list page
     Given I am on localhost/paperList.html
     When I click on a bibtex link
     Then I see a new page
+
+  Scenario: Click on papers in paper list for a new search
+    Given I am on localhost/paperList.html
+    When I click on wordCloudSubsetOfPapersButton
+    Then I see a word cloud

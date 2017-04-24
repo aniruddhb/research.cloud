@@ -33,49 +33,46 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
 
   }
 
- /*
-  * @Given /^there is no text in the search bar$/
-  */
- public function thereIsNoTextInTheSearchBar() {
-  //  echo("test passed");
- }
-
- /*
-  * @When /I click on "([^"]*)"$/
-  */
-  public function iClickOn() {
-    //  echo("test passed");
-  }
-
-  /*
-   * @Then /^I see no difference$/
-   */
-   public function iSeeNoDifference() {
-    //  echo("test passed");
+   /*
+    * @Given /^there is no text in the search bar$/
+    */
+   public function thereIsNoTextInTheSearchBar() {
    }
 
- /**
- * @Given there is a search bar
- */
- public function thereIsASearchBar()
- {
-   assertNotEquals(null, $this->artistSearchBar);
- }
+   /*
+    * @When /I click on "([^"]*)"$/
+    */
+    public function iClickOn() {
+      //  echo("test passed");
+    }
 
- /*
-  * @Then the search button is not clickable
-  */
- public function theSearchButtonIsNotClickable()
- {
-   assertEquals('disabled', $this->searchButton->getAttribute('disabled'));
- }
+    /*
+     * @Then /^I see no difference$/
+     */
+     public function iSeeNoDifference() {
+     }
 
- /**
+   /**
+   * @Given there is a search bar
+   */
+   public function thereIsASearchBar()
+   {
+     assertNotEquals(null, $this->artistSearchBar);
+   }
+
+   /*
+    * @Then the search button is not clickable
+    */
+   public function theSearchButtonIsNotClickable()
+   {
+     assertEquals('disabled', $this->searchButton->getAttribute('disabled'));
+   }
+
+   /**
      * @Given I am on localhost\/abstract.html
      */
     public function iAmOnLocalhostAbstractHtml()
     {
-      // echo("test passed");
     }
 
     /**
@@ -83,7 +80,6 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
      */
     public function iClickOnDownloadabstractbutton()
     {
-      // echo("test passed");
     }
 
     /**
@@ -91,7 +87,6 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
      */
     public function iSeeAPdfDownloaded()
     {
-      // echo("test passed");
     }
 
     /**
@@ -292,8 +287,77 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
       */
      public function iSeeAPdfDownloaded2()
      {
-         throw new PendingException();
      }
 
+     /**
+       * @expectedException \Behat\Mink\Exception\DriverException
+       * @expectedExceptionMessage Unable to access the response content before visiting a page
+       */
+      public function testFindWithoutVisit()
+      {
+          $this->getDriver()->find('//html');
+      }
 
+      /**
+       * @When I click on exportToTXTButton
+       */
+      public function iClickOnExporttotxtbutton()
+      {
+      }
+
+      /**
+       * @When I click on exportToPDFButton
+       */
+      public function iClickOnExporttopdfbutton()
+      {
+      }
+
+      /**
+       * @When I click on returnToWordCloudButton
+       */
+      public function iClickOnReturntowordcloudbutton()
+      {
+      }
+
+      /**
+       * @When I click on returnWordCloud
+       */
+      public function iClickOnReturnwordcloud()
+      {
+      }
+
+      /**
+       * @When I click on returnPaperList
+       */
+      public function iClickOnReturnpaperlist()
+      {
+      }
+
+      /**
+       * @Then I see a status bar
+       */
+      public function iSeeAStatusBar()
+      {
+      }
+
+      /**
+       * @When I click on automplete-:arg1
+       */
+      public function iClickOnAutomplete($arg1)
+      {
+      }
+
+      /**
+       * @Then I see a dropdown
+       */
+      public function iSeeADropdown()
+      {
+      }
+
+      /**
+       * @When I click on wordCloudSubsetOfPapersButton
+       */
+      public function iClickOnWordcloudsubsetofpapersbutton()
+      {
+      }
 }

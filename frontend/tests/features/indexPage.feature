@@ -45,3 +45,14 @@ Once the user presses search, a word cloud will be generated.
     And I input a numeric character in numPapers
     When I click on searchButton
     Then I see a word cloud
+
+  Scenario: Status bar for the word cloud generation
+    Given I am on localhost/index.html
+    And I input a keyword
+    When I click on searchButton
+    Then I see a status bar
+
+  Scenario: View previous searches in a dropdown
+    Given I am on localhost/index.html
+    When I click on automplete-1
+    Then I see a dropdown
