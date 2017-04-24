@@ -1,6 +1,7 @@
 const NO_SEARCH = "false";
 const YES_SEARCH = "true";
 const MIN_LENGTH = 3;
+var percentComplete = 1;
 
 $(document).ready(function() {
   $.ajax({
@@ -38,7 +39,8 @@ $("#keywordLabel").hide();
 
 $("#searchButton").click(function() {
   $('#vis').hide();
-  document.getElementById("loader").style.display = "inline-block";
+  document.getElementById("myBar").style.display = "inline-block";
+  move();
 
   searchState = YES_SEARCH;
   $("#keywordLabel").show();
@@ -50,6 +52,34 @@ $("#searchButton").click(function() {
   $("#keywordLabel").html("Keyword(s): " + $keywordText);
 
   $.ajax({
+    xhr: function() {
+        var xhr = new XMLHttpRequest();
+        percentComplete = 1;
+        console.log(xhr);
+
+       // Download progress
+       xhr.upload.addEventListener("progress", function(evt){
+           if (evt.lengthComputable) {
+               percentComplete = evt.loaded / evt.total;
+               // Do something with download progress
+               console.log('progress');
+               console.log(percentComplete);
+           }
+           else console.log('error');
+       }, false);
+
+        xhr.addEventListener("progress", function(evt){
+           if (evt.lengthComputable) {
+               percentComplete = evt.loaded / evt.total;
+               // Do something with download progress
+               console.log('progress');
+               console.log(percentComplete);
+           }
+           else console.log('error');
+       }, false);
+
+       return xhr;
+    },
     type : 'GET',
     url: 'http://localhost:8080/api/wordcloud/' + $keywordText + '/' + $search_cap,
     dataType: 'jsonp',
@@ -114,6 +144,20 @@ $("#searchButton").removeClass("btn-class-disabled");
 $("#searchButton").addClass("btn-class");
 
 });
+
+function move() {
+    var elem = document.getElementById("myBar"); 
+    var width = 1;
+    var id = setInterval(frame, 10);
+    function frame() {
+        if (percentComplete >= 100) {
+            clearInterval(id);
+        } else {
+            elem.style.width = percentComplete + '%'; 
+            elem.innerHTML = percentComplete * 1 + '%';
+        }
+    }
+}
 
 // call AJAX function
 /*$("#automplete-1").autocomplete({
