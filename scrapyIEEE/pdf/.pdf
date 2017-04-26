@@ -33,11 +33,14 @@
 		
 		
 		
-		<meta name="Description" content="The Higher Reciprocity Laws are considered to be among the deepest and most fundamental results in number theory. Yet, they have until recently played no p">
+		<meta name="Description" content="Thermal gratings are recorded in silver nanoparticle suspensions by nanosecond pulsed holography. Initial transients in diffraction efficiency demonstrate ">
 		
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		
-		<title>An application of higher reciprocity to computational number theory - IEEE Xplore Document</title>
+		<!-- Disable "click" touch event 300ms delay for Chrome/Firefox on Android -->
+		<meta name="viewport" content="width=device-width">
+		
+		<title>Holographic grating formation in silver nanoparticle suspensions - IEEE Xplore Document</title>
 		
 		
 
@@ -120,10 +123,10 @@
 
 
 <g:compress>
-	<link rel="stylesheet" href="/assets/css/simplePassMeter.min.css?cv=20170228_000000" />
-	<link rel="stylesheet" type="text/css" media="screen, print" href="http://staticieeexplore.ieee.org/assets/css/styles.css?cv=20170228_000000"/>
+	<link rel="stylesheet" href="/assets/css/simplePassMeter.min.css?cv=20170422_000000" />
+	<link rel="stylesheet" type="text/css" media="screen, print" href="http://staticieeexplore.ieee.org/assets/css/styles.css?cv=20170422_000000"/>
 	<link rel="stylesheet" href="/assets/vendor/swiper/dist/idangerous.swiper.css">
-	<link rel="stylesheet" type="text/css" media="screen, print" href="http://staticieeexplore.ieee.org/assets/css/jquery-ui-1.8.19.custom.css?cv=20170228_000000"/>
+	<link rel="stylesheet" type="text/css" media="screen, print" href="http://staticieeexplore.ieee.org/assets/css/jquery-ui-1.8.19.custom.css?cv=20170422_000000"/>
 </g:compress>
 
 
@@ -151,19 +154,19 @@
 		
 
 		<!--[if gt IE 8]>
-				<link rel="stylesheet" type="text/css" href="http://staticieeexplore.ieee.org/assets/css/ie9.css?cv=20170228_000000" />
+				<link rel="stylesheet" type="text/css" href="http://staticieeexplore.ieee.org/assets/css/ie9.css?cv=20170422_000000" />
 		<![endif]-->
 
 		<!--[if IE 8]>
-				<link rel="stylesheet" type="text/css" href="http://staticieeexplore.ieee.org/assets/css/ie8.css?cv=20170228_000000" />
+				<link rel="stylesheet" type="text/css" href="http://staticieeexplore.ieee.org/assets/css/ie8.css?cv=20170422_000000" />
 		<![endif]-->
 
 		<!--[if IE 7]>
-				<link rel="stylesheet" type="text/css" href="http://staticieeexplore.ieee.org/assets/css/ie7.css?cv=20170228_000000" />
+				<link rel="stylesheet" type="text/css" href="http://staticieeexplore.ieee.org/assets/css/ie7.css?cv=20170422_000000" />
 		<![endif]-->
 
 		<!--[if IE 6]>
-				<link rel="stylesheet" type="text/css" href="http://staticieeexplore.ieee.org/assets/css/ie6.css?cv=20170228_000000" />
+				<link rel="stylesheet" type="text/css" href="http://staticieeexplore.ieee.org/assets/css/ie6.css?cv=20170422_000000" />
 		<![endif]-->
 		
 	</head>
@@ -253,10 +256,6 @@
 					
 
 
-
-
-
-
 <div id="personal-sign-in" class="hide Overlay Overlay--right stats-metanav-signin-modal" aria-hidden="true">
 	<div class="Overlay-tab">
 		<span class="Overlay-label">Personal Sign In</span>
@@ -282,7 +281,7 @@
 				</div>
 		</form>
 		
-		<i class="qtooltip icon icon-help" title="IEEE Account usernames and passwords are case sensitive. If you have recently visited IEEE, you may have transitioned your username to your e-mail address. If not, you may be asked to do so after you sign in with your existing IEEE username. " aria-label="IEEE Account usernames and passwords are case sensitive. If you have recently visited IEEE, you may have transitioned your username to your e-mail address. If not, you may be asked to do so after you sign in with your existing IEEE username. "></i>
+		<i class="qtooltip icon icon-help-blue" title="IEEE Account usernames and passwords are case sensitive. If you have recently visited IEEE, you may have transitioned your username to your e-mail address. If not, you may be asked to do so after you sign in with your existing IEEE username. " aria-label="IEEE Account usernames and passwords are case sensitive. If you have recently visited IEEE, you may have transitioned your username to your e-mail address. If not, you may be asked to do so after you sign in with your existing IEEE username. "></i>
 		<a href="#" class="u-pullRight js-forgotUserPass stats-forgotUserPass stats-Unav_Per_SignIn_Forgot_UP">Forgot Password?</a>
 	</div>
 </div>
@@ -309,8 +308,6 @@ TODOS
 		</div>
 		<div class="pure-u-1-2">
 			
-
-
 
 
 
@@ -576,9 +573,6 @@ TODOS
 			<ul class="Menu Menu--overlay stats-my-settings">
 				
 				<li><a href="/xpl/tocalerts_list.jsp" class="ALERTS">Content Alerts</a></li>
-				
-				<li><a href="/myprojects/showUserProjects.jsp" class="stats-my-projects">My Projects</a></li>
-				
                 
    	 	        	<li><a href="/servlet/remote.jsp" >Remote Access</a></li>
    	 	        					
@@ -593,11 +587,9 @@ TODOS
 		<li class="Toolbar-item is-menu">
 			<a class="Toolbar-button" tabindex="0">Get Help<i class="icon icon--flip icon-caret-white-down"></i></a>
 			<ul class="Menu Menu--overlay stats-get-help">
-				<li><a href="/xpl/aboutUs.jsp" id="AboutIEEE" >About IEEE <em>Xplore</em></a></li>
 				<li><a href="/xpl/feedback.jsp" id="Feedback" >Feedback</a></li>
 				<li><a href="/xpl/techform.jsp" id="TechSupport">Technical Support</a></li>
 				<li><a href="/Xplorehelp/Help_start.html" id="Resources" >Resources and Help</a></li>
-				<li><a href="/xpl/termsOfUse.jsp" id="TermsOfUse">Terms of Use</a></li>
 			</ul>
 		</li>
 		<li class="Toolbar-item stats-what-can-i-access"><a href="/Xplore/accessinfo.jsp" class="Toolbar-button stats-Xplnav_what_access">What Can I Access?</a></li>
@@ -659,69 +651,44 @@ TODOS
 
 
 <script type="text/javascript">
-
-
 	
+		
+		
+			document.write('<base href="/document/" />');
+		
 	
-	document.write('<base href="/document/" />');
-	
-
-console.time = function(){};
-console.timeEnd = function(){};
 </script>
 
 
- <!--    
-   <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/unpacked/MathJax.js?config=TeX-MML-AM_CHTML&delayStartupUntil=configured"></script>
--->
-			
-		
-		
-		
 
-		
-		
-		
-		
-		
-		
 
-	<script type="text/javascript" src="http://staticieeexplore.ieee.org/xploreAssets/MathJax-2.6.1/MathJax.js?config=default" ></script>
-	<div ng-app="xpl.document">
-		
-		<xpl-searchbar></xpl-searchbar>
-		<div ng-show="stateIsLoading" class="Spinner"></div>
-		<div ui-view class="{{stateIsLoading ? 'loading': ''}}" autoscroll="false"></div>
-		
+
+
+
+
+
+
+
+
+
+
+
+<div ng-app="xpl.document">
 	
-	</div>
+	<xpl-searchbar show-count="false"></xpl-searchbar>
+	<div ng-show="stateIsLoading" class="Spinner"></div>
+	<div ui-view class="{{stateIsLoading ? 'loading': ''}}" autoscroll="false"></div>
+</div>
 
 
 			
-
-
-
-
 
 
 
 
 
 <div class="Footer stats-footer" id="xploreFooter">
-	<div class="pure-g">
-		<div class="pure-u-1 u-mb-2 u-pr-1">
-			<ul class="Footer-signIn Menu Menu--horizontal Menu--dividers">
-				<li class="Menu-item"><a class="footer-sign-in stats-Footer_P_SignIn-or-Welcome" href="#">Personal Sign In</a></li>
-				
-					
-					
-						<li class="Menu-item"><a href="#" class="create-account stats-Footer_CreateAcct">Create Account</a></li>
-					
-				
-			</ul>
-		</div>
-	</div>
-	<div class="pure-g Footer-sections">
+	<div class="pure-g Footer-sections u-mt-1">
 		<div class="pure-u-1-4">
 			<h3 class="Footer-header">IEEE Account</h3>
 			<ul class="Footer-list">
@@ -748,8 +715,8 @@ console.timeEnd = function(){};
 		<div class="pure-u-1-4">
 			<h3 class="Footer-header">Need Help?</h3>
 			<ul class="Footer-list">
-				<li>US &amp; Canada: +1 800 678 4333</li>
-				<li>Worldwide: +1 732 981 0060<br>
+				<li><strong>US &amp; Canada:</strong> +1 800 678 4333</li>
+				<li><strong>Worldwide: </strong> +1 732 981 0060<br>
 				</li>
 				<li><a href="/xpl/techform.jsp">Contact &amp; Support</a></li>
 			</ul>
@@ -759,7 +726,7 @@ console.timeEnd = function(){};
 		<div class="pure-u-1 Footer-bottom">
 			<div class="logo-ieee-white u-pullRight"></div>
 			<ul class="Menu Menu--horizontal Menu--dividers u-mb-1">
-				<li class="Menu-item"><a href="/xpl/aboutUs.jsp">About IEEE <em>Xplore</em></a></li>
+				<li class="Menu-item"><a href="/Xplorehelp/about-ieee-xplore.html">About IEEE <em>Xplore</em></a></li>
 				<li class="Menu-item"><a href="/xpl/techform.jsp">Contact Us</a></li>
 				<li class="Menu-item"><a href="/Xplorehelp/Help_start.html" target="blank">Help</a></li>
 				<li class="Menu-item"><a href="/xpl/termsOfUse.jsp">Terms of Use</a></li>
@@ -853,21 +820,20 @@ console.timeEnd = function(){};
 				
 					
 					
-								<script type="text/javascript" src='http://staticieeexplore.ieee.org/assets/vendor/modernizr/modernizr.js?cv=20170228_000000' charset="utf-8"></script>
+								<script type="text/javascript" src='http://staticieeexplore.ieee.org/assets/vendor/modernizr/modernizr.js?cv=20170422_000000' charset="utf-8"></script>
 					
 								
 			
 				
 					
 					
-								<script type="text/javascript" src='http://staticieeexplore.ieee.org/assets/dist/js/vendor.js?cv=20170228_000000' charset="utf-8"></script>
+								<script type="text/javascript" src='http://staticieeexplore.ieee.org/assets/dist/js/vendor.js?cv=20170422_000000' charset="utf-8"></script>
 					
 								
 			
 				
 					
 						
-
 
 
 
@@ -892,10 +858,6 @@ console.timeEnd = function(){};
 	var searchPropertiesParamPageNumber = 'pageNumber';
 	var searchPropertiesParamRemoveRefinement = 'removeRefinement';
 	
-	
-	var ADD_DOCUMENTS_FORM_URL = '/myprojects/addDocumentsForm.jsp';
-	var PARAM_SELECTED_DOCUMENTS = 'recordIds';
-	
 	var authorsGetDisplay = 'Authors';
 	var authorsFirstNameProperty = 'First Name';
 	var authorsLastNameProperty = 'Last Name';
@@ -915,7 +877,8 @@ console.timeEnd = function(){};
 	var authorsGetDisplay = 'Authors';
 	var authorIdReference = 'p_Author_Ids';
 	var NTPT_IMAGE_LOCATION = 'http://tagxplore.ieee.org/';
-	var XPLORE_SSL_HOST = 'https://ieeexplore.ieee.org';
+	var XPLORE_HOST = 'ieeexplore.ieee.org';
+	var XPLORE_SSL_HOST = 'https://'+XPLORE_HOST;	
 	var SSL_YES_NO = 'yes';
 	if (SSL_YES_NO.toUpperCase() == "NO"){
 		var XPLORE_SSL_YES_NO = false;
@@ -945,7 +908,7 @@ console.timeEnd = function(){};
 		SPECIAL_CHARACTER_REPLACEMENTS[i] = parts[1];
 	}
 
-	var ALL_SEARCH_FIELDS = 'Search_Index_Terms:Index Terms,Search_All_Text:Full Text & Metadata,Search_All:Metadata Only,Search_Publication_Title:Search Publication Title,Search_Publication_Title_ICS_Terms:Search Publication Title ICS Terms,Search_Related_Terms:Search Related Terms,Search_Authors:Author Name,p_Id:Article Number,ID:,p_Module_Number:Module Number,p_Part_Num:Part Num,p_ISSN:ISSN,p_ISBN:ISBN,p_EISBN:EISBN,p_IS_Number:IS Number,p_Accession_Number:Accession Number,p_Article_Number:Article Number,p_Copyright_Holder:Copyright Holder,p_Copyright_Year:Copyright Year,p_Title:Document Title,p_Abstract:Abstract,p_Publication_Number:Publication Number,p_Parent_Publication_Number:Parent Publication Number,p_Parent_Publication_Title:Parent Publication Title,p_Publication_Title:Publication Title,p_Publication_Display_Title:Publication Display Title,p_Volume:Volume,p_Issue:Issue,p_Padded_Issue_Number:Padded Issue Number,p_Part:Part,p_Start_Page:Start Page,p_End_Page:End Page,p_File_Path:File Path,p_Publication_Date:Publication Date,p_Publication_Year:Year,p_Online_Date:Online Date,p_Month:Month,p_Author_Pref_Names:Author Pref Names,p_Author_Norm_Names:Author Norm Names,p_Authors:Authors,p_Author_Ids:Author Ids,p_First_Names:First Name,p_Middle_Names:Middle Name,p_Last_Names:Last Name,p_Author_Affiliations:Author Affiliations,p_Author_Bio:Author Bio,p_Author_Img:Author Img,p_Reference_Count:Reference Count,p_Citation_Count:Citation Count,p_Patent_Count:Patent Count,p_Multimedia_Flag:Multimedia Flag,p_Biomedical_Eng_Flag:Biomedical Eng Flag,p_Non_IEEE:Non IEEE,p_STDS_Product_Number:STDS Product Number,p_Status:Status,p_DOI:DOI,p_Pdf_Path:Pdf Path,p_Pdf_Size:Pdf Size,p_Content_Type:Content Type,p_Publisher:Publisher,p_Controlled_Terms:INSPEC Controlled Terms,p_Free_Terms:INSPEC Non-Controlled Terms,p_IEEE_Terms:IEEE Terms,p_Author_Terms:Author Keywords,p_Mesh_Terms:MeSH Terms,p_PACS_Terms:PACS Terms,p_Insert_Date:Insert Date,Conference_Location:nference Location,p_Index_Content:Index Content,p_CODEN:CODEN,p_Document_Text:Document Text,p_Standard_Number:Standard Number,p_Preprint_Flag:Preprint Flag,p_Rapid_Post_Flag:Rapid Post Flag,p_Last_Update:Last Update,p_New_Flag:New Flag,p_Open_Access_Flag:Open Access Flag,p_Promo_Flag:Promo Flag,p_Pubmed_Id:Pubmed Id,p_Duration:Duration,p_Society:Society,p_Conference:Conference,p_Society_URL:Society URL,p_Id_Subject:Id Subject,p_Book_Number:Book Number,p_Pages:Pages,p_Edition_Number:Edition Number,p_Sequence:Sequence,p_Related_Info_Type:Related Info Type,p_Related_Info:Related Info,p_Format_ISBN:Format ISBN,p_Meeting_Date:Meeting Date,p_Course_level:Course level,p_Course_ID:Course ID,p_About_Url:About Url,p_Additional_Url:Additional Url,p_Authors_Url:Authors Url,p_Open_Access_Url:Open Access Url,p_Open_Access_flag:Open Access flag,p_Partnum_VendorURL_MediaType:Partnum VendorURL MediaType,p_Branding_Image_File:Branding Image File,p_Cover_Image_File:Cover Image File,p_Frequency:Frequency,p_Field_Of_Interest:Field Of Interest,p_G_Parent_Publication_Number:G Parent Publication Number,p_Ms_Url:Ms Url,p_Relationship:Relationship,p_Society_Image:Society Image,p_Visit_Url:Visit Url,p_Visit_Website:Visit Website,p_Start_Year:Start Year,p_End_Year:End Year,p_Record_Type:Record Type,p_Rollup_Key:Rollup Key,p_Epub:Epub,p_Pic_Code_Description:Pic Code Description,p_Pic_Code:Pic Code,p_Sponsors:Sponsors,p_Notes:Notes,p_Conference_Date:Conference Date,p_Publication_Contact:Publication Contact,p_isBuyable:isBuyable,p_Publication_Files:Publication Files,p_Map_Pricing_Key:Map Pricing Key,p_Unavailable_for_Sale:Unavailable for Sale,p_Publication_Sort:Publication Sort,p_Standard_Family:Standard Family,p_Standard_Group:Standard Group,p_Product_Url:Product Url,p_ISBN_MediaType:ISBN MediaType,p_Html_Flag:Html Flag,p_Rightslink_Flag:Rightslink Flag,p_Page_Count:Page Count,p_Name:Name,p_Table_of_Contents:Table of Contents,p_Time_Stamp:Time Stamp,p_Sub_Title:Sub Title,p_Related_Item:Related Item,p_Reference_Material:Reference Material,p_Latest_Issue_Time:Latest Issue Time,p_Search_Latest_Date:Search Latest Date,p_Pbd_Flag:Pbd Flag,p_Lms_Url:Lms Url,p_Current_Volume:Current Volume,p_Graphical_File:Graphical File,p_Graphical_Image:Graphical Cover Image,p_Graphical_Summary:Graphical Summary,p_Graphical_Type:Graphical Type,p_Native_Names:Native Name,p_External_Id:Article Sequence Number,p_Standard_Bundles:Standard Bundles,p_Standard_Bundle_Parts:Standard Bundle Parts,p_Virtual_Title:Virtual Title,p_Series_Name:Series Name,p_Series_Id:Series Id,p_ML_Html_flag:ML Html flag,p_Promo_Start_Date:Promo Start Date,p_Promo_End_Date:Promo End Date,p_Issue_Complete_Flag:Issue Complete Flag,p_Scope:Scope,p_Purpose:Purpose,p_Standard_Family_Title:Standard Family Title,p_Thumbnail_Img:Thumbnail Img,p_Supplement_File:Supplement File,p_Pdhs:Pdhs,p_Ceus:Ceus,p_FirstFrame_Img:FirstFrame Img,p_Id_Sub_Topic:Id Sub Topic,p_Certificate_Url:Certificate Url,p_Standard_Root:Standard Root,p_ICS_Terms:Standards ICS Terms,p_Impact_Statement:Impact Statement,p_Plagiarized_Flag:Plagiarized Flag,p_Course_Affirmed_Date:Affirmed Date,p_Pdf_Source_Name:Source Pdf,p_Orcid:Author ORCID,p_Algorithm_Flag:Algorithm Flag,Type_Ahead_Terms:Type Ahead Terms,IEEE_Term:IEEE Term,Content_Type:Content Type,Author:Author,Affiliation:Affiliation,Topic:Topic,Publication_Title:Publication Title,Publication_Year:Year,Publisher:Publisher,Conference_Country:Conference Country,Conference_Location:Conference Location,Standard_Status:Standard Status,Conference_Year:Conference Year,Publication_Package:Subscribed Content,Standard_Package:Standard Package,Standard_Title:Standard Title,Standard_Term:Standards Dictionary Terms,Publication_Range:Publication Range,Standard_Range:Standard Range,Record_Type:Record Type,Media_Type:Media Type,Book_Type:Book Type,Course_Type:Course Type,Publication_Standard_Range:Publication Standard Range,Perpetual_Year:Perpetual Year,Opac_Title_Range:Opac Title Range,Book_Series:Book Series,Subject_Category:Subject Category,Type_Ahead_Publication:Type Ahead Publication,Sub_Topic:Sub Topic,Course_Duration:Course Duration,Course_Level:Course Level,Standard_Type:Standard Type,Standard_SubType:Standard SubType,Standard_Topic:Standard Topic,Standard_Modifier:Standard Modifier,Ics_Terms_1:Ics Terms 1,Ics_Terms_2:Ics Terms 2,Ics_Terms_3:Ics Terms 3,Supplemental_Items:Supplemental Items';
+	var ALL_SEARCH_FIELDS = 'Search_Index_Terms:Index Terms,Search_All_Text:Full Text & Metadata,Search_All:Metadata Only,Search_Publication_Title:Search Publication Title,Search_Publication_Title_ICS_Terms:Search Publication Title ICS Terms,Search_Related_Terms:Search Related Terms,Search_Authors:Author Name,p_Id:Article Number,ID:,p_Module_Number:Module Number,p_Part_Num:Part Num,p_ISSN:ISSN,p_ISBN:ISBN,p_EISBN:EISBN,p_IS_Number:IS Number,p_Accession_Number:Accession Number,p_Article_Number:Article Number,p_Copyright_Holder:Copyright Holder,p_Copyright_Year:Copyright Year,p_Title:Document Title,p_Abstract:Abstract,p_Publication_Number:Publication Number,p_Parent_Publication_Number:Parent Publication Number,p_Parent_Publication_Title:Parent Publication Title,p_Publication_Title:Publication Title,p_Publication_Display_Title:Publication Display Title,p_Volume:Volume,p_Issue:Issue,p_Padded_Issue_Number:Padded Issue Number,p_Part:Part,p_Start_Page:Start Page,p_End_Page:End Page,p_File_Path:File Path,p_Publication_Date:Publication Date,p_Publication_Year:Year,p_Online_Date:Online Date,p_Month:Month,p_Author_Pref_Names:Author Pref Names,p_Author_Norm_Names:Author Norm Names,p_Authors:Authors,p_Author_Ids:Author Ids,p_First_Names:First Name,p_Middle_Names:Middle Name,p_Last_Names:Last Name,p_Author_Affiliations:Author Affiliations,p_Author_Bio:Author Bio,p_Author_Img:Author Img,p_Reference_Count:Reference Count,p_Citation_Count:Citation Count,p_Patent_Count:Patent Count,p_Multimedia_Flag:Multimedia Flag,p_Biomedical_Eng_Flag:Biomedical Eng Flag,p_Non_IEEE:Non IEEE,p_STDS_Product_Number:STDS Product Number,p_Status:Status,p_DOI:DOI,p_Pdf_Path:Pdf Path,p_Pdf_Size:Pdf Size,p_Content_Type:Content Type,p_Publisher:Publisher,p_Controlled_Terms:INSPEC Controlled Terms,p_Free_Terms:INSPEC Non-Controlled Terms,p_IEEE_Terms:IEEE Terms,p_Author_Terms:Author Keywords,p_Mesh_Terms:MeSH Terms,p_PACS_Terms:PACS Terms,p_Insert_Date:Insert Date,Conference_Location:nference Location,p_Index_Content:Index Content,p_CODEN:CODEN,p_Document_Text:Document Text,p_Standard_Number:Standard Number,p_Preprint_Flag:Preprint Flag,p_Rapid_Post_Flag:Rapid Post Flag,p_Last_Update:Last Update,p_New_Flag:New Flag,p_Open_Access_Flag:Open Access Flag,p_Promo_Flag:Promo Flag,p_Pubmed_Id:Pubmed Id,p_Duration:Duration,p_Society:Society,p_Conference:Conference,p_Society_URL:Society URL,p_Id_Subject:Id Subject,p_Book_Number:Book Number,p_Pages:Pages,p_Edition_Number:Edition Number,p_Sequence:Sequence,p_Related_Info_Type:Related Info Type,p_Related_Info:Related Info,p_Format_ISBN:Format ISBN,p_Meeting_Date:Meeting Date,p_Course_level:Course level,p_Course_ID:Course ID,p_About_Url:About Url,p_Additional_Url:Additional Url,p_Authors_Url:Authors Url,p_Open_Access_Url:Open Access Url,p_Open_Access_flag:Open Access flag,p_Partnum_VendorURL_MediaType:Partnum VendorURL MediaType,p_Branding_Image_File:Branding Image File,p_Cover_Image_File:Cover Image File,p_Frequency:Frequency,p_Field_Of_Interest:Field Of Interest,p_G_Parent_Publication_Number:G Parent Publication Number,p_Ms_Url:Ms Url,p_Relationship:Relationship,p_Society_Image:Society Image,p_Visit_Url:Visit Url,p_Visit_Website:Visit Website,p_Start_Year:Start Year,p_End_Year:End Year,p_Record_Type:Record Type,p_Rollup_Key:Rollup Key,p_Epub:Epub,p_Pic_Code_Description:Pic Code Description,p_Pic_Code:Pic Code,p_Sponsors:Sponsors,p_Notes:Notes,p_Conference_Date:Conference Date,p_Publication_Contact:Publication Contact,p_isBuyable:isBuyable,p_Publication_Files:Publication Files,p_Map_Pricing_Key:Map Pricing Key,p_Unavailable_for_Sale:Unavailable for Sale,p_Publication_Sort:Publication Sort,p_Standard_Family:Standard Family,p_Standard_Group:Standard Group,p_Product_Url:Product Url,p_ISBN_MediaType:ISBN MediaType,p_Html_Flag:Html Flag,p_Rightslink_Flag:Rightslink Flag,p_Page_Count:Page Count,p_Name:Name,p_Table_of_Contents:Table of Contents,p_Time_Stamp:Time Stamp,p_Sub_Title:Sub Title,p_Related_Item:Related Item,p_Reference_Material:Reference Material,p_Latest_Issue_Time:Latest Issue Time,p_Search_Latest_Date:Search Latest Date,p_Pbd_Flag:Pbd Flag,p_Lms_Url:Lms Url,p_Current_Volume:Current Volume,p_Graphical_File:Graphical File,p_Graphical_Image:Graphical Cover Image,p_Graphical_Summary:Graphical Summary,p_Graphical_Type:Graphical Type,p_Native_Names:Native Name,p_External_Id:Article Page Number,p_Standard_Bundles:Standard Bundles,p_Standard_Bundle_Parts:Standard Bundle Parts,p_Virtual_Title:Virtual Title,p_Series_Name:Series Name,p_Series_Id:Series Id,p_ML_Html_flag:ML Html flag,p_Promo_Start_Date:Promo Start Date,p_Promo_End_Date:Promo End Date,p_Issue_Complete_Flag:Issue Complete Flag,p_Scope:Scope,p_Purpose:Purpose,p_Standard_Family_Title:Standard Family Title,p_Thumbnail_Img:Thumbnail Img,p_Supplement_File:Supplement File,p_Pdhs:Pdhs,p_Ceus:Ceus,p_FirstFrame_Img:FirstFrame Img,p_Id_Sub_Topic:Id Sub Topic,p_Certificate_Url:Certificate Url,p_Standard_Root:Standard Root,p_ICS_Terms:Standards ICS Terms,p_Impact_Statement:Impact Statement,p_Plagiarized_Flag:Plagiarized Flag,p_Course_Affirmed_Date:Affirmed Date,p_Pdf_Source_Name:Source Pdf,p_Orcid:Author ORCID,p_Algorithm_Flag:Algorithm Flag,Type_Ahead_Terms:Type Ahead Terms,IEEE_Term:IEEE Term,Content_Type:Content Type,Author:Author,Affiliation:Affiliation,Topic:Topic,Publication_Title:Publication Title,Publication_Year:Year,Publisher:Publisher,Conference_Country:Conference Country,Conference_Location:Conference Location,Standard_Status:Standard Status,Conference_Year:Conference Year,Publication_Package:Subscribed Content,Standard_Package:Standard Package,Standard_Title:Standard Title,Standard_Term:Standards Dictionary Terms,Publication_Range:Publication Range,Standard_Range:Standard Range,Record_Type:Record Type,Media_Type:Media Type,Book_Type:Book Type,Course_Type:Course Type,Publication_Standard_Range:Publication Standard Range,Perpetual_Year:Perpetual Year,Opac_Title_Range:Opac Title Range,Book_Series:Book Series,Subject_Category:Subject Category,Type_Ahead_Publication:Type Ahead Publication,Sub_Topic:Sub Topic,Course_Duration:Course Duration,Course_Level:Course Level,Standard_Type:Standard Type,Standard_SubType:Standard SubType,Standard_Topic:Standard Topic,Standard_Modifier:Standard Modifier,Ics_Terms_1:Ics Terms 1,Ics_Terms_2:Ics Terms 2,Ics_Terms_3:Ics Terms 3,Supplemental_Items:Supplemental Items';
 	var SEARCH_FIELD_REFERENCES = new Array();
 	var SEARCH_FIELD_DISPLAYS = new Array();
 	var searchFields = ALL_SEARCH_FIELDS.split(",");
@@ -1006,7 +969,7 @@ console.timeEnd = function(){};
 				
 					
 					
-								<script type="text/javascript" src='http://staticieeexplore.ieee.org/assets/dist/js/history.js?cv=20170228_000000' charset="utf-8"></script>
+								<script type="text/javascript" src='http://staticieeexplore.ieee.org/assets/dist/js/history.js?cv=20170422_000000' charset="utf-8"></script>
 					
 								
 			
@@ -1018,84 +981,84 @@ console.timeEnd = function(){};
 				
 					
 					
-								<script type="text/javascript" src='/assets/js/lib/conditional/minicart.js?cv=20170228_000000' charset="utf-8"></script>
+								<script type="text/javascript" src='/assets/js/lib/conditional/minicart.js?cv=20170422_000000' charset="utf-8"></script>
 					
 								
 			
 				
 					
 					
-								<script type="text/javascript" src='http://staticieeexplore.ieee.org/assets/dist/js/core.js?cv=20170228_000000' charset="utf-8"></script>
+								<script type="text/javascript" src='http://staticieeexplore.ieee.org/assets/dist/js/core.js?cv=20170422_000000' charset="utf-8"></script>
 					
 								
 			
 				
 					
 					
-								<script type="text/javascript" src='http://staticieeexplore.ieee.org/assets/dist/ng/xpl.js?cv=20170228_000000' charset="utf-8"></script>
+								<script type="text/javascript" src='http://staticieeexplore.ieee.org/assets/dist/ng/xpl.js?cv=20170422_000000' charset="utf-8"></script>
 					
 								
 			
 				
 					
 					
-								<script type="text/javascript" src='http://staticieeexplore.ieee.org/assets/dist/ng/xpl.product.js?cv=20170228_000000' charset="utf-8"></script>
+								<script type="text/javascript" src='http://staticieeexplore.ieee.org/assets/dist/ng/xpl.product.js?cv=20170422_000000' charset="utf-8"></script>
 					
 								
 			
 				
 					
 					
-								<script type="text/javascript" src='http://staticieeexplore.ieee.org/assets/dist/ng/xpl.search.js?cv=20170228_000000' charset="utf-8"></script>
+								<script type="text/javascript" src='http://staticieeexplore.ieee.org/assets/dist/ng/xpl.search.js?cv=20170422_000000' charset="utf-8"></script>
 					
 								
 			
 				
 					
 					
-								<script type="text/javascript" src='http://staticieeexplore.ieee.org/assets/dist/ng/xpl.document.js?cv=20170228_000000' charset="utf-8"></script>
+								<script type="text/javascript" src='http://staticieeexplore.ieee.org/assets/dist/ng/xpl.document.js?cv=20170422_000000' charset="utf-8"></script>
 					
 								
 			
 				
 					
 					
-								<script type="text/javascript" src='http://staticieeexplore.ieee.org/assets/dist/ng/templates.xpl.js?cv=20170228_000000' charset="utf-8"></script>
+								<script type="text/javascript" src='http://staticieeexplore.ieee.org/assets/dist/ng/templates.xpl.js?cv=20170422_000000' charset="utf-8"></script>
 					
 								
 			
 				
 					
 					
-								<script type="text/javascript" src='http://staticieeexplore.ieee.org/assets/dist/ng/templates.xpl.product.js?cv=20170228_000000' charset="utf-8"></script>
+								<script type="text/javascript" src='http://staticieeexplore.ieee.org/assets/dist/ng/templates.xpl.product.js?cv=20170422_000000' charset="utf-8"></script>
 					
 								
 			
 				
 					
 					
-								<script type="text/javascript" src='http://staticieeexplore.ieee.org/assets/dist/ng/templates.xpl.search.js?cv=20170228_000000' charset="utf-8"></script>
+								<script type="text/javascript" src='http://staticieeexplore.ieee.org/assets/dist/ng/templates.xpl.search.js?cv=20170422_000000' charset="utf-8"></script>
 					
 								
 			
 				
 					
 					
-								<script type="text/javascript" src='http://staticieeexplore.ieee.org/assets/dist/ng/templates.xpl.document.js?cv=20170228_000000' charset="utf-8"></script>
+								<script type="text/javascript" src='http://staticieeexplore.ieee.org/assets/dist/ng/templates.xpl.document.js?cv=20170422_000000' charset="utf-8"></script>
 					
 								
 			
 				
 					
 					
-								<script type="text/javascript" src='http://staticieeexplore.ieee.org/assets/dist/js/ads.js?cv=20170228_000000' charset="utf-8"></script>
+								<script type="text/javascript" src='http://staticieeexplore.ieee.org/assets/dist/js/ads.js?cv=20170422_000000' charset="utf-8"></script>
 					
 								
 			
 				
 					
 					
-								<script type="text/javascript" src='http://staticieeexplore.ieee.org/assets/dist/js/master.js?cv=20170228_000000' charset="utf-8"></script>
+								<script type="text/javascript" src='http://staticieeexplore.ieee.org/assets/dist/js/master.js?cv=20170422_000000' charset="utf-8"></script>
 					
 								
 			
@@ -1161,16 +1124,16 @@ j$('document').ready(function(){
 			var unValue =  '6031';
 			var sid =  '';
 			if (sid){
-				var NTPT_PGEXTRA="un="+unValue+"&ip="+'68.181.206.3'+"&un3="+ sid;
+				var NTPT_PGEXTRA="un="+unValue+"&ip="+'68.181.88.175'+"&un3="+ sid;
 			} else {
-				var NTPT_PGEXTRA="un="+unValue+"&ip="+'68.181.206.3';
+				var NTPT_PGEXTRA="un="+unValue+"&ip="+'68.181.88.175';
 			}
 			</script>
 
-			<script type="text/javascript" src="/assets/js/analytics/customTracking.js?cv=20170228_000000"></script>
+			<script type="text/javascript" src="/assets/js/analytics/customTracking.js?cv=20170422_000000"></script>
 			
-			<script type="text/javascript" src="/assets/js/analytics/pagetagPlugin.js?cv=20170228_000000"></script>
-			<script type="text/javascript" src="/assets/js/analytics/pagetagEvent.js?cv=20170228_000000"></script>
+			<script type="text/javascript" src="/assets/js/analytics/pagetagPlugin.js?cv=20170422_000000"></script>
+			<script type="text/javascript" src="/assets/js/analytics/pagetagEvent.js?cv=20170422_000000"></script>
 
 
 			<!-- END: Unica Page Tag -->
@@ -1249,7 +1212,7 @@ var recordId = "";
 var global = {
 	document: {
 		disqus:{
-			remote_auth_s3 : 'KHt9KQ== 9b302ce548a384c95aa835708d37f06815d3d7a4 1492654280',
+			remote_auth_s3 : 'KHt9KQ== 1de6b263a51e17e13b239e0a1aad93a539d9b08e 1493231349',
 			public_api_key:'1lxKgMbpNIbQvfk2tqLcWeSVloE8rgIY2CV1tCu3Vp641oL4eEITYBbkViJJGNYY',
 			short_name:'ieeexplore',
 			client_url:'http://ieeexplore.ieee.org',
@@ -1262,7 +1225,7 @@ var global = {
 	}
 };
 	
-	global.document.metadata={"userInfo":{"institute":true,"member":false,"individual":false,"guest":false,"subscribedContent":false,"fileCabinetContent":false,"fileCabinetUser":false,"products":"IBM|EBOOKS:2012:2015|MITP:2013:2016|Draft|ISOL55|ISOL52|ISOL53|ISOL54|ISOL56|ISOL58|ISOL57|IEL|eLearningPackage#E4E|VDE|ALCATEL-LUCENT|","instType":"Academic","userIds":[6031],"showPatentCitations":true,"showGet802Link":false,"openUrlImgLoc":"http://www.usc.edu/libraries/img/branding/usc_findit_red70x50.gif","openUrlLink":"http://ZB5LH7ED7A.search.serialssolutions.com","showOpenUrlLink":true},"authors":[{"name":"Leonard M. Adleman"},{"name":"Robert McDonnell"}],"issn":[{"format":"Print ISSN","value":"0272-5428"}],"articleNumber":"4568380","dbTime":"4 ms","metrics":{"citationCountPaper":2,"citationCountPatent":0,"totalDownloads":86},"pdfUrl":"/stamp/stamp.jsp?tp=&arnumber=4568380","purchaseOptions":{"showOtherFormatPricingTab":false,"showPdfFormatPricingTab":true,"pdfPricingInfoAvailable":true,"otherPricingInfoAvailable":false,"mandatoryBundle":false,"optionalBundle":false,"pdfPricingInfo":[{"memberPrice":"$13","nonMemberPrice":"$33","partNumber":"4568380","type":"PDF"}],"openUrlFullLink":"http://ZB5LH7ED7A.search.serialssolutions.com?url_ver=Z39.88-2004&rfr_id=info:sid/IEEE.org:XPLORE&rft_id=info:doi/10.1109/SFCS.1982.59&url_ctx_fmt=info:ofi/fmt:kev:mtx:ctx&rft_val_fmt=info:ofi/fmt:kev:mtx:journal&rft.atitle=An application of higher reciprocity to computational number theory&rft.jtitle=Foundations of Computer Science, 1982. SFCS '08. 23rd Annual Symposium on&rft.date=1982&rft.spage=100&rft.epage=106&rft.issn=0272-5428&rft.au=Leonard M. Adleman&rft.aulast=Leonard M. Adleman"},"formulaStrippedArticleTitle":"An application of higher reciprocity to computational number theory","title":"An application of higher reciprocity to computational number theory","abstract":"The Higher Reciprocity Laws are considered to be among the deepest and most fundamental results in number theory. Yet, they have until recently played no part in number theoretic algorithms. In this paper we explore the power of the laws in algorithms. The problem we consider is part of a group of well-studied problems about roots in finite fields and rings. Let F denote a finite field, let m denote a direct product of finite fields. Consider the following problems: Problem 1. Is Xn = a solvable in F; Problem 2. If Xn = a is solvable in F find X; Problem 3. Is Xn = a solvable in m; Problem 4. If Xn = a solvable in m find X.","publicationTitle":"Foundations of Computer Science, 1982. SFCS '08. 23rd Annual Symposium on","endPage":"106","startPage":"100","doi":"10.1109/SFCS.1982.59","rightsLink":"http://s100.copyright.com/AppDispatchServlet?publisherName=ieee&publication=proceedings&title=An+application+of+higher+reciprocity+to+computational+number+theory&isbn=&publicationDate=Nov.+1982&author=Leonard+M.+Adleman&ContentID=10.1109/SFCS.1982.59&orderBeanReset=true&startPage=100&endPage=106&proceedingName=Foundations+of+Computer+Science%2C+1982.+SFCS+%2708.+23rd+Annual+Symposium+on","displayPublicationTitle":"Foundations of Computer Science, 1982. SFCS '08. 23rd Annual Symposium on","pdfPath":"/iel5/4568363/4568364/04568380.pdf","keywords":[{"type":"IEEE Keywords","kwd":["Polynomials","Galois fields","Artificial intelligence","Public key cryptography","Gaussian processes","Upper bound","Turing machines"]}],"allowComments":false,"pubLink":"/xpl/mostRecentIssue.jsp?punumber=4568363","issueLink":"/xpl/tocresult.jsp?isnumber=4568364","previewImage":"/xploreAssets/images/absImages/04568380.png","standardTitle":"An application of higher reciprocity to computational number theory","isJournal":false,"isConference":true,"dateOfInsertion":"18 July 2008","isStandard":false,"publisher":"IEEE","publicationDate":"Nov. 1982","conferenceDate":"3-5 Nov. 1982","isACM":false,"isOpenAccess":false,"isEphemera":false,"isEarlyAccess":false,"isBook":false,"isDynamicHtml":false,"isFreeDocument":false,"isSMPTE":false,"isCustomDenial":false,"persistentLink":"http://ieeexplore.ieee.org/servlet/opac?punumber=4568363","isStaticHtml":false,"isNotDynamicOrStatic":true,"htmlAbstractLink":"/document/4568380/","isPromo":false,"journalDisplayDateOfPublication":"18 July 2008","chronOrPublicationDate":"3-5 Nov. 1982","copyrightYear":"1982","conferenceDate":"3-5 Nov. 1982","citationCount":"2","copyrightOwner":"IEEE","issue":"","endPage":"106","contentType":"conferences","startPage":"100","articleId":"4568380","isNumber":"4568364","publisher":"IEEE","lastupdate":"2016-08-25T09:01:42","title":"An application of higher reciprocity to computational number theory","sections":{"abstract":"true","authors":"true","figures":"false","multimedia":"false","references":"false","citedby":"true","keywords":"true","algorithm":"false","supplements":"false","footnotes":"false","disclaimer":"false"},"ml_html_flag":"false","publicationNumber":"4568363","ephemeraFlag":"false","chronDate":"3-5 Nov. 1982","mlTime":"PT0.031582S","content_type":"Conference Publications","publicationDate":"Nov. 1982","mediaPath":"/mediastore/IEEE/content/media/4568363/4568364/4568380","onlineDate":"","openAccessFlag":"no","dateOfInsertion":"18 July 2008","publicationTitle":"Foundations of Computer Science, 1982. SFCS '08. 23rd Annual Symposium on","html_flag":"false","pdfPath":"/iel5/4568363/4568364/04568380.pdf","previewImage":"/xploreAssets/images/absImages/04568380.png","subType":"IEEE IEEE Conference","accessionNumber":"","publicationYear":"1982","doi":"10.1109/SFCS.1982.59"};
+	global.document.metadata={"userInfo":{"institute":true,"member":false,"individual":false,"guest":false,"subscribedContent":false,"fileCabinetContent":false,"fileCabinetUser":false,"institutionalFileCabinetUser":false,"products":"IBM|EBOOKS:2012:2015|MITP:2013:2016|Draft|ISOL55|ISOL52|ISOL53|ISOL54|ISOL56|ISOL58|ISOL57|IEL|eLearningPackage#E4E|VDE|ALCATEL-LUCENT|","instType":"Academic","userIds":[6031],"showPatentCitations":true,"showGet802Link":false,"openUrlImgLoc":"http://www.usc.edu/libraries/img/branding/usc_findit_red70x50.gif","openUrlLink":"http://ZB5LH7ED7A.search.serialssolutions.com","showOpenUrlLink":true},"authors":[{"name":"James R. Adleman","affiliation":"Department of Electrical Engineering, California Institute of Technology, Pasadena, 91125, USA","affiliation":"Department of Electrical Engineering, California Institute of Technology, Pasadena, 91125, USA"},{"name":"Helge Eggert","affiliation":"Institute of Physics, University of Bonn, Wegelerst. 8, D-53115, Germany","affiliation":"Institute of Physics, University of Bonn, Wegelerst. 8, D-53115, Germany"},{"name":"Karsten Buse","affiliation":"Institute of Physics, University of Bonn, Wegelerst. 8, D-53115, Germany","affiliation":"Institute of Physics, University of Bonn, Wegelerst. 8, D-53115, Germany"},{"name":"Demetri Psaltis","affiliation":"Department of Electrical Engineering, California Institute of Technology, Pasadena, 91125, USA","affiliation":"Department of Electrical Engineering, California Institute of Technology, Pasadena, 91125, USA"}],"isbn":[{"format":"CD-ROM ISBN","value":"978-1-55752-813-1"}],"issn":[{"format":"Electronic ISSN","value":"2160-9004"}],"articleNumber":"4627575","dbTime":"5 ms","metrics":{"citationCountPaper":0,"citationCountPatent":0,"totalDownloads":18},"pdfUrl":"/stamp/stamp.jsp?tp=&arnumber=4627575","purchaseOptions":{"showOtherFormatPricingTab":false,"showPdfFormatPricingTab":true,"pdfPricingInfoAvailable":true,"otherPricingInfoAvailable":false,"mandatoryBundle":false,"optionalBundle":false,"pdfPricingInfo":[{"memberPrice":"$13","nonMemberPrice":"$33","partNumber":"4627575","type":"PDF/HTML"}],"openUrlFullLink":"http://ZB5LH7ED7A.search.serialssolutions.com?url_ver=Z39.88-2004&rfr_id=info:sid/IEEE.org:XPLORE&rft_id=info:doi/10.1109/CLEO.2006.4627575&url_ctx_fmt=info:ofi/fmt:kev:mtx:ctx&rft_val_fmt=info:ofi/fmt:kev:mtx:journal&rft.atitle=Holographic grating formation in silver nanoparticle suspensions&rft.jtitle=Lasers and Electro-Optics, 2006 and 2006 Quantum Electronics and Laser Science Conference. CLEO/QELS 2006. Conference on&rft.date=2006&rft.spage=1&rft.epage=2&rft.eissn=2160-9004&rft.au=James R. Adleman&rft.aulast=James R. Adleman"},"formulaStrippedArticleTitle":"Holographic grating formation in silver nanoparticle suspensions","keywords":[{"kwd":["Gratings","Nanoparticles","Suspensions","Solvents","Optical pulses","Silver","Transient analysis"],"kwd-group-type":"IEEE"},{"kwd":["thermo-optical devices","holographic gratings","nanoparticles","nanophotonics","optical materials","silver","suspensions","thermal conductivity"],"kwd-group-type":"Inspec"},{"kwd":["Ag","holographic grating formation","silver nanoparticle suspensions","thermal grating","nanosecond pulsed holographic recording","diffraction efficiency","grating decay","thermal conductivity"],"kwd-group-type":"Inspec-free"},{"kwd":["(160.4330) Nonlinear optical materials","(090.7330) Volume holographic gratings"],"kwd-group-type":"IEEE-free"}],"allowComments":false,"pubLink":"/xpl/mostRecentIssue.jsp?punumber=4623683","issueLink":"/xpl/tocresult.jsp?isnumber=4627561","standardTitle":"Holographic grating formation in silver nanoparticle suspensions","rightsLink":"http://s100.copyright.com/AppDispatchServlet?publisherName=ieee&publication=proceedings&title=Holographic+grating+formation+in+silver+nanoparticle+suspensions&isbn=&publicationDate=May+2006&author=James+R.+Adleman&ContentID=10.1109/CLEO.2006.4627575&orderBeanReset=true&startPage=1&endPage=2&proceedingName=Lasers+and+Electro-Optics%2C+2006+and+2006+Quantum+Electronics+and+Laser+Science+Conference.+CLEO%2FQELS+2006.+Conference+on","displayPublicationTitle":"Lasers and Electro-Optics, 2006 and 2006 Quantum Electronics and Laser Science Conference. CLEO/QELS 2006. Conference on","pdfPath":"/iel5/4623683/4627561/04627575.pdf","publicationTitle":"Lasers and Electro-Optics, 2006 and 2006 Quantum Electronics and Laser Science Conference. CLEO/QELS 2006. Conference on","endPage":"2","startPage":"1","doi":"10.1109/CLEO.2006.4627575","title":"Holographic grating formation in silver nanoparticle suspensions","abstract":"Thermal gratings are recorded in silver nanoparticle suspensions by nanosecond pulsed holography. Initial transients in diffraction efficiency demonstrate competing effects in grating formation. The gratingpsilas final decay is consistent with the suspensionpsilas thermal conductivity.","isJournal":false,"isConference":true,"dateOfInsertion":"23 September 2008","isFreeDocument":false,"isCustomDenial":false,"persistentLink":"http://ieeexplore.ieee.org/servlet/opac?punumber=4623683","isStaticHtml":true,"isNotDynamicOrStatic":false,"staticHtmlLink":"/xpls/icp.jsp?arnumber=4627575","htmlAbstractLink":"/document/4627575/","isDynamicHtml":false,"isPromo":false,"journalDisplayDateOfPublication":"21-26 May 2006","chronOrPublicationDate":"21-26 May 2006","isEarlyAccess":false,"isBook":false,"accessionNumber":"10362928","htmlLink":"/xpls/icp.jsp?arnumber=4627575","publisher":"IEEE","isEphemera":false,"isOpenAccess":false,"isSMPTE":false,"isStandard":false,"publicationDate":"May 2006","conferenceDate":"21-26 May 2006","isACM":false,"startPage":"1","openAccessFlag":"no","ephemeraFlag":"false","title":"Holographic grating formation in silver nanoparticle suspensions","confLoc":"Long Beach, CA, USA","accessionNumber":"10362928","ml_html_flag":"false","html_flag":"true","content_type":"Conference Publications","mlTime":"PT0.057722S","chronDate":"21-26 May 2006","pdfPath":"/iel5/4623683/4627561/04627575.pdf","isNumber":"4627561","copyrightYear":"2006","dateOfInsertion":"23 September 2008","contentType":"conferences","publicationDate":"May 2006","publicationNumber":"4623683","citationCount":"0","copyrightOwner":"OSA","issue":"","articleId":"4627575","publicationTitle":"Lasers and Electro-Optics, 2006 and 2006 Quantum Electronics and Laser Science Conference. CLEO/QELS 2006. Conference on","sections":{"abstract":"true","authors":"true","figures":"false","multimedia":"false","references":"false","citedby":"","keywords":"true","algorithm":"false","supplements":"false","footnotes":"false","disclaimer":"false"},"onlineDate":"","conferenceDate":"21-26 May 2006","publisher":"IEEE","publicationYear":"2006","subType":"IEEE IEEE Conference","lastupdate":"2015-08-25T18:34:00","mediaPath":"/mediastore/IEEE/content/media/4623683/4627561/4627575","endPage":"2","doi":"10.1109/CLEO.2006.4627575"};
 
 
 	global.document.userLoggedIn=true;
@@ -1326,6 +1289,18 @@ var global = {
 
 <!-- Removed due to network issues when loading in China -->
 <!-- <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-5005a435228f9245" async="async"></script>-->
+
+<!-- Load Mathjax and process the document for Mathjax characters -->
+
+
+<script type="text/javascript" src="http://staticieeexplore.ieee.org/xploreAssets/MathJax-2.6.1/MathJax.js?config=default"></script>
+
+
+<script defer>
+	MathJax.Hub.Queue(["Typeset", MathJax.Hub, document.body]);
+</script>
+
+
 
 
 			<!-- BEGIN: tealium in v2/common/template.jsp. NOTE since we need jQuery in tealiumAnalytics.js, let this include be here after commonjs.jsp include above -->
@@ -1407,8 +1382,8 @@ var global = {
 			})();
 			</script>
 
-			<script type="text/javascript" src="http://staticieeexplore.ieee.org/assets/js/analytics/tealiumTagsData.js?cv=20170228_000000"></script>
-			<script type="text/javascript" src="http://staticieeexplore.ieee.org/assets/js/analytics/tealiumAnalytics.js?cv=20170228_000000"></script>
+			<script type="text/javascript" src="http://staticieeexplore.ieee.org/assets/js/analytics/tealiumTagsData.js?cv=20170422_000000"></script>
+			<script type="text/javascript" src="http://staticieeexplore.ieee.org/assets/js/analytics/tealiumAnalytics.js?cv=20170422_000000"></script>
 
 
 		
