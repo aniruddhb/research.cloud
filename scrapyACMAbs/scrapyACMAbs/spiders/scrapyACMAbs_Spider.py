@@ -33,7 +33,5 @@ class scrapyACMAbsSpider(BaseSpider):
 
         abstract = encodeString(response.xpath("//div[contains(@class, 'layout')]/div[2]/div//text()").extract())
 
-        print abstract
-
         with open('./abstract.json', 'w') as outfile:
             json.dump({'abstract': abstract}, outfile)
