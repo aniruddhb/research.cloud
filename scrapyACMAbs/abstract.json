@@ -1,1 +1,1 @@
-{"abstract": "In this paper new methods, generalizing those of Shamir, are presented for attacking generalizations of the basic system. It is shown how these methods may be applied to the Graham-Shamir public-key crypto-system [2], and the iterated Merkle-Hellman public-key cryptosystem. We are unable to present a rigorous proof that the attacks presented here are effective. However, in the case of the Graham-Shamir system, the methods have been implemented and have performed well in tests."}
+{"abstract": "2190078"}
