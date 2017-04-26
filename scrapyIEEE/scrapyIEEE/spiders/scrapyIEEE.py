@@ -23,9 +23,21 @@ class scrapyIEEESpider(BaseSpider):
     def parse(self, response):
 
         xs = Selector(response)
+
         if (self.searchType == 'paper'):
             details = xs.xpath('//document/arnumber/text()')
-            self.yieldPaper(details)
+            for content in details.extract():
+
+                content = "http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=" + content
+
+                yield Request(
+                    # meta = {
+                    #       'dont_redirect': True,
+                    #       'handle_httpstatus_list': [302]
+                    # },
+                    url=response.urljoin(content),
+                    callback=self.get_pdf_link
+                )
         elif (self.searchType == 'abstract'):
             titles = xs.xpath('//document/title/text()')
             authors = xs.xpath('//document/authors/text()')
@@ -33,21 +45,6 @@ class scrapyIEEESpider(BaseSpider):
             abstracts = xs.xpath('//document/abstract/text()')
             ids = xs.xpath('//document/arnumber/text()')
             self.yieldAbstract(abstracts, ids, titles, authors, conferences)
-
-
-    def yieldPaper(self, details):
-        for content in details.extract():
-
-            content = "http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=" + content
-
-            yield Request(
-                # meta = {
-                #       'dont_redirect': True,
-                #       'handle_httpstatus_list': [302]
-                # },
-                url=response.urljoin(content),
-                callback=self.get_pdf_link
-            )
 
     def yieldAbstract(self, abstracts, ids, titles, authors, conferences):
 
@@ -85,9 +82,13 @@ class scrapyIEEESpider(BaseSpider):
             pdfTitle = downloadLink[start+1:end]
 
         pdf = response.xpath('//frame[2]/@src')
+        counter = 0
 
         for content in pdf.extract():
-
+            time.sleep(500)
+            if counter == 10:
+                break;
+            counter += 1
             yield Request(
                 # meta = {
                 #       'dont_redirect': True,
