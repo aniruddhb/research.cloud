@@ -110,11 +110,6 @@ $("#downloadButton").click(function() {
       a.click();
 
 
-
-
-
-
-
       /*img = img.replace(/^data:image\/\w+;base64,/,"");
 
       // AJAX function to turn image into a url
@@ -143,74 +138,45 @@ $("#searchButton").prop("disabled", false);
 $("#searchButton").removeClass("btn-class-disabled");
 $("#searchButton").addClass("btn-class");
 
-});
-
 function move() {
-    var elem = document.getElementById("myBar"); 
+    var elem = document.getElementById("myBar");
     var width = 1;
     var id = setInterval(frame, 10);
     function frame() {
         if (percentComplete >= 100) {
             clearInterval(id);
         } else {
-            elem.style.width = percentComplete + '%'; 
+            elem.style.width = percentComplete + '%';
             elem.innerHTML = percentComplete * 1 + '%';
         }
     }
 }
 
-// call AJAX function
-/*$("#automplete-1").autocomplete({
-  source: function(request, response) {
-    var keywordText = $("#automplete-1").val();
-    $.ajax({
-      type : 'GET',
-      url: 'http://localhost:8080/api/dropdown/suggestions/' + keywordText,
-      dataType: 'jsonp',
-      success: function(data) {
-        var stringArray = $.map(data, function(item) {
-          return {
-            keyword: item.keyword,
-            id: item.id,
-            img: item.img
-          }
-        });
-        response(stringArray);
-      },
-      error: function(err) {
-        console.log(err);
-      }
-    });
-  },
-  focus: function(event, ui) {
-    event.preventDefault();
-  },
-  select: function(event, ui) {
-    event.preventDefault();
-    $("#automplete-1").val(ui.item.keyword);
+});
 
-    $("#searchButton").prop("disabled", false);
-    $("#searchButton").removeClass("btn-class-disabled");
-    $("#searchButton").addClass("btn-class");
+$(function() {
 
-  },
-  minLength: 3
-}).data("ui-autocomplete")._renderItem=function(ul, item) {
+  var initialArray = new Array();
+  localStorage.setItem('recentSearches', JSON.stringify(initialArray));
 
-    var $li = $('<li>'),
-    $img = $('<img>');
-    $header = $("<h3>" + item.keyword + "</h3>");
+  $("#searchButton").click(function() {
 
-    $img.attr({
-     src: item.img,
-     alt: item.keyword
-   });
+    var updatedArray = JSON.parse(localStorage.getItem('recentSearches'));
+    console.log($("#automplete-1").val());
+    updatedArray.push($("#automplete-1").val());
 
-    $li.append('<a href="#">');
-    $li.find('a').append($img).append($header);
-    $li.addClass("searchresults");
+    localStorage.setItem("recentSearches", JSON.stringify(updatedArray));
+  });
 
-    return $li.appendTo(ul);
-  };
+  $("#automplete-1").autocomplete({
+    source: function(request, response) {
 
-});*/
+      var searches = JSON.parse(localStorage.getItem('recentSearches'));
+      console.log(searches);
+
+      response(searches)
+    },
+    minLength: 3
+  });
+
+});
