@@ -14,3 +14,8 @@ Feature: Abstract page
     Given I am on localhost/abstract.html
     When I click on returnPaperList
     Then I see localhost/paperList.html
+
+    Scenario: click on download button for highlighted paper
+      Given I am on localhost/abstract.html
+      When I click on downloadPaperHighlighted
+      Then I see a pdf downloaded

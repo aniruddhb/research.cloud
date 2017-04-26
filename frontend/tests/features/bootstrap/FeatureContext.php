@@ -360,4 +360,14 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
       public function iClickOnWordcloudsubsetofpapersbutton()
       {
       }
+
+      /**
+        * @When I click on downloadPaperHighlighted
+        */
+      public function iClickOnDownloadpaperhighlighted()
+      {
+
+      }
+
+
 }
