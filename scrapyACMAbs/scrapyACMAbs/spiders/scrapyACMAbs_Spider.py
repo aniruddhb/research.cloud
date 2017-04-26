@@ -36,7 +36,7 @@ class scrapyACMAbsSpider(BaseSpider):
         bibtext = response.xpath("//meta[@name='citation_abstract_html_url']/@content")[0].extract()
 
         count = 0
-        for c in bibtext:
+        for c in bsibtext:
             if(c.isdigit()):
                 bibtext = bibtext[count:]
                 break
@@ -53,4 +53,4 @@ class scrapyACMAbsSpider(BaseSpider):
         webbrowser.open(bibtext_url)  # Open bibtext
 
         with open('./abstract.json', 'w') as outfile:
-            json.dump({'abstract': parent_id}, outfile)
+            json.dump({'abstract': abstract}, outfile)
