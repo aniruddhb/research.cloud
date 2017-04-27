@@ -31,13 +31,17 @@ class scrapyIEEESpider(BaseSpider):
                 content = "http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=" + content
 
                 yield Request(
-                    # meta = {
-                    #       'dont_redirect': True,
-                    #       'handle_httpstatus_list': [302]
-                    # },
+                    meta = {
+                          'dont_obey_robotstxt': True,
+                          'dont_redirect': True,
+                          'handle_httpstatus_list': [302],
+                          'download_timeout': 25,
+                          'dont_retry': True
+                    },
                     url=response.urljoin(content),
                     callback=self.get_pdf_link
                 )
+
         elif (self.searchType == 'abstract'):
             titles = xs.xpath('//document/title/text()')
             authors = xs.xpath('//document/authors/text()')
@@ -69,37 +73,31 @@ class scrapyIEEESpider(BaseSpider):
 
     def get_pdf_link(self, response):
 
-        downloadLink = str(response.url)
-        start = downloadLink.find('=')
-        end = downloadLink.find('&', start)
-        if (start != -1 and end != -1):
-            pdfTitle = downloadLink[start+1:end]
-        elif (start != -1):
-            pdfTitle = downloadLink[start+1:len(downloadLink)]
-        else:
-            start = downloadLink.find('/', 34)
-            end = downloadLink.find('/', start)
-            pdfTitle = downloadLink[start+1:end]
-
         pdf = response.xpath('//frame[2]/@src')
         counter = 0
 
         for content in pdf.extract():
-            time.sleep(500)
-            if counter == 10:
-                break;
+
+            with open("../../pdf/" + str(counter) + ".pdf", 'wb') as f:
+                f.write(response.body)
+
             counter += 1
             yield Request(
-                # meta = {
-                #       'dont_redirect': True,
-                #       'handle_httpstatus_list': [302]
-                # },
+                meta = {
+                      'dont_obey_robotstxt': True,
+                      'dont_redirect': True,
+                      'handle_httpstatus_list': [302],
+                      'download_timeout': 25,
+                      'dont_retry': True
+                },
                 url=response.urljoin(content),
                 callback=self.save_pdf
             )
 
-    def save_pdf(self, response):
+            # time.sleep(10)
 
+    def save_pdf(self, response):
+        print "sah"
         downloadLink = str(response.url)
         start = downloadLink.rfind('arnumber=')
         end = downloadLink.find('&', start)
