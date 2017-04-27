@@ -27,7 +27,8 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
    */
   public function iAmOnLocalhostIndexHtml()
   {
-    $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+    // $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+    $driver = new \Behat\Mink\Driver\Selenium2Driver();
     $session = new \Behat\Mink\Session($driver);
     $session->start();
     $session->visit('http://localhost:8081');
@@ -100,7 +101,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
   public function iSeeAWordCloud()
   {
     $page = $session->getPage();
-    $webString = "http://localhost:8000/api/wordcloud/halfond/10";
+    $webString = "http://localhost:8080/api/wordcloud/halfond/10";
     if ($session->getCurrentUrl() != $webString)
     {
       throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -123,7 +124,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
     $button->mouseOver();
     $button->click();
     $page = $session->getPage();
-    $webString = "http://localhost:8000/api/wordcloud/halfond/10";
+    $webString = "http://localhost:8080/api/wordcloud/halfond/10";
     if ($session->getCurrentUrl() != $webString)
     {
         throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -188,7 +189,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
     $button->mouseOver();
     $button->click();
     $page = $session->getPage();
-    $webString = "http://localhost:8000/api/wordcloud/halfond/10";
+    $webString = "http://localhost:8080/api/wordcloud/halfond/10";
     if ($session->getCurrentUrl() != $webString)
     {
        throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -218,7 +219,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
     $button->mouseOver();
     $button->click();
     $page = $session->getPage();
-    $webString = "http://localhost:8000/api/wordcloud/halfond/10";
+    $webString = "http://localhost:8080/api/wordcloud/halfond/10";
     if ($session->getCurrentUrl() != $webString)
     {
        throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -261,7 +262,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
     $button->mouseOver();
     $button->click();
     $page = $session->getPage();
-    $webString = "http://localhost:8000/api/wordcloud/halfond/10";
+    $webString = "http://localhost:8080/api/wordcloud/halfond/10";
     if ($session->getCurrentUrl() != $webString)
     {
        throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
@@ -295,7 +296,8 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
    public function iAmOnLocalhostAbstractHtml()
    {
      // TODO: NEED TO COMPLETE
-      $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+      //$driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+      $driver = new \Behat\Mink\Driver\Selenium2Driver();
       $session = new \Behat\Mink\Session($driver);
       $session->start();
       $session->visit('http://localhost:8081');
@@ -306,7 +308,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
       $button->mouseOver();
       $button->click();
       $page = $session->getPage();
-      $webString = "http://localhost:8000/api/wordcloud/halfond/10";
+      $webString = "http://localhost:8080/api/wordcloud/halfond/10";
       if ($session->getCurrentUrl() != $webString)
       {
          throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
