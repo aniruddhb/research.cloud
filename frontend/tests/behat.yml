@@ -10,7 +10,9 @@ default:
   extensions:
     Behat\MinkExtension:
       goutte: ~
-      selenium2: ~
+      selenium2:
+        wd_host: 'http://127.0.0.1:4444/wd/hub'
+        capabilities: { "browser": "firefox", "version": "23"}
       base_url: http://localhost:8080/
     Drupal\DrupalExtension:
       blackbox: ~
