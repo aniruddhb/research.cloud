@@ -20,19 +20,6 @@ Once the user presses search, a word cloud will be generated.
     When I click on searchButton
     Then I see a word cloud
 
-  Scenario: Clicking on a word to display paper list
-    Given I am on localhost/index.html
-    And a word cloud is generated
-    When I click on a word
-    Then I see localhost/paperList.html
-    And the paperListTitle is the paper
-
-  Scenario: click on download button for word cloud
-    Given I am on localhost/index.html
-    And I see a word cloud
-    When I click on downloadWordCloudButton
-    Then I see a jpg downloaded
-
   Scenario: Invalid input for X number of papers
     Given I am on localhost/index.html
     And I input a keyword
@@ -46,6 +33,16 @@ Once the user presses search, a word cloud will be generated.
     When I click on searchButton
     Then I see a word cloud
 
+  Scenario: Clicking on a word to display paper list
+    Given I have clicked on a word in the word cloud
+    Then I see localhost/paperList.html
+    And the paperListTitle is the paper
+
+  Scenario: Click on download button for word cloud
+    Given I have clicked on a word in the word cloud
+    When I click on downloadWordCloudButton
+    Then I see a jpg downloaded
+
   Scenario: Status bar for the word cloud generation
     Given I am on localhost/index.html
     And I input a keyword
@@ -54,5 +51,5 @@ Once the user presses search, a word cloud will be generated.
 
   Scenario: View previous searches in a dropdown
     Given I am on localhost/index.html
-    When I click on automplete-1
+    And I input a keyword
     Then I see a dropdown
