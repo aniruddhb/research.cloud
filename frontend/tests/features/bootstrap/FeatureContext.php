@@ -19,345 +19,478 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
    * context constructor through behat.yml.
    */
   public function __construct() {
+
   }
 
-  /*
-  * @Given /^I am on$/
-  */
-  public function iAmOn() {
+  /**
+   * @Given I am on localhost\/index.html
+   */
+  public function iAmOnLocalhostIndexHtml()
+  {
+    // $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+    $driver = new \Behat\Mink\Driver\Selenium2Driver();
+    $session = new \Behat\Mink\Session($driver);
+    $session->start();
+    $session->visit('http://localhost:8081');
+  }
+
+  /**
+   * @Given there is no text in the search bar
+   */
+  public function thereIsNoTextInTheSearchBar2()
+  {
+    assertEquals("", $page->findField("automplete-1")->getValue());
+  }
+
+  /**
+   * @Given I input a keyword
+   */
+  public function iInputAKeyword()
+  {
+    $page = $session->getPage();
+    $textbox = $page->findField("automplete-1");
+    $textbox->setValue("Halfond");
+  }
+
+  /**
+    * @When I input a non numeric character in numPapers
+    */
+   public function iInputANonNumericCharacterInNumpapers()
+   {
+     $page = $session->getPage();
+     $textbox = $page->findField("numPapers");
+     $textbox->setValue("zero");
+   }
+
+   /**
+    * @Given I input a numeric character in numPapers
+    */
+   public function iInputANumericCharacterInNumpapers()
+   {
+     $page = $session->getPage();
+     $textbox = $page->findField("numPapers");
+     $textbox->setValue("10");
+   }
+
+  /**
+   * @When I click on searchButton
+   */
+  public function iClickOnSearchbutton()
+  {
+    $button = $page->findButton('searchButton');
+    $button->mouseOver();
+    $button->click();
+  }
+
+  /**
+   * @Then I see localhost\/index.html
+   */
+  public function iSeeLocalhostIndexHtml()
+  {
+    $page = $session->getPage();
+    $webString = "http://localhost:8081";
+    if ($session->getCurrentUrl() != $webString)
+    {
+       throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+    }
+  }
+
+  /**
+   * @Then I see a word cloud
+   */
+  public function iSeeAWordCloud()
+  {
+    $page = $session->getPage();
+    $webString = "http://localhost:8080/api/wordcloud/halfond/10";
+    if ($session->getCurrentUrl() != $webString)
+    {
+      throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+    }
+  }
+
+  /**
+   * @Given I have clicked on a word in the word cloud
+   */
+  public function iHaveClickedOnAWordInTheWordCloud()
+  {
     $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
     $session = new \Behat\Mink\Session($driver);
     $session->start();
-    $session->visit('http://localhost');
-    $session->stop();
+    $session->visit('http://localhost:8081');
+    $page = $session->getPage();
+    $textbox = $page->findField("automplete-1");
+    $textbox->setValue("Halfond");
+    $button = $page->findButton('searchButton');
+    $button->mouseOver();
+    $button->click();
+    $page = $session->getPage();
+    $webString = "http://localhost:8080/api/wordcloud/halfond/10";
+    if ($session->getCurrentUrl() != $webString)
+    {
+        throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+    }
+    $wordClicked = $page->findLink("can");
+
+    if($wordClicked == null)
+    {
+        throw new Exception ("There is no word: ".$wordClicked);
+    }
+    $wordClicked->mouseOver();
+    $wordClicked->click();
+  }
+
+  /**
+   * @When I click on downloadWordCloudButton
+   */
+  public function iClickOnDownloadwordcloudbutton()
+  {
+    $button = $page->findButton('downloadButton');
+    $button->mouseOver();
+    $button->click();
+  }
+
+  /**
+   * @Then I see a jpg downloaded
+   */
+  public function iSeeAJpgDownloaded()
+  {
 
   }
 
-   /*
-    * @Given /^there is no text in the search bar$/
-    */
-   public function thereIsNoTextInTheSearchBar() {
-   }
-
-   /*
-    * @When /I click on "([^"]*)"$/
-    */
-    public function iClickOn() {
-      //  echo("test passed");
-    }
-
-    /*
-     * @Then /^I see no difference$/
-     */
-     public function iSeeNoDifference() {
-     }
-
-   /**
-   * @Given there is a search bar
+  /**
+   * @Then I see a status bar
    */
-   public function thereIsASearchBar()
+  public function iSeeAStatusBar()
+  {
+
+  }
+
+  /**
+   * @Then I see a dropdown
+   */
+  public function iSeeADropdown()
+  {
+
+  }
+
+  /**
+   * @When I click on a word
+   */
+  public function iClickOnAWord()
+  {
+    $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+    $session = new \Behat\Mink\Session($driver);
+    $session->start();
+    $session->visit('http://localhost:8081');
+    $page = $session->getPage();
+    $textbox = $page->findField("automplete-1");
+    $textbox->setValue("Halfond");
+    $button = $page->findButton('searchButton');
+    $button->mouseOver();
+    $button->click();
+    $page = $session->getPage();
+    $webString = "http://localhost:8080/api/wordcloud/halfond/10";
+    if ($session->getCurrentUrl() != $webString)
+    {
+       throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+    }
+     $wordClicked = $page->findLink("can");
+     if($wordClicked == null)
+     {
+         throw new Exception ("There is no word: ".$wordClicked);
+     }
+     $wordClicked->mouseOver();
+     $wordClicked->click();
+  }
+
+  /**
+   * @Then I see localhost\/paperList.html
+   */
+  public function iSeeLocalhostPaperlistHtml()
+  {
+    $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+    $session = new \Behat\Mink\Session($driver);
+    $session->start();
+    $session->visit('http://localhost:8081');
+    $page = $session->getPage();
+    $textbox = $page->findField("automplete-1");
+    $textbox->setValue("Halfond");
+    $button = $page->findButton('searchButton');
+    $button->mouseOver();
+    $button->click();
+    $page = $session->getPage();
+    $webString = "http://localhost:8080/api/wordcloud/halfond/10";
+    if ($session->getCurrentUrl() != $webString)
+    {
+       throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+    }
+     $wordClicked = $page->findLink("can");
+     if($wordClicked == null)
+     {
+         throw new Exception ("There is no word: ".$wordClicked);
+     }
+     $wordClicked->mouseOver();
+     $wordClicked->click();
+     $webString = "http://localhost:8080/api/papers/can";
+     if ($session->getCurrentUrl() != $webString)
+     {
+         throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+     }
+  }
+
+  /**
+   * @Then the paperListTitle is the paper
+   */
+  public function thePaperlisttitleIsThePaper()
+  {
+
+  }
+
+  /**
+   * @Given I am on localhost\/paperList.html
+   */
+  public function iAmOnLocalhostPaperlistHtml()
+  {
+    $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+    $session = new \Behat\Mink\Session($driver);
+    $session->start();
+    $session->visit('http://localhost:8081');
+    $page = $session->getPage();
+    $textbox = $page->findField("automplete-1");
+    $textbox->setValue("Halfond");
+    $button = $page->findButton('searchButton');
+    $button->mouseOver();
+    $button->click();
+    $page = $session->getPage();
+    $webString = "http://localhost:8080/api/wordcloud/halfond/10";
+    if ($session->getCurrentUrl() != $webString)
+    {
+       throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+    }
+     $wordClicked = $page->findLink("can");
+     if($wordClicked == null)
+     {
+         throw new Exception ("There is no word: ".$wordClicked);
+     }
+     $wordClicked->mouseOver();
+     $wordClicked->click();
+  }
+
+  /**
+   * @Given I click on an author
+   */
+  public function iClickOnAnAuthor()
+  {
+
+  }
+  /**
+   * @When I click on a paper
+   */
+  public function iClickOnAPaper()
+  {
+
+  }
+  /**
+    * @Given I am on localhost\/abstract.html
+    */
+   public function iAmOnLocalhostAbstractHtml()
    {
-     assertNotEquals(null, $this->artistSearchBar);
+     // TODO: NEED TO COMPLETE
+      //$driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+      $driver = new \Behat\Mink\Driver\Selenium2Driver();
+      $session = new \Behat\Mink\Session($driver);
+      $session->start();
+      $session->visit('http://localhost:8081');
+      $page = $session->getPage();
+      $textbox = $page->findField("automplete-1");
+      $textbox->setValue("Halfond");
+      $button = $page->findButton('searchButton');
+      $button->mouseOver();
+      $button->click();
+      $page = $session->getPage();
+      $webString = "http://localhost:8080/api/wordcloud/halfond/10";
+      if ($session->getCurrentUrl() != $webString)
+      {
+         throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+      }
+       $wordClicked = $page->findLink("can");
+       if($wordClicked == null)
+       {
+           throw new Exception ("There is no word: ".$wordClicked);
+       }
+       $wordClicked->mouseOver();
+       $wordClicked->click();
+       $webString = "http://localhost:8080/api/papers/can";
+       if ($session->getCurrentUrl() != $webString)
+       {
+           throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+       }
+       $page = $session->getPage();
+
    }
 
-   /*
-    * @Then the search button is not clickable
+  /**
+   * @When I click on downloadAbstractButton
+   */
+  public function iClickOnDownloadabstractbutton()
+  {
+    $page = $session->getPage();
+    $button = $page->findButton('downloadAbstractButton');
+    $button->mouseOver();
+    $button->click();
+  }
+
+  /**
+   * @Then I see a pdf downloaded
+   */
+  public function iSeeAPdfDownloaded()
+  {
+
+  }
+
+  /**
+   * @Then I see no difference
+   */
+  public function iSeeNoDifference2()
+  {
+
+  }
+
+  /**
+   * @Then I see localhost\/abstract.html
+   */
+  public function iSeeLocalhostAbstractHtml()
+  {
+    assertNotEquals(null, $this->page->find("css", "#downloadAbstract"));
+  }
+
+  /**
+   * @Then the abstract is displayed
+   */
+  public function theAbstractIsDisplayed()
+  {
+    assertNotEquals(null, $this->page->find("css", "#abstract"));
+  }
+
+   /**
+   * @When I click on a conference title
+   */
+  public function iClickOnAConferenceTitle()
+  {
+
+  }
+
+
+  /**
+   * @When I click on a bibtex link
+   */
+  public function iClickOnABibtexLink()
+  {
+
+  }
+
+  /**
+   * @Then I see a new page
+   */
+  public function iSeeANewPage()
+  {
+
+  }
+
+
+   /**
+    * @Then I see a .txt downloaded
     */
-   public function theSearchButtonIsNotClickable()
+   public function iSeeATxtDownloaded()
    {
-     assertEquals('disabled', $this->searchButton->getAttribute('disabled'));
+
+
    }
 
    /**
-     * @Given I am on localhost\/abstract.html
+    * @Then I see a .pdf downloaded
+    */
+   public function iSeeAPdfDownloaded2()
+   {
+
+   }
+
+    /**
+     * @When I click on exportToTXTButton
      */
-    public function iAmOnLocalhostAbstractHtml()
+    public function iClickOnExporttotxtbutton()
     {
+      $page = $session->getPage();
+      $button = $page->findButton('exportToTXTButton');
+      $button->mouseOver();
+      $button->click();
     }
 
     /**
-     * @When I click on downloadAbstractButton
+     * @When I click on exportToPDFButton
      */
-    public function iClickOnDownloadabstractbutton()
+    public function iClickOnExporttopdfbutton()
     {
+      $page = $session->getPage();
+      $button = $page->findButton('exportToPDFButton');
+      $button->mouseOver();
+      $button->click();
     }
 
     /**
-     * @Then I see a pdf downloaded
+     * @When I click on returnToWordCloudButton
      */
-    public function iSeeAPdfDownloaded()
+    public function iClickOnReturntowordcloudbutton()
     {
+      $page = $session->getPage();
+      $button = $page->findButton('returnToWordCloudButton');
+      $button->mouseOver();
+      $button->click();
     }
 
     /**
-     * @Given I am on localhost\/index.html
+     * @When I click on returnWordCloud
      */
-    public function iAmOnLocalhostIndexHtml()
+    public function iClickOnReturnwordcloud()
     {
-
+      $page = $session->getPage();
+      $button = $page->findButton('returnWordCloud');
+      $button->mouseOver();
+      $button->click();
     }
 
     /**
-     * @Given there is no text in the search bar
+     * @When I click on returnPaperList
      */
-    public function thereIsNoTextInTheSearchBar2()
+    public function iClickOnReturnpaperlist()
     {
-
+      $page = $session->getPage();
+      $button = $page->findButton('returnPaperList');
+      $button->mouseOver();
+      $button->click();
     }
 
     /**
-     * @When I click on searchButton
+     * @When I click on wordCloudSubsetOfPapersButton
      */
-    public function iClickOnSearchbutton()
+    public function iClickOnWordcloudsubsetofpapersbutton()
     {
-
+      $page = $session->getPage();
+      $button = $page->findButton('wordCloudSubsetOfPapersButton');
+      $button->mouseOver();
+      $button->click();
     }
 
     /**
-     * @Then I see no difference
-     */
-    public function iSeeNoDifference2()
-    {
-
-    }
-
-    /**
-     * @Given I input a keyword
-     */
-    public function iInputAKeyword()
-    {
-
-    }
-
-    /**
-     * @Then I see a word cloud
-     */
-    public function iSeeAWordCloud()
-    {
-
-    }
-
-    /**
-     * @Given a word cloud is generated
-     */
-    public function aWordCloudIsGenerated()
-    {
-
-    }
-
-    /**
-     * @When I click on a word
-     */
-    public function iClickOnAWord()
-    {
-
-    }
-
-    /**
-     * @Then I see localhost\/paperList.html
-     */
-    public function iSeeLocalhostPaperlistHtml()
-    {
-
-    }
-
-    /**
-     * @Then the paperListTitle is the paper
-     */
-    public function thePaperlisttitleIsThePaper()
-    {
-
-    }
-
-    /**
-     * @When I click on downloadWordCloudButton
-     */
-    public function iClickOnDownloadwordcloudbutton()
-    {
-
-    }
-
-    /**
-     * @Then I see a jpg downloaded
-     */
-    public function iSeeAJpgDownloaded()
-    {
-
-    }
-
-    /**
-     * @Given I am on localhost\/paperList.html
-     */
-    public function iAmOnLocalhostPaperlistHtml()
-    {
-
-    }
-
-    /**
-     * @Given I click on an author
-     */
-    public function iClickOnAnAuthor()
-    {
-
-    }
-
-    /**
-     * @Then I see localhost\/index.html
-     */
-    public function iSeeLocalhostIndexHtml()
-    {
-
-    }
-
-    /**
-     * @When I click on a paper
-     */
-    public function iClickOnAPaper()
-    {
-
-    }
-
-    /**
-     * @Then I see localhost\/abstract.html
-     */
-    public function iSeeLocalhostAbstractHtml()
-    {
-
-    }
-
-    /**
-     * @Then the abstract is displayed
-     */
-    public function theAbstractIsDisplayed()
-    {
-
-    }
-
-    /**
-      * @When I input a non numeric character in numPapers
+      * @When I click on downloadPaperHighlighted
       */
-     public function iInputANonNumericCharacterInNumpapers()
-     {
-
-     }
-
-     /**
-     * @When I click on a conference title
-     */
-    public function iClickOnAConferenceTitle()
+    public function iClickOnDownloadpaperhighlighted()
     {
+      $page = $session->getPage();
+      $button = $page->findButton('downloadPaperHighlighted');
+      $button->mouseOver();
+      $button->click();
     }
 
 
-    /**
-     * @When I click on a bibtex link
-     */
-    public function iClickOnABibtexLink()
-    {
-    }
-
-    /**
-     * @Then I see a new page
-     */
-    public function iSeeANewPage()
-    {
-    }
-
-
-     /**
-      * @Given I input a numeric character in numPapers
-      */
-     public function iInputANumericCharacterInNumpapers()
-     {
-
-
-     }
-
-     /**
-      * @Then I see a .txt downloaded
-      */
-     public function iSeeATxtDownloaded()
-     {
-
-
-     }
-
-     /**
-      * @Then I see a .pdf downloaded
-      */
-     public function iSeeAPdfDownloaded2()
-     {
-     }
-
-     /**
-       * @expectedException \Behat\Mink\Exception\DriverException
-       * @expectedExceptionMessage Unable to access the response content before visiting a page
-       */
-      public function testFindWithoutVisit()
-      {
-          $this->getDriver()->find('//html');
-      }
-
-      /**
-       * @When I click on exportToTXTButton
-       */
-      public function iClickOnExporttotxtbutton()
-      {
-      }
-
-      /**
-       * @When I click on exportToPDFButton
-       */
-      public function iClickOnExporttopdfbutton()
-      {
-      }
-
-      /**
-       * @When I click on returnToWordCloudButton
-       */
-      public function iClickOnReturntowordcloudbutton()
-      {
-      }
-
-      /**
-       * @When I click on returnWordCloud
-       */
-      public function iClickOnReturnwordcloud()
-      {
-      }
-
-      /**
-       * @When I click on returnPaperList
-       */
-      public function iClickOnReturnpaperlist()
-      {
-      }
-
-      /**
-       * @Then I see a status bar
-       */
-      public function iSeeAStatusBar()
-      {
-      }
-
-      /**
-       * @When I click on automplete-:arg1
-       */
-      public function iClickOnAutomplete($arg1)
-      {
-      }
-
-      /**
-       * @Then I see a dropdown
-       */
-      public function iSeeADropdown()
-      {
-      }
-
-      /**
-       * @When I click on wordCloudSubsetOfPapersButton
-       */
-      public function iClickOnWordcloudsubsetofpapersbutton()
-      {
-      }
 }

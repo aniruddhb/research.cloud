@@ -9,8 +9,28 @@ default:
         - Drupal\DrupalExtension\Context\DrushContext
   extensions:
     Behat\MinkExtension:
-      goutte: ~
-      selenium2: ~
+      # goutte: ~
+      # base_url: http://localhost:8080/
+      # browser_name: firefox
+      # selenium2:
+      #   wd_host: http://192.168.178.26:4444/wd/hub
+      #   capabilities:
+      #     browser: firefox
+
+      # show_cmd: open -a "Google Chrome" "%s"
+      # javascript_session: 'selenium2'
+      # browser_name: chrome
+      # base_url: http://google.com
+      # goutte: ~
+      # selenium2: ~
+
       base_url: http://localhost:8080/
+      default_session: ~
+      browser_name: firefox
+      # laravel: ~
+      selenium2:
+        wd_host: http://192.168.178.26:4444/wd/hub
+        capabilities:
+          browser: firefox
     Drupal\DrupalExtension:
       blackbox: ~
