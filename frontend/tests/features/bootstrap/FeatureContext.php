@@ -294,6 +294,36 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
     */
    public function iAmOnLocalhostAbstractHtml()
    {
+     // TODO: NEED TO COMPLETE
+      $driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
+      $session = new \Behat\Mink\Session($driver);
+      $session->start();
+      $session->visit('http://localhost:8081');
+      $page = $session->getPage();
+      $textbox = $page->findField("automplete-1");
+      $textbox->setValue("Halfond");
+      $button = $page->findButton('searchButton');
+      $button->mouseOver();
+      $button->click();
+      $page = $session->getPage();
+      $webString = "http://localhost:8000/api/wordcloud/halfond/10";
+      if ($session->getCurrentUrl() != $webString)
+      {
+         throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+      }
+       $wordClicked = $page->findLink("can");
+       if($wordClicked == null)
+       {
+           throw new Exception ("There is no word: ".$wordClicked);
+       }
+       $wordClicked->mouseOver();
+       $wordClicked->click();
+       $webString = "http://localhost:8080/api/papers/can";
+       if ($session->getCurrentUrl() != $webString)
+       {
+           throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
+       }
+       $page = $session->getPage();
 
    }
 
@@ -302,6 +332,10 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
    */
   public function iClickOnDownloadabstractbutton()
   {
+    $page = $session->getPage();
+    $button = $page->findButton('downloadAbstractButton');
+    $button->mouseOver();
+    $button->click();
   }
 
   /**
@@ -309,6 +343,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
    */
   public function iSeeAPdfDownloaded()
   {
+
   }
 
   /**
@@ -332,7 +367,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
    */
   public function theAbstractIsDisplayed()
   {
-
+    assertNotEquals(null, $this->page->find("css", "#abstract"));
   }
 
    /**
@@ -340,7 +375,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
    */
   public function iClickOnAConferenceTitle()
   {
-    
+
   }
 
 
@@ -357,6 +392,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
    */
   public function iSeeANewPage()
   {
+
   }
 
 
@@ -374,6 +410,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
     */
    public function iSeeAPdfDownloaded2()
    {
+
    }
 
     /**
@@ -436,7 +473,10 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
      */
     public function iClickOnWordcloudsubsetofpapersbutton()
     {
-
+      $page = $session->getPage();
+      $button = $page->findButton('wordCloudSubsetOfPapersButton');
+      $button->mouseOver();
+      $button->click();
     }
 
     /**
@@ -444,7 +484,10 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
       */
     public function iClickOnDownloadpaperhighlighted()
     {
-
+      $page = $session->getPage();
+      $button = $page->findButton('downloadPaperHighlighted');
+      $button->mouseOver();
+      $button->click();
     }
 
 
