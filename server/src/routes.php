@@ -76,12 +76,14 @@ $app->get('/api/wordcloud/{search_input}/{search_cap}', function ($request, $res
 	$overall_freq_formatted = json_encode($results[0]);
 
 	# convert current response to jsonp callback with new response
-	$new_res = $response->withHeader('Content-Type', 'application/javascript');
+	// $new_res = $response->withHeader('Content-Type', 'application/javascript');
+	$new_res = $response->withHeader('Access-Control-Allow-Origin', 'http://localhost:8081');
+	$new_res->getBody()->write($overall_freq_formatted);
 
 	# create string with callback and results
 	# write it to the body of the new response
-	$callback = "{$callback}({$overall_freq_formatted})";
-	$new_res->getBody()->write($callback);
+	// $callback = "{$callback}({$overall_freq_formatted})";
+	// $new_res->getBody()->write($callback);
 	return $new_res;
 });
 
