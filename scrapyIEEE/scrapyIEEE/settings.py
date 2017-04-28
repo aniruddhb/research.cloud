@@ -17,7 +17,7 @@ NEWSPIDER_MODULE = 'scrapyIEEE.spiders'
 SPLASH_URL = 'https://localhost:8050'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'scrapyIEEE (+http://www.yourdomain.com)'
+USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36"
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -28,7 +28,7 @@ ROBOTSTXT_OBEY = True
 # Configure a delay for requests for the same website (default: 0)
 # See http://scrapy.readthedocs.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-#DOWNLOAD_DELAY = 3
+DOWNLOAD_DELAY = 1
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -40,10 +40,19 @@ ROBOTSTXT_OBEY = True
 #TELNETCONSOLE_ENABLED = False
 
 # Override the default request headers:
-#DEFAULT_REQUEST_HEADERS = {
-#   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-#   'Accept-Language': 'en',
-#}
+# DEFAULT_REQUEST_HEADERS = {
+#   'Accept': 'application/json,text/plain,*/*',
+#   'Accept-Encoding': 'gzip, deflate',
+#   'Accept-Language': 'en-US,en;q=0.8',
+#   'Cache-Control': 'no-cache',
+#   'Connection': 'keep-alive',
+#   'Content-Length': '39',
+#   'Content-Type': 'application/json;charset=UTF-8',
+#   'Host': 'ieeexplore.ieee.org',
+#   'Origin': 'http://ieexplore.ieee.org',
+#   'Pragma': 'no-cache',
+#   'Referer': 'http://ieeexplore.ieee.org/search/searchresult.jsp?newsearch=true&queryText=cote',
+# }
 
 # Enable or disable spider middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html

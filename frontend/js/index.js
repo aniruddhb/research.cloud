@@ -48,35 +48,69 @@ $("#searchButton").click(function() {
   $("#downloadButton").show();
 
   var $keywordText = $("#automplete-1").val();
+
   // need error checking for # of papers
   var $search_cap = $("#numPapers").val();
   $("#keywordLabel").html("Keyword(s): " + $keywordText);
 
-  function updateProgress(evt) {
-    if (evt.lengthComputable)
-    {
-      //evt.loaded the bytes browser receive
-      //evt.total the total bytes seted by the header
-      //
-     var percentComplete = (evt.loaded / evt.total)*100;
+  // function updateProgress(evt) {
+  //   if (evt.lengthComputable)
+  //   {
+  //     //evt.loaded the bytes browser receive
+  //     //evt.total the total bytes seted by the header
+  //     //
+  //    var percentComplete = (evt.loaded / evt.total)*100;
+  //
+  //    console.log(percentComplete);
+  //
+  //   //  $('#myBar');
+  //   }
+  // }
+  //
+  // var req = new XMLHttpRequest();
+  // $('#progressbar').progressbar();
+  // req.onprogress=updateProgress;
+  // req.open('GET', "http://localhost:8080/api/wordcloud/" + $keywordText + "/" + $search_cap, true);
+  // req.onreadystatechange = function (aEvt) {
+  //    if (req.readyState == 4)
+  //    {
+  //         //run any callback here
+  //    }
+  // };
+  // req.send();
 
-     console.log(percentComplete);
+  $.ajax({
+    xhr: function() {
+      var xhr = new window.XMLHttpRequest();
+      xhr.withCredentials = true;
 
-    //  $('#myBar');
+      console.log("HELLO BITCH");
+
+      //Download progress
+      xhr.addEventListener("progress", function(evt){
+        if (evt.lengthComputable) {
+          var percentComplete = evt.loaded / evt.total;
+          //Do something with download progress
+          console.log(percentComplete);
+        }
+      }, true);
+      return xhr;
+    },
+    type: 'GET',
+    url: 'http://localhost:8080/api/wordcloud/' + $keywordText + '/' + $search_cap,
+    success: function(data) {
+      console.log('datum');
+      console.log(data);
+      localStorage.setItem('tags', JSON.stringify(data));
+      localStorage.setItem('keywordText', $keywordText);
+      localStorage.setItem('keywordLabelFull', $keywordText);
+      tags = data;
+      update();
+    },
+    error: function(err) {
+        console.log(err);
     }
-  }
-
-  var req = new XMLHttpRequest();
-  $('#progressbar').progressbar();
-  req.onprogress=updateProgress;
-  req.open('GET', "http://localhost:8080/api/wordcloud/" + $keywordText + "/" + $search_cap, true);
-  req.onreadystatechange = function (aEvt) {
-     if (req.readyState == 4)
-     {
-          //run any callback here
-     }
-  };
-  req.send();
+  });
 
   // $.ajax({
   //   xhr: function() {
@@ -95,7 +129,7 @@ $("#searchButton").click(function() {
   //          else console.log('error');
   //      }, false);
   //
-  //       xhr.addEventListener("progress", function(evt){
+  //       xhr.addEventListener("progress", function(evt) {
   //          if (evt.lengthComputable) {
   //              percentComplete = evt.loaded / evt.total;
   //              // Do something with download progress

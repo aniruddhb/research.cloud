@@ -296,7 +296,6 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
    public function iAmOnLocalhostAbstractHtml()
    {
      // TODO: NEED TO COMPLETE
-      //$driver = new \Behat\Mink\Driver\Selenium2Driver('firefox');
       $driver = new \Behat\Mink\Driver\Selenium2Driver();
       $session = new \Behat\Mink\Session($driver);
       $session->start();
@@ -307,6 +306,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
       $button = $page->findButton('searchButton');
       $button->mouseOver();
       $button->click();
+      sleep(10);
       $page = $session->getPage();
       $webString = "http://localhost:8080/api/wordcloud/halfond/10";
       if ($session->getCurrentUrl() != $webString)
@@ -326,7 +326,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
            throw new Exception ("The page is incorrect.".$session->getCurrentUrl());
        }
        $page = $session->getPage();
-
+       // route to the abstract page
    }
 
   /**

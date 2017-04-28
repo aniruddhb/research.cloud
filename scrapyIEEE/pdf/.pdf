@@ -26,21 +26,22 @@
 	<head>
 		
 			
+			
+			
 				
-			
-			
+				
 			 
 		
 		
 		
-		<meta name="Description" content="Thermal gratings are recorded in silver nanoparticle suspensions by nanosecond pulsed holography. Initial transients in diffraction efficiency demonstrate ">
+		<meta name="Description" content="IEEE Xplore. Delivering full text access to the world's highest quality technical literature in engineering and technology.">
 		
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		
 		<!-- Disable "click" touch event 300ms delay for Chrome/Firefox on Android -->
 		<meta name="viewport" content="width=device-width">
 		
-		<title>Holographic grating formation in silver nanoparticle suspensions - IEEE Xplore Document</title>
+		<title>Two theorems on random polynomial time - IEEE Xplore Document</title>
 		
 		
 
@@ -222,6 +223,13 @@
 
 
 
+	<div id="maintenance-notification" class="pure-g">
+		<div class="pure-u-1 Notification Notification--global">
+			<a href class="Notification-close js-close"><i class="fa fa-close"></i></a>
+			All Online Seats Are in Use.  Seats will become available after 15 minutes of inactivity.  In the meantime, you can continue to browse and search.
+		</div>
+	</div>
+
 
 
 <div class="Metanav stats-metanav">
@@ -325,43 +333,12 @@ TODOS
 
 
 	
-		
-		<div id="loggedInLogo">
-			<div id="loggedinlogo-wrapper">
-				<div class="branding-container">
-
-					
-						<img src="/customer_logos/6031_Libraries-CardOnGold145x50.gif" width="200" height="60"  title="Access provided by"/>
-					
-
-					<span class="branding-text">
-						<span>Access provided by:</span>
-						<h4>University of Southern California</h4>
-						
-						<a class='sign-out'href="/servlet/Login?logout=/Xplore/guesthome.jsp" title="Sign Out" accesskey="3"><i class="icon icon-double-caret"></i>Sign Out</a>
-					</span>
-				</div>
-			</div>
-		</div>
-		
-		
-
-		
-		
-		<div id="contAdminWindowContent">
-			<a class="mwclose">X</a>
-			<table>
-			
-				
-				
-				
-				
-				
-				
-			</table>
-		</div>
-
 	
+		
+		<div class="institutional-signin">
+			<i class="icon icon-single-caret"></i><a class="u-alignMiddle" href="javascript:Modal.show('/xpl/mwInstSignIn.jsp')">Institutional Sign In</a>
+		</div>
+
 	
 
 
@@ -573,9 +550,7 @@ TODOS
 			<ul class="Menu Menu--overlay stats-my-settings">
 				
 				<li><a href="/xpl/tocalerts_list.jsp" class="ALERTS">Content Alerts</a></li>
-                
-   	 	        	<li><a href="/servlet/remote.jsp" >Remote Access</a></li>
-   	 	        					
+                					
 				<li><a href="/search/savedsearches" class="stats-saved-searches">Search Alerts</a></li>
 				<li><a href="/Xplore/login.jsp?reason=fromPreferencesMenu" class="" id="">Preferences</a></li>
 				<li><a href="/articleSale/purchaseHistory.jsp" class="PURCHASEHISTORY" id="PURCHASEHISTORY">Purchase History</a></li>
@@ -594,6 +569,8 @@ TODOS
 		</li>
 		<li class="Toolbar-item stats-what-can-i-access"><a href="/Xplore/accessinfo.jsp" class="Toolbar-button stats-Xplnav_what_access">What Can I Access?</a></li>
 
+		
+			<li class="Toolbar-item"><a href="http://innovate.ieee.org/innovate/article/177773?LT=XPLSub_XPL_16_SUB" target="_blank" class="Toolbar-button stats-Xplnav_exit_subscribe">Subscribe</a></li>
 		
 
 		
@@ -1107,26 +1084,16 @@ j$('document').ready(function(){
 
 			
 			
-				
-				
-				
-				
-				
-				
-				
-				
-				
-			
 
 			<!-- BEGIN: Unica Page Tag -->
 			<!-- Copyright 2004-2006 Unica Corporation.  All rights reserved. -->
 			<script language ="JavaScript">
-			var unValue =  '6031';
+			var unValue =  '';
 			var sid =  '';
 			if (sid){
-				var NTPT_PGEXTRA="un="+unValue+"&ip="+'68.181.88.175'+"&un3="+ sid;
+				var NTPT_PGEXTRA="un="+unValue+"&ip="+'68.181.207.215'+"&un3="+ sid;
 			} else {
-				var NTPT_PGEXTRA="un="+unValue+"&ip="+'68.181.88.175';
+				var NTPT_PGEXTRA="un="+unValue+"&ip="+'68.181.207.215';
 			}
 			</script>
 
@@ -1212,23 +1179,21 @@ var recordId = "";
 var global = {
 	document: {
 		disqus:{
-			remote_auth_s3 : 'KHt9KQ== 1de6b263a51e17e13b239e0a1aad93a539d9b08e 1493231349',
+			remote_auth_s3 : '',
 			public_api_key:'1lxKgMbpNIbQvfk2tqLcWeSVloE8rgIY2CV1tCu3Vp641oL4eEITYBbkViJJGNYY',
 			short_name:'ieeexplore',
 			client_url:'http://ieeexplore.ieee.org',
 			sso_enabled:'{$sessionProfile.provisioned}'
 		},
 
-		fullTextAccess: true
+		fullTextAccess: false
 		
 		
 	}
 };
 	
-	global.document.metadata={"userInfo":{"institute":true,"member":false,"individual":false,"guest":false,"subscribedContent":false,"fileCabinetContent":false,"fileCabinetUser":false,"institutionalFileCabinetUser":false,"products":"IBM|EBOOKS:2012:2015|MITP:2013:2016|Draft|ISOL55|ISOL52|ISOL53|ISOL54|ISOL56|ISOL58|ISOL57|IEL|eLearningPackage#E4E|VDE|ALCATEL-LUCENT|","instType":"Academic","userIds":[6031],"showPatentCitations":true,"showGet802Link":false,"openUrlImgLoc":"http://www.usc.edu/libraries/img/branding/usc_findit_red70x50.gif","openUrlLink":"http://ZB5LH7ED7A.search.serialssolutions.com","showOpenUrlLink":true},"authors":[{"name":"James R. Adleman","affiliation":"Department of Electrical Engineering, California Institute of Technology, Pasadena, 91125, USA","affiliation":"Department of Electrical Engineering, California Institute of Technology, Pasadena, 91125, USA"},{"name":"Helge Eggert","affiliation":"Institute of Physics, University of Bonn, Wegelerst. 8, D-53115, Germany","affiliation":"Institute of Physics, University of Bonn, Wegelerst. 8, D-53115, Germany"},{"name":"Karsten Buse","affiliation":"Institute of Physics, University of Bonn, Wegelerst. 8, D-53115, Germany","affiliation":"Institute of Physics, University of Bonn, Wegelerst. 8, D-53115, Germany"},{"name":"Demetri Psaltis","affiliation":"Department of Electrical Engineering, California Institute of Technology, Pasadena, 91125, USA","affiliation":"Department of Electrical Engineering, California Institute of Technology, Pasadena, 91125, USA"}],"isbn":[{"format":"CD-ROM ISBN","value":"978-1-55752-813-1"}],"issn":[{"format":"Electronic ISSN","value":"2160-9004"}],"articleNumber":"4627575","dbTime":"5 ms","metrics":{"citationCountPaper":0,"citationCountPatent":0,"totalDownloads":18},"pdfUrl":"/stamp/stamp.jsp?tp=&arnumber=4627575","purchaseOptions":{"showOtherFormatPricingTab":false,"showPdfFormatPricingTab":true,"pdfPricingInfoAvailable":true,"otherPricingInfoAvailable":false,"mandatoryBundle":false,"optionalBundle":false,"pdfPricingInfo":[{"memberPrice":"$13","nonMemberPrice":"$33","partNumber":"4627575","type":"PDF/HTML"}],"openUrlFullLink":"http://ZB5LH7ED7A.search.serialssolutions.com?url_ver=Z39.88-2004&rfr_id=info:sid/IEEE.org:XPLORE&rft_id=info:doi/10.1109/CLEO.2006.4627575&url_ctx_fmt=info:ofi/fmt:kev:mtx:ctx&rft_val_fmt=info:ofi/fmt:kev:mtx:journal&rft.atitle=Holographic grating formation in silver nanoparticle suspensions&rft.jtitle=Lasers and Electro-Optics, 2006 and 2006 Quantum Electronics and Laser Science Conference. CLEO/QELS 2006. Conference on&rft.date=2006&rft.spage=1&rft.epage=2&rft.eissn=2160-9004&rft.au=James R. Adleman&rft.aulast=James R. Adleman"},"formulaStrippedArticleTitle":"Holographic grating formation in silver nanoparticle suspensions","keywords":[{"kwd":["Gratings","Nanoparticles","Suspensions","Solvents","Optical pulses","Silver","Transient analysis"],"kwd-group-type":"IEEE"},{"kwd":["thermo-optical devices","holographic gratings","nanoparticles","nanophotonics","optical materials","silver","suspensions","thermal conductivity"],"kwd-group-type":"Inspec"},{"kwd":["Ag","holographic grating formation","silver nanoparticle suspensions","thermal grating","nanosecond pulsed holographic recording","diffraction efficiency","grating decay","thermal conductivity"],"kwd-group-type":"Inspec-free"},{"kwd":["(160.4330) Nonlinear optical materials","(090.7330) Volume holographic gratings"],"kwd-group-type":"IEEE-free"}],"allowComments":false,"pubLink":"/xpl/mostRecentIssue.jsp?punumber=4623683","issueLink":"/xpl/tocresult.jsp?isnumber=4627561","standardTitle":"Holographic grating formation in silver nanoparticle suspensions","rightsLink":"http://s100.copyright.com/AppDispatchServlet?publisherName=ieee&publication=proceedings&title=Holographic+grating+formation+in+silver+nanoparticle+suspensions&isbn=&publicationDate=May+2006&author=James+R.+Adleman&ContentID=10.1109/CLEO.2006.4627575&orderBeanReset=true&startPage=1&endPage=2&proceedingName=Lasers+and+Electro-Optics%2C+2006+and+2006+Quantum+Electronics+and+Laser+Science+Conference.+CLEO%2FQELS+2006.+Conference+on","displayPublicationTitle":"Lasers and Electro-Optics, 2006 and 2006 Quantum Electronics and Laser Science Conference. CLEO/QELS 2006. Conference on","pdfPath":"/iel5/4623683/4627561/04627575.pdf","publicationTitle":"Lasers and Electro-Optics, 2006 and 2006 Quantum Electronics and Laser Science Conference. CLEO/QELS 2006. Conference on","endPage":"2","startPage":"1","doi":"10.1109/CLEO.2006.4627575","title":"Holographic grating formation in silver nanoparticle suspensions","abstract":"Thermal gratings are recorded in silver nanoparticle suspensions by nanosecond pulsed holography. Initial transients in diffraction efficiency demonstrate competing effects in grating formation. The gratingpsilas final decay is consistent with the suspensionpsilas thermal conductivity.","isJournal":false,"isConference":true,"dateOfInsertion":"23 September 2008","isFreeDocument":false,"isCustomDenial":false,"persistentLink":"http://ieeexplore.ieee.org/servlet/opac?punumber=4623683","isStaticHtml":true,"isNotDynamicOrStatic":false,"staticHtmlLink":"/xpls/icp.jsp?arnumber=4627575","htmlAbstractLink":"/document/4627575/","isDynamicHtml":false,"isPromo":false,"journalDisplayDateOfPublication":"21-26 May 2006","chronOrPublicationDate":"21-26 May 2006","isEarlyAccess":false,"isBook":false,"accessionNumber":"10362928","htmlLink":"/xpls/icp.jsp?arnumber=4627575","publisher":"IEEE","isEphemera":false,"isOpenAccess":false,"isSMPTE":false,"isStandard":false,"publicationDate":"May 2006","conferenceDate":"21-26 May 2006","isACM":false,"startPage":"1","openAccessFlag":"no","ephemeraFlag":"false","title":"Holographic grating formation in silver nanoparticle suspensions","confLoc":"Long Beach, CA, USA","accessionNumber":"10362928","ml_html_flag":"false","html_flag":"true","content_type":"Conference Publications","mlTime":"PT0.057722S","chronDate":"21-26 May 2006","pdfPath":"/iel5/4623683/4627561/04627575.pdf","isNumber":"4627561","copyrightYear":"2006","dateOfInsertion":"23 September 2008","contentType":"conferences","publicationDate":"May 2006","publicationNumber":"4623683","citationCount":"0","copyrightOwner":"OSA","issue":"","articleId":"4627575","publicationTitle":"Lasers and Electro-Optics, 2006 and 2006 Quantum Electronics and Laser Science Conference. CLEO/QELS 2006. Conference on","sections":{"abstract":"true","authors":"true","figures":"false","multimedia":"false","references":"false","citedby":"","keywords":"true","algorithm":"false","supplements":"false","footnotes":"false","disclaimer":"false"},"onlineDate":"","conferenceDate":"21-26 May 2006","publisher":"IEEE","publicationYear":"2006","subType":"IEEE IEEE Conference","lastupdate":"2015-08-25T18:34:00","mediaPath":"/mediastore/IEEE/content/media/4623683/4627561/4627575","endPage":"2","doi":"10.1109/CLEO.2006.4627575"};
+	global.document.metadata={"userInfo":{"institute":false,"member":false,"individual":false,"guest":false,"subscribedContent":false,"fileCabinetContent":false,"fileCabinetUser":false,"institutionalFileCabinetUser":false,"showPatentCitations":true,"showGet802Link":false,"showOpenUrlLink":false},"authors":[{"name":"Leonard Adleman"}],"issn":[{"format":"Print ISSN","value":"0272-5428"}],"articleNumber":"4567965","dbTime":"4 ms","metrics":{"citationCountPaper":63,"citationCountPatent":0,"totalDownloads":170},"pdfUrl":"/stamp/stamp.jsp?tp=&arnumber=4567965","purchaseOptions":{"showOtherFormatPricingTab":false,"showPdfFormatPricingTab":true,"pdfPricingInfoAvailable":true,"otherPricingInfoAvailable":false,"mandatoryBundle":false,"optionalBundle":false,"pdfPricingInfo":[{"memberPrice":"$13","nonMemberPrice":"$33","partNumber":"4567965","type":"PDF"}]},"formulaStrippedArticleTitle":"Two theorems on random polynomial time","title":"Two theorems on random polynomial time","keywords":[{"kwd":["Polynomials","Complexity theory","Mathematics","Testing","Circuit analysis"],"kwd-group-type":"IEEE"}],"allowComments":false,"pubLink":"/xpl/mostRecentIssue.jsp?punumber=4567951","issueLink":"/xpl/tocresult.jsp?isnumber=4567952","previewImage":"/xploreAssets/images/absImages/04567965.png","standardTitle":"Two theorems on random polynomial time","pdfPath":"/iel5/4567951/4567952/04567965.pdf","rightsLink":"http://s100.copyright.com/AppDispatchServlet?publisherName=ieee&publication=proceedings&title=Two+theorems+on+random+polynomial+time&isbn=&publicationDate=Oct.+1978&author=Leonard+Adleman&ContentID=10.1109/SFCS.1978.37&orderBeanReset=true&startPage=75&endPage=83&proceedingName=Foundations+of+Computer+Science%2C+1978.%2C+19th+Annual+Symposium+on","displayPublicationTitle":"Foundations of Computer Science, 1978., 19th Annual Symposium on","publicationTitle":"Foundations of Computer Science, 1978., 19th Annual Symposium on","endPage":"83","startPage":"75","doi":"10.1109/SFCS.1978.37","isJournal":false,"isConference":true,"dateOfInsertion":"18 July 2008","isStandard":false,"publisher":"IEEE","isDynamicHtml":false,"isSMPTE":false,"isFreeDocument":false,"isCustomDenial":false,"persistentLink":"http://ieeexplore.ieee.org/servlet/opac?punumber=4567951","isStaticHtml":false,"isNotDynamicOrStatic":true,"htmlAbstractLink":"/document/4567965/","isPromo":false,"journalDisplayDateOfPublication":"16-18 Oct. 1978","chronOrPublicationDate":"16-18 Oct. 1978","isEphemera":false,"isOpenAccess":false,"isEarlyAccess":false,"isBook":false,"publicationDate":"Oct. 1978","conferenceDate":"16-18 Oct. 1978","isACM":false,"startPage":"75","openAccessFlag":"no","ephemeraFlag":"false","title":"Two theorems on random polynomial time","confLoc":"Ann Arbor, MI, USA, USA","accessionNumber":"","ml_html_flag":"false","html_flag":"false","content_type":"Conference Publications","mlTime":"PT0.032833S","chronDate":"16-18 Oct. 1978","pdfPath":"/iel5/4567951/4567952/04567965.pdf","isNumber":"4567952","copyrightYear":"1978","dateOfInsertion":"18 July 2008","contentType":"conferences","publicationDate":"Oct. 1978","publicationNumber":"4567951","citationCount":"63","copyrightOwner":"IEEE","issue":"","articleId":"4567965","publicationTitle":"Foundations of Computer Science, 1978., 19th Annual Symposium on","sections":{"abstract":"false","authors":"true","figures":"false","multimedia":"false","references":"false","citedby":"true","keywords":"true","algorithm":"false","supplements":"false","footnotes":"false","disclaimer":"false"},"onlineDate":"","conferenceDate":"16-18 Oct. 1978","publisher":"IEEE","publicationYear":"1978","subType":" IEEE Conference","lastupdate":"2015-06-30T22:41:19","mediaPath":"/mediastore/IEEE/content/media/4567951/4567952/4567965","endPage":"83","previewImage":"/xploreAssets/images/absImages/04567965.png","doi":"10.1109/SFCS.1978.37"};
 
-
-	global.document.userLoggedIn=true;
 
 
 
@@ -1325,33 +1290,15 @@ var global = {
 		
 		
 			
-			
-			
-			
 				
 			
+			
+			
+			
+		
 		
 		
 		
-		
-		
-		
-			
-				
-			
-		
-			
-				
-					
-					
-				
-			
-	
-			
-	
-			
-				
-			
 		
 		
 
@@ -1362,12 +1309,12 @@ var global = {
 				var TEALIUM_CONFIG_ACCOUNT_PROFILE_ENV = 'ieeexplore/main/prod';
 				
 				// tealium utag_data values for user 
-				var TEALIUM_userType = 'Institute';
-				var TEALIUM_userInstitutionId = '6031';
+				var TEALIUM_userType = 'Anonymous';
+				var TEALIUM_userInstitutionId = '';
 				var TEALIUM_userId = '';
 				var TEALIUM_user_third_party = '';
 				
-				var TEALIUM_products = 'IBM|EBOOKS:2012:2015|MITP:2013:2016|Draft|ISOL55|ISOL52|ISOL53|ISOL54|ISOL56|ISOL58|ISOL57|IEL|eLearningPackage#E4E|VDE|ALCATEL-LUCENT|';
+				var TEALIUM_products = '';
 			</script>
 
 
