@@ -24,6 +24,22 @@ final class ScraperTest extends TestCase {
     echo "PASS - Test Scrape for Papers Type Test : Asserts Files Array Internal Type to be Array\n";
     $this->assertSame(3, count($files));
     echo "PASS - Test Scrape for Papers Count Test : Asserts that Files Array is of Size 3\n";
+
+    # open and test bibtex and data files
+    $paper_data = json_decode(file_get_contents(__DIR__ . '/../../scrapyACM/PaperData.json'), true);
+    $bibtex_data = json_decode(file_get_contents(__DIR__ . '/../../scrapyACM/BibtexData.json'), true);
+
+    # test assertions
+    $this->assertInternalType("array", $paper_data);
+    echo "PASS - Test Scrape for Papers Type Test : Asserts Paper Data Internal Type to be Array\n";
+    $this->assertInternalType("array", $bibtex_data);
+    echo "PASS - Test Scrape for Papers Type Test : Asserts Bibtex Data Internal Type to be Array\n";
+
+    $this->assertSame(1, count($paper_data));
+    echo "PASS - Test Scrape for Papers Count Test : Asserts that Paper Data Array is of Size 1\n";
+    $this->assertSame(1, count($bibtex_data));
+    echo "PASS - Test Scrape for Papers Count Test : Asserts that Bibtex Data Array is of Size 1\n";
+
     echo "Code Coverage : 4/18 statements = 22.2% | 0/0 branches = 100% \n \n";
   }
 
@@ -44,11 +60,12 @@ final class ScraperTest extends TestCase {
     echo "PASS - Test Scrape for Abstract Type Test : Asserts that Abstract Result is of Type String\n";
     $this->assertSame($result, $expected_result);
     echo "PASS - Test Scrape for Abstract Equality Test : Asserts that Abstract Result is Same as Expected Result\n";
+
     echo "Code Coverage : 4/18 statements = 22.2% | 0/0 branches = 100% \n \n";
 
     # total coverage metrics
     echo "SCRAPER TEST - OVERALL RESULTS\n";
-		echo "Overall Code Coverage : 8/18 statements = 44.5% | 0/0 branches = 100.0% \n \n";
+		echo "Overall Code Coverage : 9/18 statements = 50.0% | 0/0 branches = 100.0% \n \n";
   }
 }
 ?>
