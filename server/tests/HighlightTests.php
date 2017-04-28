@@ -13,18 +13,20 @@ final class HighlightTests extends TestCase {
     echo "TEST NAME: testShellScriptExecution \n \n";
     $highlight_dir = __DIR__ . '/../src/highlighter/';
     $highlighter_php = $highlight_dir . 'highlight.php';
+    $path_to_pdf = __DIR__ . '/../../parser_test_pdfs/id=1101935.pdf';
     $word_to_highlight = "the";
-    exec("php {$highlighter_php} {$word_to_highlight}");
+    exec("php {$highlighter_php} {$word_to_highlight} {$path_to_pdf}");
 
-    # scan highlight dir pdf subdir
-    $files = scandir($highlight_dir);
-    $this->assertArrayHasKey('research_paper.pdf',  $files);
-    $this->assertArrayHasKey('research_paper.html',  $files);
-    echo "PASS - Highlight Shell Script Execution Test : Research Paper Properly Converted to HTML\n";
-    $this->assertArrayHasKey('research_paper_highlighted.html',  $files);
-    echo "PASS - Highlight Shell Script Execution Test : Research Paper HTML Highlighted and Written to Directory\n";
-    $this->assertArrayHasKey('research_paper_highlighted.pdf',  $files);
-    echo "PASS - Highlight Shell Script Execution Test : Highlighted Research Paper Converted back to PDF\n";
+    # scan this subdir
+    $parent_dir = __DIR__ . '/../';
+    $this->assertFileExists($parent_dir . 'research_paper.pdf');
+    echo "PASS - Highlight Shell Script Execution Test : Research Paper PDF Properly Moved into Local Folder\n";
+    $this->assertFileExists($parent_dir . 'research_paper.html');
+    echo "PASS - Highlight Shell Script Execution Test : Research Paper PDF Properly Converted to HTML\n";
+    $this->assertFileExists($parent_dir . 'research_paper_highlighted.html');
+    echo "PASS - Highlight Shell Script Execution Test : Research Paper HTML Highlighted and Written to Local Folder\n";
+    $this->assertFileExists($parent_dir . 'research_paper_highlighted.pdf');
+    echo "PASS - Highlight Shell Script Execution Test : Highlighted Research Paper HTML Converted back to PDF\n";
 		echo "Code Coverage : 15/15 statements = 100% | 0/0 branches = 100.0% \n \n";
 
 		// Overall results
